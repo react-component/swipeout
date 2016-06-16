@@ -5,14 +5,11 @@ iOS-style swipeout buttons that appear from behind a component
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
-[![Test coverage][coveralls-image]][coveralls-url]
 
-[npm-image]: http://img.shields.io/npm/v/react-swipeout.svg?style=flat-square
-[npm-url]: http://npmjs.org/package/react-swipeout
-[travis-image]: https://img.shields.io/travis/silentcloud/react-swipeout.svg?style=flat-square
-[travis-url]: https://travis-ci.org/silentcloud/react-swipeout
-[coveralls-image]: https://img.shields.io/coveralls/silentcloud/react-swipeout.svg?style=flat-square
-[coveralls-url]: https://coveralls.io/r/silentcloud/react-swipeout?branch=master
+[npm-image]: http://img.shields.io/npm/v/rc-swipeout.svg?style=flat-square
+[npm-url]: http://npmjs.org/package/rc-swipeout
+[travis-image]: https://img.shields.io/travis/react-component/rc-swipeout.svg?style=flat-square
+[travis-url]: https://travis-ci.org/react-component/rc-swipeout
 
 ## Screenshots
 
@@ -41,10 +38,18 @@ import Swipeout from 'rc-swipeout';
 
 <Swipeout 
   left={[
-    { text: 'reply',  onPress:() => {console.log('reply')}, style: {backgroundColor: 'orange', color: 'white'} }
+    {
+      text: 'reply',
+      onPress:() => console.log('reply'),
+      style: { backgroundColor: 'orange', color: 'white' }
+    }
   ]} 
   right=[{
-    { text: 'delete',  onPress:() => {console.log('delete')}, style: {backgroundColor: 'red', color: 'white'} }
+    {
+      text: 'delete',
+      onPress:() => console.log('delete'),
+      style: { backgroundColor: 'red', color: 'white' }
+    }
   }] 
   onOpen={() => console.log('open')}
   onClose={() => console.log('close')}
