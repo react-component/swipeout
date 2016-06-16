@@ -13,7 +13,7 @@ iOS-style swipeout buttons that appear from behind a component
 
 ## Screenshots
 
-![swipeout](http://silentcloud.github.io/upload/swipeout.gif)
+![rc-swipeout](https://zos.alipayobjects.com/rmsportal/dqxQTtxrKrGMVEc.gif)
 
 ## Installation
 
