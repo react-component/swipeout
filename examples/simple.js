@@ -1,5 +1,5 @@
-import 'react-swipeout/assets/index.less';
-import Swipeout from 'react-swipeout';
+import 'rc-swipeout/assets/index.less';
+import Swipeout from 'rc-swipeout';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
