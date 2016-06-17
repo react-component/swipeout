@@ -199,7 +199,9 @@ class Swipeout extends React.Component {
         { this.renderButtons(left, 'left') }
         { this.renderButtons(right, 'right') }
       </div>
-    ) : children;
+    ) : (
+      <div ref="content">{children}</div>
+    );
   }
 }
 
