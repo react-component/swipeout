@@ -8,8 +8,8 @@ iOS-style swipeout buttons that appear from behind a component
 
 [npm-image]: http://img.shields.io/npm/v/rc-swipeout.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/rc-swipeout
-[travis-image]: https://img.shields.io/travis/react-component/rc-swipeout.svg?style=flat-square
-[travis-url]: https://travis-ci.org/react-component/rc-swipeout
+[travis-image]: https://img.shields.io/travis/react-component/swipeout.svg?style=flat-square
+[travis-url]: https://travis-ci.org/react-component/swipeout
 
 ## Screenshots
 
@@ -29,7 +29,7 @@ npm start
 ## Example
 
 - local: http://localhost:8000/examples/
-- online: http://react-component.github.io/rc-swipeout/
+- online: http://react-component.github.io/swipeout/
 
 ## Usage
 
@@ -99,4 +99,4 @@ open coverage/ dir
 
 ## License
 
-react-swipeout is released under the MIT license.
+rc-swipeout is released under the MIT license.

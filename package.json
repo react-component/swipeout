@@ -6,16 +6,17 @@
     "react",
     "react-component",
     "swipeout",
+    "rc-swipeout",
     "swipe delete"
   ],
-  "homepage": "https://github.com/react-component/rc-swipeout",
+  "homepage": "https://github.com/react-component/swipeout",
   "author": "rjmuqiang@gmail.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-component/rc-swipeout.git"
+    "url": "https://github.com/react-component/swipeout.git"
   },
   "bugs": {
-    "url": "https://github.com/react-component/rc-swipeout/issues"
+    "url": "https://github.com/react-component/swipeout/issues"
   },
   "files": [
     "lib",
