@@ -4,11 +4,12 @@ const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
 const Hammer = require('hammerjs');
 const sinon = require('sinon');
-
 require('hammer-simulator');
 const Simulator = window.Simulator;
 Simulator.setType('pointer');
 Simulator.events.pointer.fakeSupport();
+
+console.log(Simulator)
 
 const Swipeout = require('../');
 
@@ -131,18 +132,18 @@ describe('simple', () => {
     const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
     hammer.add(swipe);
 
-    const tap = new Hammer.Tap({ threshold: 2 });
-    hammer.add(tap);
-
     // TODO async to sync, add swipeLeft tests
 
-    Simulator.gestures.swipe(domEl, {
+    Simulator.gestures.pan(domEl, {
       deltaX: 300,
-      deltaY: 10,
+      deltaY: 5,
     }, () => {
       expect(domEl.style.left).to.be('128px');
       expect(leftActionEl.style.width).to.be('128px');
       expect(rightActionEl.style.width).to.be('0px');
+
+      const tap = new Hammer.Tap({ threshold: 2 });
+      hammer.add(tap);
 
       Simulator.gestures.tap(domEl, {
         pos: [200, 10],
