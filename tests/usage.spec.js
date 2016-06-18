@@ -30,7 +30,7 @@ describe('simple', () => {
   });
 
 
-  it('left=right=[] render no swipeout', () => {
+  it('left=right=[] render no swipeout', done => {
     const instance = ReactDOM.render(
       <Swipeout left={[]} right={[]}>swipeout demo</Swipeout>
       , div
@@ -39,9 +39,10 @@ describe('simple', () => {
       instance, 'rc-swipeout'
     );
     expect(domElArr.length).to.be(0);
+    done();
   });
 
-  it('render works', () => {
+  it('render works', done => {
     const instance = ReactDOM.render(
       <Swipeout
         right={[
@@ -64,6 +65,7 @@ describe('simple', () => {
       instance, 'rc-swipeout-btn'
     );
     expect(actionElArr.length).to.be(4);
+    done();
   });
 
   it('swipe when disabled', done => {
