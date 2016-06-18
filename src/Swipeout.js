@@ -129,14 +129,18 @@ class Swipeout extends React.Component {
 
   // set content & actions style
   _setStyle(value) {
+    const { left, right } = this.props;
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
-    const leftWidth = Math.max(Math.min(value, Math.abs(limit)), 0);
-    const rightWidth = Math.max(Math.min(-value, Math.abs(limit)), 0);
     const contentLeft = this._getContentEasing(value, limit);
-
     this.refs.content.style.left = `${contentLeft}px`;
-    this.refs.left.style.width = `${leftWidth}px`;
-    this.refs.right.style.width = `${rightWidth}px`;
+    if (left.length) {
+      const leftWidth = Math.max(Math.min(value, Math.abs(limit)), 0);
+      this.refs.left.style.width = `${leftWidth}px`;
+    }
+    if (right.length) {
+      const rightWidth = Math.max(Math.min(-value, Math.abs(limit)), 0);
+      this.refs.right.style.width = `${rightWidth}px`;
+    }
   }
 
   open(value, openedLeft, openedRight) {

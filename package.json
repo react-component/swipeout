@@ -44,11 +44,14 @@
   },
   "devDependencies": {
     "expect.js": "0.3.x",
+    "hammer-simulator": "0.0.1",
+    "hammerjs": "^2.0.8",
     "pre-commit": "1.x",
     "rc-tools": "5.x",
     "react": "0.14.x",
     "react-addons-test-utils": "0.14.x",
-    "react-dom": "0.14.x"
+    "react-dom": "0.14.x",
+    "sinon": "git+https://github.com/sinonjs/sinon.git"
   },
   "pre-commit": [
     "lint"
