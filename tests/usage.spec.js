@@ -2,17 +2,14 @@ const expect = require('expect.js');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
-const Hammer = require('hammerjs');
 const sinon = require('sinon');
 require('hammer-simulator');
 const Simulator = window.Simulator;
 Simulator.setType('pointer');
 Simulator.events.pointer.fakeSupport();
-
-console.log(Simulator)
-
 const Swipeout = require('../');
 
+/* global Hammer */
 describe('simple', () => {
   let div;
 
@@ -134,7 +131,7 @@ describe('simple', () => {
 
     // TODO async to sync, add swipeLeft tests
 
-    Simulator.gestures.pan(domEl, {
+    Simulator.gestures.swipe(domEl, {
       deltaX: 300,
       deltaY: 5,
     }, () => {
