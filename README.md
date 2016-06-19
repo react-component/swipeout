@@ -5,11 +5,14 @@ iOS-style swipeout buttons that appear from behind a component
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
+[![Test coverage][coveralls-image]][coveralls-url]
 
 [npm-image]: http://img.shields.io/npm/v/rc-swipeout.svg?style=flat-square
 [npm-url]: http://npmjs.org/package/rc-swipeout
 [travis-image]: https://img.shields.io/travis/react-component/swipeout.svg?style=flat-square
 [travis-url]: https://travis-ci.org/react-component/swipeout
+[coveralls-image]: https://img.shields.io/coveralls/react-component/swipeout.svg?style=flat-square
+[coveralls-url]: https://coveralls.io/r/react-component/swipeout?branch=master
 
 ## Screenshots
 
