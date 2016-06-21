@@ -2,7 +2,6 @@ const expect = require('expect.js');
 const React = require('react');
 const ReactDOM = require('react-dom');
 const TestUtils = require('react-addons-test-utils');
-const sinon = require('sinon');
 require('hammer-simulator');
 const Simulator = window.Simulator;
 Simulator.setType('pointer');
@@ -154,8 +153,14 @@ describe('simple', () => {
   });
 
   it('onOpen & onClose to be called', done => {
-    const onOpenSpy = sinon.spy();
-    const onCloseSpy = sinon.spy();
+    let openCalled = false;
+    let closeCalled = false;
+    const onOpenSpy = function () {
+      openCalled = true;
+    };
+    const onCloseSpy = function () {
+      closeCalled = true;
+    };
     const instance = ReactDOM.render(
       <Swipeout
         right={[
@@ -187,18 +192,21 @@ describe('simple', () => {
       deltaX: 300,
       deltaY: 10,
     }, () => {
-      expect(onOpenSpy.called).to.be(true);
+      expect(openCalled).to.be(true);
       Simulator.gestures.tap(domEl, {
         pos: [200, 10],
       }, () => {
-        expect(onCloseSpy.called).to.be(true);
+        expect(closeCalled).to.be(true);
         done();
       });
     });
   });
 
   it('button click & autoClose', done => {
-    const onRead = sinon.spy();
+    let readCalled = false;
+    const onRead = function () {
+      readCalled = true;
+    };
     const instance = ReactDOM.render(
       <Swipeout
         left={[
@@ -229,7 +237,7 @@ describe('simple', () => {
       deltaY: 10,
     }, () => {
       TestUtils.Simulate.click(BtnElArr[0]);
-      expect(onRead.called).to.be(true);
+      expect(readCalled).to.be(true);
       expect(domEl.style.left).to.be('0px');
       done();
     });
