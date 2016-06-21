@@ -66,7 +66,7 @@ import Swipeout from 'rc-swipeout';
 
 ### props
 
-| 属性        | 说明                   | 类型   | 默认值     |
+| name        | description                   | type   | default    |
 |-------------|------------------------|--------|------------|
 | prefixCls       | className prefix     | String | `rc-swipeout` |
 | style       | swipeout style      | Object | `` |
@@ -79,7 +79,7 @@ import Swipeout from 'rc-swipeout';
 
 ### button props
 
-| 属性        | 说明                   | 类型   | 默认值     |
+| name        | description                   | type   | default    |
 |-------------|------------------------|--------|------------|
 | text       | button text     | String | `Click` |
 | style       | button style     | Object | `` |
