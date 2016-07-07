@@ -37,18 +37,16 @@ webpackJsonp([1],{
 	    {
 	      style: { backgroundColor: 'white' },
 	      autoClose: true,
-	      left: [{
-	        text: 'read',
+	      right: [{ text: 'more',
 	        onPress: function onPress() {
-	          return console.log('read');
+	          return console.log('more');
 	        },
-	        style: { backgroundColor: 'blue', color: 'white' }
-	      }, {
-	        text: 'reply',
+	        style: { backgroundColor: 'orange', color: 'white' }
+	      }, { text: 'delete',
 	        onPress: function onPress() {
-	          return console.log('reply');
+	          return console.log('delete');
 	        },
-	        style: { backgroundColor: 'green', color: 'white' }
+	        style: { backgroundColor: 'red', color: 'white' }
 	      }],
 	      onOpen: function onOpen() {
 	        return console.log('open');
