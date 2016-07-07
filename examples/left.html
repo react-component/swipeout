@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>simple.js - example - rc-swipeout@1.0.2</title>
+  <title>left.js - example - rc-swipeout@1.0.2</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -274,20 +274,10 @@ ReactDOM.render(
     <span class="hljs-tag">&lt;<span class="hljs-title">Swipeout</span>
       <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">backgroundColor:</span> '<span class="hljs-attribute">white</span>' }}
       <span class="hljs-attribute">autoClose</span>
-      <span class="hljs-attribute">right</span>=<span class="hljs-value">{[</span>
-        { <span class="hljs-attribute">text:</span> '<span class="hljs-attribute">more</span>',
-          <span class="hljs-attribute">onPress:</span> () =&gt;</span> console.log('more'),
-          style: { backgroundColor: 'orange', color: 'white' },
-        },
-        { text: 'delete',
-          onPress: () =&gt; console.log('delete'),
-          style: { backgroundColor: 'red', color: 'white' },
-        },
-      ]}
-      left={[
+      <span class="hljs-attribute">left</span>=<span class="hljs-value">{[</span>
         {
-          text: 'read',
-          onPress: () =&gt; console.log('read'),
+          <span class="hljs-attribute">text:</span> '<span class="hljs-attribute">read</span>',
+          <span class="hljs-attribute">onPress:</span> () =&gt;</span> console.log('read'),
           style: { backgroundColor: 'blue', color: 'white' },
         },
         {
@@ -321,7 +311,7 @@ ReactDOM.render(
   </a>
   
   <script src="common.js?nowrap"></script>
-  <script src="simple.js?nowrap"></script>
+  <script src="left.js?nowrap"></script>
 </body>
 
 </html>

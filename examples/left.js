@@ -1,14 +1,12 @@
-webpackJsonp([2],{
-
-/***/ 0:
+webpackJsonp([0],[
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(167);
+	module.exports = __webpack_require__(1);
 
 
 /***/ },
-
-/***/ 167:
+/* 1 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -37,17 +35,6 @@ webpackJsonp([2],{
 	    {
 	      style: { backgroundColor: 'white' },
 	      autoClose: true,
-	      right: [{ text: 'more',
-	        onPress: function onPress() {
-	          return console.log('more');
-	        },
-	        style: { backgroundColor: 'orange', color: 'white' }
-	      }, { text: 'delete',
-	        onPress: function onPress() {
-	          return console.log('delete');
-	        },
-	        style: { backgroundColor: 'red', color: 'white' }
-	      }],
 	      left: [{
 	        text: 'read',
 	        onPress: function onPress() {
@@ -84,6 +71,5 @@ webpackJsonp([2],{
 	), document.getElementById('__react-content'));
 
 /***/ }
-
-});
-//# sourceMappingURL=simple.js.map
+]);
+//# sourceMappingURL=left.js.map
