@@ -99,6 +99,93 @@ describe('simple', () => {
     });
   });
 
+
+  it('only left', done => {
+    const instance = ReactDOM.render(
+      <Swipeout
+        left={[
+          { text: 'read' },
+          { text: 'reply' },
+        ]}
+      >
+        swipeout demo
+      </Swipeout>
+      , div
+    );
+    const domEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-content'
+    );
+    const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-actions-left'
+    );
+
+    const hammer = new Hammer(domEl, { recognizers: [] });
+    const swipeLeft = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_LEFT });
+    hammer.add(swipeLeft);
+
+    Simulator.gestures.swipe(domEl, {
+      deltaX: -300,
+      deltaY: 10,
+    }, () => {
+      expect(domEl.style.left).to.be('');
+
+      const swipeRight = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_RIGHT });
+      hammer.add(swipeRight);
+
+      Simulator.gestures.swipe(domEl, {
+        deltaX: 300,
+        deltaY: 10,
+      }, () => {
+        expect(domEl.style.left).to.be('128px');
+        expect(leftActionEl.style.width).to.be('128px');
+        done();
+      });
+    });
+  });
+
+  it('only right', done => {
+    const instance = ReactDOM.render(
+      <Swipeout
+        right={[
+          { text: 'read' },
+          { text: 'reply' },
+        ]}
+      >
+        swipeout demo
+      </Swipeout>
+      , div
+    );
+    const domEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-content'
+    );
+    const rightActionEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-actions-right'
+    );
+
+    const hammer = new Hammer(domEl, { recognizers: [] });
+    const swipeRight = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_RIGHT });
+    hammer.add(swipeRight);
+
+    Simulator.gestures.swipe(domEl, {
+      deltaX: 300,
+      deltaY: 10,
+    }, () => {
+      expect(domEl.style.left).to.be('');
+
+      const swipeLeft = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_LEFT });
+      hammer.add(swipeLeft);
+
+      Simulator.gestures.swipe(domEl, {
+        deltaX: -300,
+        deltaY: 10,
+      }, () => {
+        expect(domEl.style.left).to.be('-128px');
+        expect(rightActionEl.style.width).to.be('128px');
+        done();
+      });
+    });
+  });
+
   it('works when swipe', done => {
     const instance = ReactDOM.render(
       <Swipeout
