@@ -33,6 +33,7 @@ class Swipeout extends React.Component {
 
     this.openedLeft = false;
     this.openedRight = false;
+    this.disabledPan = false;
   }
 
   componentDidMount() {
@@ -45,14 +46,26 @@ class Swipeout extends React.Component {
   }
 
   onPanStart(e) {
-    if (this.props.disabled) {
+    // cannot set direction by react-harmmerjs, fix left & right direction temporarily
+    // wait react-harmmerjs pr #46 to merge
+    const { left, right } = this.props;
+    const aev = e.additionalEvent;
+    if (aev === 'panright' && !left.length) {
+      this.disabledPan = true;
+    } else if (aev === 'panleft' && !right.length) {
+      this.disabledPan = true;
+    } else {
+      this.disabledPan = false;
+    }
+
+    if (this.props.disabled || this.disabledPan) {
       return;
     }
     this.panStartX = e.deltaX;
   }
 
   onPan(e) {
-    if (this.props.disabled) {
+    if (this.props.disabled || this.disabledPan) {
       return;
     }
 
@@ -72,7 +85,7 @@ class Swipeout extends React.Component {
   }
 
   onPanEnd(e) {
-    if (this.props.disabled) {
+    if (this.props.disabled || this.disabledPan) {
       return;
     }
 
@@ -186,6 +199,7 @@ class Swipeout extends React.Component {
 
   render() {
     const { prefixCls, left, right, children, ...others } = this.props;
+
     return (left.length || right.length) ? (
       <div className={`${prefixCls} transitioning`} {...others}>
         <Hammer
