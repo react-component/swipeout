@@ -1,7 +1,9 @@
 import React, { PropTypes } from 'react';
 import Hammer from 'react-hammerjs';
+import splitObject from './util/splitObject';
+import SwipeoutProps from './SwipeoutProps';
 
-class Swipeout extends React.Component {
+class Swipeout extends React.Component<SwipeoutProps, any> {
   static propTypes = {
     prefixCls: PropTypes.string,
     autoClose: PropTypes.bool,
@@ -11,7 +13,7 @@ class Swipeout extends React.Component {
     onOpen: PropTypes.func,
     onClose: PropTypes.func,
     children: PropTypes.any,
-  }
+  };
 
   static defaultProps = {
     prefixCls: 'rc-swipeout',
@@ -21,7 +23,7 @@ class Swipeout extends React.Component {
     right: [],
     onOpen() {},
     onClose() {},
-  }
+  };
 
   constructor(props) {
     super(props);
@@ -198,10 +200,13 @@ class Swipeout extends React.Component {
   }
 
   render() {
-    const { prefixCls, left, right, children, ...others } = this.props;
+    let [{prefixCls, left, right, children}, restProps] = splitObject(
+      this.props,
+      ['prefixCls', 'left', 'right', 'children']
+    );
 
     return (left.length || right.length) ? (
-      <div className={`${prefixCls} transitioning`} {...others}>
+      <div className={`${prefixCls} transitioning`} {...restProps}>
         <Hammer
           vertical={false}
           onPanStart={this.onPanStart}

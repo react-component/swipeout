@@ -20,3 +20,6 @@ node_modules
 dist
 build
 lib
+coverage
+typings/
+*.js
