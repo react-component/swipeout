@@ -1,6 +1,8 @@
 import { PropTypes } from 'react';
 import * as React from 'react';
-import { View, PanResponder } from 'react-native';
+import { View, Text } from 'react-native';
+import Swipe from 'react-native-swipeout';
+import splitObject from './util/splitObject';
 import SwipeoutProps from './SwipeoutProps';
 
 class Swipeout extends React.Component<SwipeoutProps, any> {
@@ -11,7 +13,6 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
     left: PropTypes.arrayOf(PropTypes.object),
     right: PropTypes.arrayOf(PropTypes.object),
     onOpen: PropTypes.func,
-    onClose: PropTypes.func,
     children: PropTypes.any,
   };
 
@@ -21,51 +22,82 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
     left: [],
     right: [],
     onOpen() {},
-    onClose() {},
   };
 
-  componentWillMount() {
-    this._panResponder = PanResponder.create({
-      onStartShouldSetPanResponder: (event, gestureState) => true,
-      onMoveShouldSetPanResponder: (event, gestureState) =>
-      Math.abs(gestureState.dx) > this.props.sensitivity &&
-      Math.abs(gestureState.dy) > this.props.sensitivity,
-      onPanResponderGrant: this._handlePanResponderGrant,
-      onPanResponderMove: this._handlePanResponderMove,
-      onPanResponderRelease: this._handlePanResponderEnd,
-      onPanResponderTerminate: this._handlePanResponderEnd,
-      onShouldBlockNativeResponder: (event, gestureState) => true,
+  constructor(props) {
+    super(props);
+    this.state = {
+      show: false,
+      paddingTop: 0,
+    };
+  }
+
+  _onBtnLayout = (event) => {
+    const { width, height } = event.nativeEvent.layout;
+    this.setState({
+      paddingTop: (height - 12) / 2,
+    }, () => {
+      this.setState({
+        show: true
+      })
     });
   }
 
-  _handlePanResponderGrant = (e, gestureState) => {
-
-  }
-
-  _handlePanResponderMove = (e, gestureState) => {
-
-  }
-
-  _handlePanResponderEnd = (e, gestureState) => {
-
+  renderCustomButton(button) {
+    const buttonStyle = button.style || {};
+    const bgColor = buttonStyle.backgroundColor || 'transparent';
+    const component = (
+      <View style={{
+        flex:1,
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: bgColor,
+      }}>
+        <Text style={[button.style, {textAlign: 'center'}]}>
+          {button.text}
+        </Text>
+      </View>
+    );
+    return {
+      text: button.text || 'Click',
+      onPress: button.onPress,
+      type: 'default',
+      component: component,
+      backgroundColor: 'transparent',
+      color: '#999',
+      disabled: false
+    };
   }
 
   render() {
-    const { autoClose, backgroundColor, left, right, children } = this.props;
+    let [{disabled, autoClose, style, left, right, onOpen, children}, restProps] = splitObject(
+      this.props,
+      ['disabled', 'autoClose', 'style', 'left', 'right', 'onOpen', 'children']
+    );
 
-    return (left.length || right.length) ? (
-      <View style={styleSwipeout}>
-        <View
-            ref="swipeoutContent"
-            style={styleContent}
-            onLayout={this._onLayout}
-            {...this._panResponder.panHandlers}>
-          {this.props.children}
-        </View>
-        { this._renderButtons(this.props.right, isRightVisible, styleRight) }
-        { this._renderButtons(this.props.left, isLeftVisible, styleLeft) }
+    const cutsomLeft = left.map(btn => {
+      return this.renderCustomButton(btn);
+    });
+    const cutsomRight = right.map(btn => {
+      return this.renderCustomButton(btn);
+    });
+
+    return (left.length || right.length) && !disabled ? (
+      <Swipe
+        autoClose={autoClose}
+        left={cutsomLeft}
+        right={cutsomRight}
+        style={style}
+        onOpen={onOpen}
+      >
+        {children}
+      </Swipe>
+    ) : (
+      <View style={style} {...restProps}>
+        {children}
       </View>
-    ) : null;
+    );
   }
 }
 

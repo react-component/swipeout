@@ -205,10 +205,17 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
       ['prefixCls', 'left', 'right', 'children']
     );
 
+    let direction = 'DIRECTION_HORIZONTAL';
+    if(left.length && right.length === 0) {
+      direction= 'DIRECTION_RIGHT';
+    }
+    if(right.length && left.length === 0) {
+      direction= 'DIRECTION_LEFT';
+    }
     return (left.length || right.length) ? (
       <div className={`${prefixCls} transitioning`} {...restProps}>
         <Hammer
-          vertical={false}
+          direction={direction}
           onPanStart={this.onPanStart}
           onPan={this.onPan}
           onPanEnd={this.onPanEnd}

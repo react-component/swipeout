@@ -41,16 +41,17 @@
     "rn-start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react-hammerjs": "^0.4.6"
+    "react-hammerjs": "^0.5.0",
+    "react-native-swipeout": "https://github.com/dancormier/react-native-swipeout.git#master"
   },
   "devDependencies": {
     "expect.js": "0.3.x",
     "hammer-simulator": "0.0.1",
     "pre-commit": "1.x",
     "rc-tools": "5.x",
-    "react": "0.14.x",
-    "react-addons-test-utils": "0.14.x",
-    "react-dom": "0.14.x",
+    "react": "~15.2.1",
+    "react-addons-test-utils": "~15.2.1",
+    "react-dom": "~15.2.1",
     "react-native": "0.28.0"
   },
   "typings": "./lib/index.web.d.ts",

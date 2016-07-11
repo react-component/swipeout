@@ -7,6 +7,7 @@ interface SwipeoutProps {
   children:any;
   /** web only */
   prefixCls?:string;
+  onOpen?:() => void;
 }
 
 export default SwipeoutProps;

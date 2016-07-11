@@ -23,3 +23,5 @@ lib
 coverage
 typings/
 *.js
+ios
+android
