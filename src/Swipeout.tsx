@@ -32,17 +32,6 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
     };
   }
 
-  _onBtnLayout = (event) => {
-    const { width, height } = event.nativeEvent.layout;
-    this.setState({
-      paddingTop: (height - 12) / 2,
-    }, () => {
-      this.setState({
-        show: true
-      })
-    });
-  }
-
   renderCustomButton(button) {
     const buttonStyle = button.style || {};
     const bgColor = buttonStyle.backgroundColor || 'transparent';
