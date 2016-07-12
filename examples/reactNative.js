@@ -1,5 +1,5 @@
 import { View, Text, AppRegistry } from 'react-native';
-import Swipeout from './src';
+import Swipeout from '../src';
 import React from 'react';
 
 class SwipeoutExample extends React.Component {
