@@ -1,7 +1,7 @@
 import 'rc-swipeout/assets/index.less';
 import Swipeout from 'rc-swipeout';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 ReactDOM.render(
   <div style={{ marginBottom: 12 }}>
@@ -16,18 +16,6 @@ ReactDOM.render(
         { text: 'delete',
           onPress: () => console.log('delete'),
           style: { backgroundColor: 'red', color: 'white' },
-        },
-      ]}
-      left={[
-        {
-          text: 'read',
-          onPress: () => console.log('read'),
-          style: { backgroundColor: 'blue', color: 'white' },
-        },
-        {
-          text: 'reply',
-          onPress: () => console.log('reply'),
-          style: { backgroundColor: 'green', color: 'white' },
         },
       ]}
       onOpen={() => console.log('open')}

@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -28,12 +28,11 @@
     "port": 8000
   },
   "scripts": {
-    "watch-tsc": "rc-tools run watch-tsc",
     "build": "rc-tools run build",
     "gh-pages": "rc-tools run gh-pages",
     "start": "rc-tools run server",
     "pub": "rc-tools run pub",
-    "lint": "rc-tools run lint --no-js-lint",
+    "lint": "rc-tools run lint",
     "karma": "rc-tools run karma",
     "test": "rc-tools run test",
     "chrome-test": "rc-tools run chrome-test",
@@ -41,6 +40,7 @@
     "rn-start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
+    "object.omit": "~2.0.0",
     "react-hammerjs": "^0.5.0",
     "react-native-swipeout": "https://github.com/dancormier/react-native-swipeout.git#master"
   },
@@ -54,7 +54,6 @@
     "react-dom": "~15.2.1",
     "react-native": "0.28.0"
   },
-  "typings": "./lib/index.web.d.ts",
   "pre-commit": [
     "lint"
   ]

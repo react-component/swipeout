@@ -1,6 +1,6 @@
 export default function splitObject(obj, parts) {
-  let left = {};
-  let right = {};
+  const left = {};
+  const right = {};
   Object.keys(obj).forEach((k) => {
     if (parts.indexOf(k) !== -1) {
       left[k] = obj[k];

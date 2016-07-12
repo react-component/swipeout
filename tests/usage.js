@@ -1,6 +1,6 @@
 const expect = require('expect.js');
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import TestUtils from 'react-addons-test-utils';
 require('hammer-simulator');
 const Simulator = window.Simulator;

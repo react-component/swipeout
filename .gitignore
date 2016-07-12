@@ -21,7 +21,5 @@ dist
 build
 lib
 coverage
-typings/
-*.js
 ios
 android

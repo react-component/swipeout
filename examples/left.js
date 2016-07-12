@@ -1,7 +1,7 @@
 import 'rc-swipeout/assets/index.less';
 import Swipeout from 'rc-swipeout';
-import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
 ReactDOM.render(
   <div style={{ marginBottom: 12 }}>

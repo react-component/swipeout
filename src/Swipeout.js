@@ -1,11 +1,9 @@
-import { PropTypes } from 'react';
-import * as React from 'react';
+import React, { PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import Swipe from 'react-native-swipeout';
 import splitObject from './util/splitObject';
-import SwipeoutProps from './SwipeoutProps';
 
-class Swipeout extends React.Component<SwipeoutProps, any> {
+class Swipeout extends React.Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     autoClose: PropTypes.bool,
@@ -35,15 +33,13 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
   renderCustomButton(button) {
     const buttonStyle = button.style || {};
     const bgColor = buttonStyle.backgroundColor || 'transparent';
-    const component = (
-      <View style={{
-        flex:1,
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: bgColor,
-      }}>
-        <Text style={[button.style, {textAlign: 'center'}]}>
+    const Component = (
+      <View
+        style={{
+          flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: bgColor,
+        }}
+      >
+        <Text style={[button.style, { textAlign: 'center' }]}>
           {button.text}
         </Text>
       </View>
@@ -52,15 +48,15 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
       text: button.text || 'Click',
       onPress: button.onPress,
       type: 'default',
-      component: component,
+      component: Component,
       backgroundColor: 'transparent',
       color: '#999',
-      disabled: false
+      disabled: false,
     };
   }
 
   render() {
-    let [{disabled, autoClose, style, left, right, onOpen, children}, restProps] = splitObject(
+    const [{ disabled, autoClose, style, left, right, onOpen, children }, restProps] = splitObject(
       this.props,
       ['disabled', 'autoClose', 'style', 'left', 'right', 'onOpen', 'children']
     );

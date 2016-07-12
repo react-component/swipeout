@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 import Hammer from 'react-hammerjs';
+import omit from 'object.omit';
 import splitObject from './util/splitObject';
-import SwipeoutProps from './SwipeoutProps';
 
-class Swipeout extends React.Component<SwipeoutProps, any> {
+class Swipeout extends React.Component {
   static propTypes = {
     prefixCls: PropTypes.string,
     autoClose: PropTypes.bool,
@@ -200,10 +200,16 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
   }
 
   render() {
-    let [{prefixCls, left, right, children}, restProps] = splitObject(
+    const [{ prefixCls, left, right, children }, restProps] = splitObject(
       this.props,
       ['prefixCls', 'left', 'right', 'children']
     );
+    const divProps = omit(restProps, [
+      'disabled',
+      'autoClose',
+      'onOpen',
+      'onClose',
+    ]);
 
     let direction = 'DIRECTION_HORIZONTAL';
     if (left.length && right.length === 0) {
@@ -213,7 +219,7 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
       direction = 'DIRECTION_LEFT';
     }
     return (left.length || right.length) ? (
-      <div className={`${prefixCls} transitioning`} {...restProps}>
+      <div className={`${prefixCls} transitioning`} {...divProps}>
         <Hammer
           direction={direction}
           onPanStart={this.onPanStart}
@@ -230,7 +236,7 @@ class Swipeout extends React.Component<SwipeoutProps, any> {
         { this.renderButtons(right, 'right') }
       </div>
     ) : (
-      <div ref="content">{children}</div>
+      <div ref="content" {...divProps}>{children}</div>
     );
   }
 }
