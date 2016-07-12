@@ -1,7 +1,7 @@
 const expect = require('expect.js');
-const React = require('react');
-const ReactDOM = require('react-dom');
-const TestUtils = require('react-addons-test-utils');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import TestUtils from 'react-addons-test-utils';
 require('hammer-simulator');
 const Simulator = window.Simulator;
 Simulator.setType('pointer');

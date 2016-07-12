@@ -1,7 +1,7 @@
 {
   "name": "rc-swipeout",
-  "version": "1.0.2",
-  "description": "swipe out ui component for react",
+  "version": "1.1.0",
+  "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
     "react-component",
@@ -23,7 +23,7 @@
     "assets/*.css"
   ],
   "licenses": "MIT",
-  "main": "./lib/index",
+  "main": "./lib/index.web",
   "config": {
     "port": 8000
   },
@@ -34,22 +34,25 @@
     "pub": "rc-tools run pub",
     "lint": "rc-tools run lint",
     "karma": "rc-tools run karma",
-    "saucelabs": "rc-tools run saucelabs",
     "test": "rc-tools run test",
     "chrome-test": "rc-tools run chrome-test",
-    "coverage": "rc-tools run coverage"
+    "coverage": "rc-tools run coverage",
+    "rn-start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
-    "react-hammerjs": "^0.4.6"
+    "object.omit": "~2.0.0",
+    "react-hammerjs": "^0.5.0",
+    "react-native-swipeout": "https://github.com/dancormier/react-native-swipeout.git#master"
   },
   "devDependencies": {
     "expect.js": "0.3.x",
     "hammer-simulator": "0.0.1",
     "pre-commit": "1.x",
     "rc-tools": "5.x",
-    "react": "0.14.x",
-    "react-addons-test-utils": "0.14.x",
-    "react-dom": "0.14.x"
+    "react": "~15.2.1",
+    "react-addons-test-utils": "~15.2.1",
+    "react-dom": "~15.2.1",
+    "react-native": "0.28.0"
   },
   "pre-commit": [
     "lint"

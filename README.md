@@ -1,7 +1,7 @@
 # rc-swipeout
 ---
 
-iOS-style swipeout buttons that appear from behind a component
+iOS-style swipeout buttons that appear from behind a component (web & react-native support)
 
 [![NPM version][npm-image]][npm-url]
 [![build status][travis-image]][travis-url]
@@ -25,8 +25,12 @@ iOS-style swipeout buttons that appear from behind a component
 ## Development
 
 ```
+web: 
 npm install
 npm start
+
+rn:
+tnpm run rn-start
 ```
 
 ## Example

@@ -1,5 +1,9 @@
 # History
 
+## 1.1.0
+
+- [`new`] react-native support
+
 ## 1.0.2
 
 - [`fix`] error if this.refs.left/right is []
