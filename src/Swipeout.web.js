@@ -219,7 +219,7 @@ class Swipeout extends React.Component {
       direction = 'DIRECTION_LEFT';
     }
     return (left.length || right.length) ? (
-      <div className={`${prefixCls} transitioning`} {...divProps}>
+      <div className={`${prefixCls}`} {...divProps}>
         <Hammer
           direction={direction}
           onPanStart={this.onPanStart}
