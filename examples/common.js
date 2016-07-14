@@ -405,7 +405,7 @@
 	    }
 	    return left.length || right.length ? _react2.default.createElement(
 	      'div',
-	      _extends({ className: prefixCls + ' transitioning' }, divProps),
+	      _extends({ className: '' + prefixCls }, divProps),
 	      _react2.default.createElement(
 	        _reactHammerjs2.default,
 	        {

@@ -6,8 +6,8 @@
   position: relative;
   z-index: 10;
 }
-.rc-swipeout.transitioning .rc-swipeout-content,
-.rc-swipeout.transitioning .rc-swipeout-actions {
+.rc-swipeout .rc-swipeout-content,
+.rc-swipeout .rc-swipeout-actions {
   -webkit-transition: all 250ms;
   transition: all 250ms;
 }
