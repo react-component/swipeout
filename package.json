@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -42,7 +42,7 @@
   "dependencies": {
     "object.omit": "~2.0.0",
     "react-hammerjs": "^0.5.0",
-    "react-native-swipeout": "https://github.com/dancormier/react-native-swipeout.git#master"
+    "react-native-swipe-out": "~2.0.12"
   },
   "devDependencies": {
     "expect.js": "0.3.x",
@@ -52,7 +52,7 @@
     "react": "~15.2.1",
     "react-addons-test-utils": "~15.2.1",
     "react-dom": "~15.2.1",
-    "react-native": "0.28.0"
+    "react-native": "0.30.0"
   },
   "pre-commit": [
     "lint"

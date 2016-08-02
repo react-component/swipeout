@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { View, Text } from 'react-native';
-import Swipe from 'react-native-swipeout';
+import Swipe from 'react-native-swipe-out';
 import splitObject from './util/splitObject';
 
 class Swipeout extends React.Component {

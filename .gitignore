@@ -23,3 +23,5 @@ lib
 coverage
 ios
 android
+index.ios.js
+index.android.js
