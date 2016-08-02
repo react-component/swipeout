@@ -1,5 +1,9 @@
 # History
 
+## 1.1.3
+
+- update deps
+
 ## 1.1.0
 
 - [`new`] react-native support
