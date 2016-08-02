@@ -1,5 +1,9 @@
 # History
 
+## 1.1.4
+
+- use babel-runtime
+
 ## 1.1.3
 
 - update deps
