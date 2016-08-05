@@ -35,7 +35,6 @@ class Swipeout extends React.Component {
 
     this.openedLeft = false;
     this.openedRight = false;
-    this.disabledPan = false;
   }
 
   componentDidMount() {
@@ -48,26 +47,14 @@ class Swipeout extends React.Component {
   }
 
   onPanStart(e) {
-    // cannot set direction by react-harmmerjs, fix left & right direction temporarily
-    // wait react-harmmerjs pr #46 to merge
-    const { left, right } = this.props;
-    const aev = e.additionalEvent;
-    if (aev === 'panright' && !left.length) {
-      this.disabledPan = true;
-    } else if (aev === 'panleft' && !right.length) {
-      this.disabledPan = true;
-    } else {
-      this.disabledPan = false;
-    }
-
-    if (this.props.disabled || this.disabledPan) {
+    if (this.props.disabled) {
       return;
     }
     this.panStartX = e.deltaX;
   }
 
   onPan(e) {
-    if (this.props.disabled || this.disabledPan) {
+    if (this.props.disabled) {
       return;
     }
 
@@ -87,7 +74,7 @@ class Swipeout extends React.Component {
   }
 
   onPanEnd(e) {
-    if (this.props.disabled || this.disabledPan) {
+    if (this.props.disabled) {
       return;
     }
 
@@ -115,8 +102,9 @@ class Swipeout extends React.Component {
     }
   }
 
-  onTap() {
+  onTap(e) {
     if (this.openedLeft || this.openedRight) {
+      e.preventDefault();
       this.close();
     }
   }
@@ -159,9 +147,8 @@ class Swipeout extends React.Component {
   }
 
   open(value, openedLeft, openedRight) {
-    const onOpen = this.props.onOpen;
-    if (onOpen && !this.openedLeft && !this.openedRight) {
-      onOpen();
+    if (!this.openedLeft && !this.openedRight) {
+      this.props.onOpen();
     }
 
     this.openedLeft = openedLeft;
@@ -170,9 +157,8 @@ class Swipeout extends React.Component {
   }
 
   close() {
-    const onClose = this.props.onClose;
-    if (onClose && (this.openedLeft || this.openedRight)) {
-      onClose();
+    if (this.openedLeft || this.openedRight) {
+      this.props.onClose();
     }
     this.openedLeft = false;
     this.openedRight = false;

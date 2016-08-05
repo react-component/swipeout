@@ -21,7 +21,9 @@ ReactDOM.render(
       onOpen={() => console.log('open')}
       onClose={() => console.log('close')}
     >
-      <div style={{
+      <div onClick={() => {
+        console.log('emit an event on children element!');
+      }} style={{
         height: 44,
         backgroundColor: 'white',
         lineHeight: '44px',
