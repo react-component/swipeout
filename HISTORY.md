@@ -1,5 +1,9 @@
 # History
 
+## 1.1.5
+
+- fix issue/9
+
 ## 1.1.4
 
 - use babel-runtime
