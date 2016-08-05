@@ -57,7 +57,9 @@ webpackJsonp([1],{
 	    },
 	    _react2.default.createElement(
 	      'div',
-	      { style: {
+	      { onClick: function onClick() {
+	          console.log('emit an event on children element!');
+	        }, style: {
 	          height: 44,
 	          backgroundColor: 'white',
 	          lineHeight: '44px',

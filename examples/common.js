@@ -204,7 +204,6 @@
 	
 	    _this.openedLeft = false;
 	    _this.openedRight = false;
-	    _this.disabledPan = false;
 	    return _this;
 	  }
 	
@@ -221,29 +220,14 @@
 	  };
 	
 	  Swipeout.prototype.onPanStart = function onPanStart(e) {
-	    // cannot set direction by react-harmmerjs, fix left & right direction temporarily
-	    // wait react-harmmerjs pr #46 to merge
-	    var _props2 = this.props;
-	    var left = _props2.left;
-	    var right = _props2.right;
-	
-	    var aev = e.additionalEvent;
-	    if (aev === 'panright' && !left.length) {
-	      this.disabledPan = true;
-	    } else if (aev === 'panleft' && !right.length) {
-	      this.disabledPan = true;
-	    } else {
-	      this.disabledPan = false;
-	    }
-	
-	    if (this.props.disabled || this.disabledPan) {
+	    if (this.props.disabled) {
 	      return;
 	    }
 	    this.panStartX = e.deltaX;
 	  };
 	
 	  Swipeout.prototype.onPan = function onPan(e) {
-	    if (this.props.disabled || this.disabledPan) {
+	    if (this.props.disabled) {
 	      return;
 	    }
 	
@@ -263,7 +247,7 @@
 	  };
 	
 	  Swipeout.prototype.onPanEnd = function onPanEnd(e) {
-	    if (this.props.disabled || this.disabledPan) {
+	    if (this.props.disabled) {
 	      return;
 	    }
 	
@@ -291,8 +275,9 @@
 	    }
 	  };
 	
-	  Swipeout.prototype.onTap = function onTap() {
+	  Swipeout.prototype.onTap = function onTap(e) {
 	    if (this.openedLeft || this.openedRight) {
+	      e.preventDefault();
 	      this.close();
 	    }
 	  };
@@ -324,9 +309,9 @@
 	
 	
 	  Swipeout.prototype._setStyle = function _setStyle(value) {
-	    var _props3 = this.props;
-	    var left = _props3.left;
-	    var right = _props3.right;
+	    var _props2 = this.props;
+	    var left = _props2.left;
+	    var right = _props2.right;
 	
 	    var limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
 	    var contentLeft = this._getContentEasing(value, limit);
@@ -342,9 +327,8 @@
 	  };
 	
 	  Swipeout.prototype.open = function open(value, openedLeft, openedRight) {
-	    var onOpen = this.props.onOpen;
-	    if (onOpen && !this.openedLeft && !this.openedRight) {
-	      onOpen();
+	    if (!this.openedLeft && !this.openedRight) {
+	      this.props.onOpen();
 	    }
 	
 	    this.openedLeft = openedLeft;
@@ -353,9 +337,8 @@
 	  };
 	
 	  Swipeout.prototype.close = function close() {
-	    var onClose = this.props.onClose;
-	    if (onClose && (this.openedLeft || this.openedRight)) {
-	      onClose();
+	    if (this.openedLeft || this.openedRight) {
+	      this.props.onClose();
 	    }
 	    this.openedLeft = false;
 	    this.openedRight = false;
