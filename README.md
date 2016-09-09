@@ -42,22 +42,23 @@ tnpm run rn-start
 
 ```js
 import Swipeout from 'rc-swipeout';
+import 'rc-swipeout/assets/index.less';
 
-<Swipeout 
+<Swipeout
   left={[
     {
       text: 'reply',
       onPress:() => console.log('reply'),
       style: { backgroundColor: 'orange', color: 'white' }
     }
-  ]} 
-  right=[{
+  ]}
+  right={[
     {
       text: 'delete',
       onPress:() => console.log('delete'),
       style: { backgroundColor: 'red', color: 'white' }
     }
-  }] 
+  ]}
   onOpen={() => console.log('open')}
   onClose={() => console.log('close')}
 >
@@ -74,8 +75,8 @@ import Swipeout from 'rc-swipeout';
 |-------------|------------------------|--------|------------|
 | prefixCls       | className prefix     | String | `rc-swipeout` |
 | style       | swipeout style      | Object | `` |
-| left       | swipeout buttons on left      | Array | `null` |
-| right       | swipeout buttons on right      | Array | `null` |
+| left       | swipeout buttons on left      | Array | `[]` |
+| right       | swipeout buttons on right      | Array | `[]` |
 | autoClose       | auto close on button press   | Boolean | `function() {}` |
 | onOpen       |       | Function | `function() {}` |
 | onClose       |       | Function | `function() {}` |
