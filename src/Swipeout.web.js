@@ -197,7 +197,7 @@ class Swipeout extends React.Component {
       'onClose',
     ]);
 
-    let direction = 'DIRECTION_HORIZONTAL';
+    const direction = 'DIRECTION_HORIZONTAL';
 
     return (left.length || right.length) ? (
       <div className={`${prefixCls}`} {...divProps}>
