@@ -7,7 +7,7 @@
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css" rel="stylesheet"/>
-  <title>rc-swipeout@1.1.5 - swipe out ui component for react(web and react-native)</title>
+  <title>rc-swipeout@1.2.0 - swipe out ui component for react(web and react-native)</title>
   <style>
     @font-face {
       font-family: octicons-anchor;
@@ -737,7 +737,7 @@
 
 <body>
 <div class="header">
-  <h1>rc-swipeout@1.1.5</h1>
+  <h1>rc-swipeout@1.2.0</h1>
 </div>
 <div class="examples">
   <h3>EXAMPLES</h3>
@@ -775,22 +775,23 @@ tnpm run rn-start</code></pre></div><h2>Example<a id="user-content-example" name
 <li>online: <a href="http://react-component.github.io/swipeout/" title="null">http://react-component.github.io/swipeout/</a></li>
 </ul>
 <h2>Usage<a id="user-content-usage" name="usage" class="anchor" aria-hidden="true" href="#usage"><span class="octicon octicon-link"></span></a></h2><div class="highlight"><pre><code language="js"><span class="hljs-keyword">import</span> Swipeout <span class="hljs-keyword">from</span> <span class="hljs-string">'rc-swipeout'</span>;
+<span class="hljs-keyword">import</span> <span class="hljs-string">'rc-swipeout/assets/index.less'</span>;
 
-&lt;Swipeout 
+&lt;Swipeout
   left={[
     {
       text: <span class="hljs-string">'reply'</span>,
       onPress:() =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'reply'</span>),
       style: { backgroundColor: <span class="hljs-string">'orange'</span>, color: <span class="hljs-string">'white'</span> }
     }
-  ]} 
-  right=[{
+  ]}
+  right={[
     {
       text: <span class="hljs-string">'delete'</span>,
       onPress:() =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'delete'</span>),
       style: { backgroundColor: <span class="hljs-string">'red'</span>, color: <span class="hljs-string">'white'</span> }
     }
-  }] 
+  ]}
   onOpen={() =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'open'</span>)}
   onClose={() =&gt; <span class="hljs-built_in">console</span>.log(<span class="hljs-string">'close'</span>)}
 &gt;
@@ -821,13 +822,13 @@ tnpm run rn-start</code></pre></div><h2>Example<a id="user-content-example" name
 <td>left</td>
 <td>swipeout buttons on left</td>
 <td>Array</td>
-<td><code>null</code></td>
+<td><code>[]</code></td>
 </tr>
 <tr>
 <td>right</td>
 <td>swipeout buttons on right</td>
 <td>Array</td>
-<td><code>null</code></td>
+<td><code>[]</code></td>
 </tr>
 <tr>
 <td>autoClose</td>

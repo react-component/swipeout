@@ -200,7 +200,6 @@
 	    _this.onPanStart = _this.onPanStart.bind(_this);
 	    _this.onPan = _this.onPan.bind(_this);
 	    _this.onPanEnd = _this.onPanEnd.bind(_this);
-	    _this.onTap = _this.onTap.bind(_this);
 	
 	    _this.openedLeft = false;
 	    _this.openedRight = false;
@@ -208,6 +207,8 @@
 	  }
 	
 	  Swipeout.prototype.componentDidMount = function componentDidMount() {
+	    var _this2 = this;
+	
 	    var _props = this.props;
 	    var left = _props.left;
 	    var right = _props.right;
@@ -215,8 +216,28 @@
 	    var width = this.refs.content.offsetWidth;
 	
 	    this.contentWidth = width;
-	    this.btnsLeftWidth = left ? width / 5 * left.length : 0;
-	    this.btnsRightWidth = right ? width / 5 * right.length : 0;
+	    this.btnsLeftWidth = width / 5 * left.length;
+	    this.btnsRightWidth = width / 5 * right.length;
+	
+	    document.body.addEventListener('click', function (ev) {
+	      if (_this2.openedLeft || _this2.openedRight) {
+	        var pNode = function (node) {
+	          while (node.parentNode && node.parentNode !== document.body) {
+	            if (node.className.indexOf('rc-swipeout-actions') > -1) {
+	              return node;
+	            }
+	            node = node.parentNode;
+	          }
+	        }(ev.target);
+	        if (!pNode) {
+	          _this2.close();
+	        }
+	      }
+	    });
+	  };
+	
+	  Swipeout.prototype.componentWillUnmount = function componentWillUnmount() {
+	    document.body.removeEventListener('click');
 	  };
 	
 	  Swipeout.prototype.onPanStart = function onPanStart(e) {
@@ -230,8 +251,11 @@
 	    if (this.props.disabled) {
 	      return;
 	    }
-	
+	    var _props2 = this.props;
+	    var left = _props2.left;
+	    var right = _props2.right;
 	    // get pan distance
+	
 	    var posX = e.deltaX - this.panStartX;
 	    if (this.openedRight) {
 	      posX = posX - this.btnsRightWidth;
@@ -239,9 +263,9 @@
 	      posX = posX + this.btnsLeftWidth;
 	    }
 	
-	    if (posX < 0 && this.props.right) {
+	    if (posX < 0 && right.length) {
 	      this._setStyle(Math.min(posX, 0));
-	    } else if (posX > 0 && this.props.left) {
+	    } else if (posX > 0 && left.length) {
 	      this._setStyle(Math.max(posX, 0));
 	    }
 	  };
@@ -250,6 +274,9 @@
 	    if (this.props.disabled) {
 	      return;
 	    }
+	    var _props3 = this.props;
+	    var left = _props3.left;
+	    var right = _props3.right;
 	
 	    var posX = e.deltaX - this.panStartX;
 	    var contentWidth = this.contentWidth;
@@ -266,18 +293,11 @@
 	      openLeft = posX + openX > openX;
 	    }
 	
-	    if (openRight && posX < 0) {
+	    if (openRight && posX < 0 && right.length) {
 	      this.open(-btnsRightWidth, false, true);
-	    } else if (openLeft && posX > 0) {
+	    } else if (openLeft && posX > 0 && left.length) {
 	      this.open(btnsLeftWidth, true, false);
 	    } else {
-	      this.close();
-	    }
-	  };
-	
-	  Swipeout.prototype.onTap = function onTap(e) {
-	    if (this.openedLeft || this.openedRight) {
-	      e.preventDefault();
 	      this.close();
 	    }
 	  };
@@ -285,10 +305,10 @@
 	  // left & right button click
 	
 	
-	  Swipeout.prototype.onBtnClick = function onBtnClick(btn) {
+	  Swipeout.prototype.onBtnClick = function onBtnClick(ev, btn) {
 	    var onPress = btn.onPress;
 	    if (onPress) {
-	      onPress();
+	      onPress(ev);
 	    }
 	    if (this.props.autoClose) {
 	      this.close();
@@ -309,9 +329,9 @@
 	
 	
 	  Swipeout.prototype._setStyle = function _setStyle(value) {
-	    var _props2 = this.props;
-	    var left = _props2.left;
-	    var right = _props2.right;
+	    var _props4 = this.props;
+	    var left = _props4.left;
+	    var right = _props4.right;
 	
 	    var limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
 	    var contentLeft = this._getContentEasing(value, limit);
@@ -339,14 +359,14 @@
 	  Swipeout.prototype.close = function close() {
 	    if (this.openedLeft || this.openedRight) {
 	      this.props.onClose();
+	      this._setStyle(0);
 	    }
 	    this.openedLeft = false;
 	    this.openedRight = false;
-	    this._setStyle(0);
 	  };
 	
 	  Swipeout.prototype.renderButtons = function renderButtons(buttons, ref) {
-	    var _this2 = this;
+	    var _this3 = this;
 	
 	    var prefixCls = this.props.prefixCls;
 	
@@ -359,8 +379,8 @@
 	          { key: i,
 	            className: prefixCls + '-btn',
 	            style: btn.style,
-	            onClick: function onClick() {
-	              return _this2.onBtnClick(btn);
+	            onClick: function onClick(e) {
+	              return _this3.onBtnClick(e, btn);
 	            }
 	          },
 	          _react2.default.createElement(
@@ -387,24 +407,16 @@
 	
 	    var divProps = (0, _object2.default)(restProps, ['disabled', 'autoClose', 'onOpen', 'onClose']);
 	
-	    var direction = 'DIRECTION_HORIZONTAL';
-	    if (left.length && right.length === 0) {
-	      direction = 'DIRECTION_RIGHT';
-	    }
-	    if (right.length && left.length === 0) {
-	      direction = 'DIRECTION_LEFT';
-	    }
 	    return left.length || right.length ? _react2.default.createElement(
 	      'div',
 	      (0, _extends3.default)({ className: '' + prefixCls }, divProps),
 	      _react2.default.createElement(
 	        _reactHammerjs2.default,
 	        {
-	          direction: direction,
+	          direction: 'DIRECTION_HORIZONTAL',
 	          onPanStart: this.onPanStart,
 	          onPan: this.onPan,
-	          onPanEnd: this.onPanEnd,
-	          onTap: this.onTap
+	          onPanEnd: this.onPanEnd
 	        },
 	        _react2.default.createElement(
 	          'div',
