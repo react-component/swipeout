@@ -31,7 +31,6 @@ class Swipeout extends React.Component {
     this.onPanStart = this.onPanStart.bind(this);
     this.onPan = this.onPan.bind(this);
     this.onPanEnd = this.onPanEnd.bind(this);
-    this.onTap = this.onTap.bind(this);
 
     this.openedLeft = false;
     this.openedRight = false;
@@ -44,6 +43,26 @@ class Swipeout extends React.Component {
     this.contentWidth = width;
     this.btnsLeftWidth = (width / 5) * left.length;
     this.btnsRightWidth = (width / 5) * right.length;
+
+    document.body.addEventListener('click', ev => {
+      if (this.openedLeft || this.openedRight) {
+        const pNode = (node => {
+          while (node.parentNode && node.parentNode !== document.body) {
+            if (node.className.indexOf('rc-swipeout-actions') > -1) {
+              return node;
+            }
+            node = node.parentNode;
+          }
+        })(ev.target);
+        if (!pNode) {
+          this.close();
+        }
+      }
+    });
+  }
+
+  componentWillUnmount() {
+    document.body.removeEventListener('click');
   }
 
   onPanStart(e) {
@@ -98,13 +117,6 @@ class Swipeout extends React.Component {
     } else if (openLeft && posX > 0 && left.length) {
       this.open(btnsLeftWidth, true, false);
     } else {
-      this.close();
-    }
-  }
-
-  onTap(e) {
-    if (this.openedLeft || this.openedRight) {
-      e.preventDefault();
       this.close();
     }
   }
@@ -204,7 +216,6 @@ class Swipeout extends React.Component {
           onPanStart={this.onPanStart}
           onPan={this.onPan}
           onPanEnd={this.onPanEnd}
-          onTap={this.onTap}
         >
           <div className={`${prefixCls}-content`} ref="content">
             {children}
