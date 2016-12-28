@@ -37,9 +37,25 @@ class Swipeout extends React.Component {
     this.openedRight = false;
   }
 
+  state = {
+    direction: 'DIRECTION_HORIZONTAL',
+  }
+
   componentDidMount() {
     const { left, right } = this.props;
     const width = this.refs.content.offsetWidth;
+
+    if (left.length && right.length === 0) {
+      this.setState({
+        direction: 'DIRECTION_RIGHT',
+      });
+    }
+
+    if (right.length && left.length === 0) {
+      this.setState({
+        direction: 'DIRECTION_LEFT',
+      });
+    }
 
     this.contentWidth = width;
     this.btnsLeftWidth = left ? (width / 5) * left.length : 0;
@@ -93,7 +109,11 @@ class Swipeout extends React.Component {
       openLeft = posX + openX > openX;
     }
 
-    if (openRight && posX < 0) {
+    if (this.openedRight && openLeft && posX > 0) {
+      this.close();
+    } else if (this.openedLeft && openRight && posX < 0) {
+      this.close();
+    } else if (openRight && posX < 0) {
       this.open(-btnsRightWidth, false, true);
     } else if (openLeft && posX > 0) {
       this.open(btnsLeftWidth, true, false);
@@ -153,13 +173,35 @@ class Swipeout extends React.Component {
 
     this.openedLeft = openedLeft;
     this.openedRight = openedRight;
+
+    this.setState({
+      direction: 'DIRECTION_HORIZONTAL',
+    });
+
     this._setStyle(value);
   }
 
   close() {
+    const { left, right } = this.props;
+
     if (this.openedLeft || this.openedRight) {
       this.props.onClose();
     }
+
+    if (left.length && right.length) {
+      this.setState({
+        direction: 'DIRECTION_HORIZONTAL',
+      });
+    } else if (left.length && right.length === 0) {
+      this.setState({
+        direction: 'DIRECTION_RIGHT',
+      });
+    } else if (right.length && left.length === 0) {
+      this.setState({
+        direction: 'DIRECTION_LEFT',
+      });
+    }
+
     this.openedLeft = false;
     this.openedRight = false;
     this._setStyle(0);
@@ -197,17 +239,10 @@ class Swipeout extends React.Component {
       'onClose',
     ]);
 
-    let direction = 'DIRECTION_HORIZONTAL';
-    if (left.length && right.length === 0) {
-      direction = 'DIRECTION_RIGHT';
-    }
-    if (right.length && left.length === 0) {
-      direction = 'DIRECTION_LEFT';
-    }
     return (left.length || right.length) ? (
       <div className={`${prefixCls}`} {...divProps}>
         <Hammer
-          direction={direction}
+          direction={this.state.direction}
           onPanStart={this.onPanStart}
           onPan={this.onPan}
           onPanEnd={this.onPanEnd}
