@@ -52,13 +52,13 @@ import 'rc-swipeout/assets/index.less';
       style: { backgroundColor: 'orange', color: 'white' }
     }
   ]}
-  right=[{
+  right={[
     {
       text: 'delete',
       onPress:() => console.log('delete'),
       style: { backgroundColor: 'red', color: 'white' }
     }
-  }]
+  ]}
   onOpen={() => console.log('open')}
   onClose={() => console.log('close')}
 >
