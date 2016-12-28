@@ -42,8 +42,8 @@ class Swipeout extends React.Component {
     const width = this.refs.content.offsetWidth;
 
     this.contentWidth = width;
-    this.btnsLeftWidth = left ? (width / 5) * left.length : 0;
-    this.btnsRightWidth = right ? (width / 5) * right.length : 0;
+    this.btnsLeftWidth = (width / 5) * left.length;
+    this.btnsRightWidth = (width / 5) * right.length;
   }
 
   onPanStart(e) {
@@ -57,7 +57,7 @@ class Swipeout extends React.Component {
     if (this.props.disabled) {
       return;
     }
-
+    const { left, right } = this.props;
     // get pan distance
     let posX = e.deltaX - this.panStartX;
     if (this.openedRight) {
@@ -66,9 +66,9 @@ class Swipeout extends React.Component {
       posX = posX + this.btnsLeftWidth;
     }
 
-    if (posX < 0 && this.props.right) {
+    if (posX < 0 && right.length) {
       this._setStyle(Math.min(posX, 0));
-    } else if (posX > 0 && this.props.left) {
+    } else if (posX > 0 && left.length) {
       this._setStyle(Math.max(posX, 0));
     }
   }
@@ -77,7 +77,7 @@ class Swipeout extends React.Component {
     if (this.props.disabled) {
       return;
     }
-
+    const { left, right } = this.props;
     const posX = e.deltaX - this.panStartX;
     const contentWidth = this.contentWidth;
     const btnsLeftWidth = this.btnsLeftWidth;
@@ -93,9 +93,9 @@ class Swipeout extends React.Component {
       openLeft = posX + openX > openX;
     }
 
-    if (openRight && posX < 0) {
+    if (openRight && posX < 0 && right.length) {
       this.open(-btnsRightWidth, false, true);
-    } else if (openLeft && posX > 0) {
+    } else if (openLeft && posX > 0 && left.length) {
       this.open(btnsLeftWidth, true, false);
     } else {
       this.close();
@@ -159,10 +159,10 @@ class Swipeout extends React.Component {
   close() {
     if (this.openedLeft || this.openedRight) {
       this.props.onClose();
+      this._setStyle(0);
     }
     this.openedLeft = false;
     this.openedRight = false;
-    this._setStyle(0);
   }
 
   renderButtons(buttons, ref) {
@@ -197,17 +197,10 @@ class Swipeout extends React.Component {
       'onClose',
     ]);
 
-    let direction = 'DIRECTION_HORIZONTAL';
-    if (left.length && right.length === 0) {
-      direction = 'DIRECTION_RIGHT';
-    }
-    if (right.length && left.length === 0) {
-      direction = 'DIRECTION_LEFT';
-    }
     return (left.length || right.length) ? (
       <div className={`${prefixCls}`} {...divProps}>
         <Hammer
-          direction={direction}
+          direction="DIRECTION_HORIZONTAL"
           onPanStart={this.onPanStart}
           onPan={this.onPan}
           onPanEnd={this.onPanEnd}
