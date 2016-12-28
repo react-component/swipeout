@@ -1,5 +1,11 @@
 # History
 
+## 1.2.0
+
+- click body to close swipe buttons; #19, #10
+- support event arg for onPress; #18
+- swipe to close for web;
+
 ## 1.1.5
 
 - fix issue/9
