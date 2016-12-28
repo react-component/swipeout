@@ -110,10 +110,10 @@ class Swipeout extends React.Component {
   }
 
   // left & right button click
-  onBtnClick(btn) {
+  onBtnClick(ev, btn) {
     const onPress = btn.onPress;
     if (onPress) {
-      onPress();
+      onPress(ev);
     }
     if (this.props.autoClose) {
       this.close();
@@ -175,7 +175,7 @@ class Swipeout extends React.Component {
             <div key={i}
               className={`${prefixCls}-btn`}
               style={btn.style}
-              onClick={() => this.onBtnClick(btn)}
+              onClick={(e) => this.onBtnClick(e, btn)}
             >
               <div className={`${prefixCls}-text`}>{btn.text || 'Click'}</div>
             </div>
