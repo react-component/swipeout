@@ -11,6 +11,7 @@ class Swipeout extends React.Component {
     left: PropTypes.arrayOf(PropTypes.object),
     right: PropTypes.arrayOf(PropTypes.object),
     onOpen: PropTypes.func,
+    onClose: PropTypes.func,
     children: PropTypes.any,
   };
 
@@ -20,6 +21,7 @@ class Swipeout extends React.Component {
     left: [],
     right: [],
     onOpen() {},
+    onClose() {},
   };
 
   constructor(props) {
@@ -56,25 +58,28 @@ class Swipeout extends React.Component {
   }
 
   render() {
-    const [{ disabled, autoClose, style, left, right, onOpen, children }, restProps] = splitObject(
+    const [{
+      disabled, autoClose, style, left, right, onOpen, onClose, children,
+    }, restProps] = splitObject(
       this.props,
-      ['disabled', 'autoClose', 'style', 'left', 'right', 'onOpen', 'children']
+      ['disabled', 'autoClose', 'style', 'left', 'right', 'onOpen', 'onClose', 'children']
     );
 
-    const cutsomLeft = left.map(btn => {
+    const customLeft = left.map(btn => {
       return this.renderCustomButton(btn);
     });
-    const cutsomRight = right.map(btn => {
+    const customRight = right.map(btn => {
       return this.renderCustomButton(btn);
     });
 
     return (left.length || right.length) && !disabled ? (
       <Swipe
         autoClose={autoClose}
-        left={cutsomLeft}
-        right={cutsomRight}
+        left={customLeft}
+        right={customRight}
         style={style}
         onOpen={onOpen}
+        onClose={onClose}
       >
         {children}
       </Swipe>

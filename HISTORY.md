@@ -1,5 +1,9 @@
 # History
 
+## 1.2.1
+
+- support `onClose` for rn;
+
 ## 1.2.0
 
 - click body to close swipe buttons; #19, #10
