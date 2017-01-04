@@ -219,7 +219,7 @@
 	    this.btnsLeftWidth = width / 5 * left.length;
 	    this.btnsRightWidth = width / 5 * right.length;
 	
-	    document.body.addEventListener('click', function (ev) {
+	    document.body.addEventListener('touchstart', function (ev) {
 	      if (_this2.openedLeft || _this2.openedRight) {
 	        var pNode = function (node) {
 	          while (node.parentNode && node.parentNode !== document.body) {
@@ -230,10 +230,11 @@
 	          }
 	        }(ev.target);
 	        if (!pNode) {
+	          ev.preventDefault();
 	          _this2.close();
 	        }
 	      }
-	    });
+	    }, true);
 	  };
 	
 	  Swipeout.prototype.componentWillUnmount = function componentWillUnmount() {
