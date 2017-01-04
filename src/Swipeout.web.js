@@ -44,7 +44,7 @@ class Swipeout extends React.Component {
     this.btnsLeftWidth = (width / 5) * left.length;
     this.btnsRightWidth = (width / 5) * right.length;
 
-    document.body.addEventListener('click', ev => {
+    document.body.addEventListener('touchstart', ev => {
       if (this.openedLeft || this.openedRight) {
         const pNode = (node => {
           while (node.parentNode && node.parentNode !== document.body) {
@@ -55,10 +55,11 @@ class Swipeout extends React.Component {
           }
         })(ev.target);
         if (!pNode) {
+          ev.preventDefault();
           this.close();
         }
       }
-    });
+    }, true);
   }
 
   componentWillUnmount() {

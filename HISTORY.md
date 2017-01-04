@@ -1,5 +1,9 @@
 # History
 
+## 1.2.2
+
+- prevent default of event;
+
 ## 1.2.1
 
 - support `onClose` for rn;
