@@ -6,6 +6,14 @@
   position: relative;
   z-index: 10;
 }
+.rc-swipeout-cover {
+  position: absolute;
+  z-index: 11;
+  background: transparent;
+  height: 100%;
+  top: 0;
+  display: none;
+}
 .rc-swipeout .rc-swipeout-content,
 .rc-swipeout .rc-swipeout-actions {
   -webkit-transition: all 250ms;

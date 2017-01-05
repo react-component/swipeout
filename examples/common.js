@@ -207,38 +207,42 @@
 	  }
 	
 	  Swipeout.prototype.componentDidMount = function componentDidMount() {
-	    var _this2 = this;
-	
 	    var _props = this.props;
 	    var left = _props.left;
 	    var right = _props.right;
 	
 	    var width = this.refs.content.offsetWidth;
 	
+	    if (this.refs.cover) {
+	      this.refs.cover.style.width = width + 'px';
+	    }
+	
 	    this.contentWidth = width;
 	    this.btnsLeftWidth = width / 5 * left.length;
 	    this.btnsRightWidth = width / 5 * right.length;
 	
-	    document.body.addEventListener('touchstart', function (ev) {
-	      if (_this2.openedLeft || _this2.openedRight) {
-	        var pNode = function (node) {
-	          while (node.parentNode && node.parentNode !== document.body) {
-	            if (node.className.indexOf('rc-swipeout-actions') > -1) {
-	              return node;
-	            }
-	            node = node.parentNode;
-	          }
-	        }(ev.target);
-	        if (!pNode) {
-	          ev.preventDefault();
-	          _this2.close();
-	        }
-	      }
-	    }, true);
+	    document.body.addEventListener('touchstart', this.onCloseSwipe.bind(this), true);
 	  };
 	
 	  Swipeout.prototype.componentWillUnmount = function componentWillUnmount() {
-	    document.body.removeEventListener('click');
+	    document.body.removeEventListener('touchstart', this.onCloseSwipe.bind(this));
+	  };
+	
+	  Swipeout.prototype.onCloseSwipe = function onCloseSwipe(ev) {
+	    if (this.openedLeft || this.openedRight) {
+	      var pNode = function (node) {
+	        while (node.parentNode && node.parentNode !== document.body) {
+	          if (node.className.indexOf('rc-swipeout-actions') > -1) {
+	            return node;
+	          }
+	          node = node.parentNode;
+	        }
+	      }(ev.target);
+	      if (!pNode) {
+	        ev.preventDefault();
+	        this.close();
+	      }
+	    }
 	  };
 	
 	  Swipeout.prototype.onPanStart = function onPanStart(e) {
@@ -255,15 +259,8 @@
 	    var _props2 = this.props;
 	    var left = _props2.left;
 	    var right = _props2.right;
-	    // get pan distance
 	
 	    var posX = e.deltaX - this.panStartX;
-	    if (this.openedRight) {
-	      posX = posX - this.btnsRightWidth;
-	    } else if (this.openedLeft) {
-	      posX = posX + this.btnsLeftWidth;
-	    }
-	
 	    if (posX < 0 && right.length) {
 	      this._setStyle(Math.min(posX, 0));
 	    } else if (posX > 0 && left.length) {
@@ -275,6 +272,7 @@
 	    if (this.props.disabled) {
 	      return;
 	    }
+	
 	    var _props3 = this.props;
 	    var left = _props3.left;
 	    var right = _props3.right;
@@ -286,13 +284,6 @@
 	    var openX = contentWidth * 0.33;
 	    var openLeft = posX > openX || posX > btnsLeftWidth / 2;
 	    var openRight = posX < -openX || posX < -btnsRightWidth / 2;
-	
-	    if (this.openedRight) {
-	      openRight = posX - openX < -openX;
-	    }
-	    if (this.openedLeft) {
-	      openLeft = posX + openX > openX;
-	    }
 	
 	    if (openRight && posX < 0 && right.length) {
 	      this.open(-btnsRightWidth, false, true);
@@ -337,6 +328,8 @@
 	    var limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
 	    var contentLeft = this._getContentEasing(value, limit);
 	    this.refs.content.style.left = contentLeft + 'px';
+	    this.refs.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
+	    this.refs.cover.style.left = contentLeft + 'px';
 	    if (left.length) {
 	      var leftWidth = Math.max(Math.min(value, Math.abs(limit)), 0);
 	      this.refs.left.style.width = leftWidth + 'px';
@@ -360,14 +353,14 @@
 	  Swipeout.prototype.close = function close() {
 	    if (this.openedLeft || this.openedRight) {
 	      this.props.onClose();
-	      this._setStyle(0);
 	    }
+	    this._setStyle(0);
 	    this.openedLeft = false;
 	    this.openedRight = false;
 	  };
 	
 	  Swipeout.prototype.renderButtons = function renderButtons(buttons, ref) {
-	    var _this3 = this;
+	    var _this2 = this;
 	
 	    var prefixCls = this.props.prefixCls;
 	
@@ -381,7 +374,7 @@
 	            className: prefixCls + '-btn',
 	            style: btn.style,
 	            onClick: function onClick(e) {
-	              return _this3.onBtnClick(e, btn);
+	              return _this2.onBtnClick(e, btn);
 	            }
 	          },
 	          _react2.default.createElement(
@@ -425,6 +418,7 @@
 	          children
 	        )
 	      ),
+	      _react2.default.createElement('div', { className: prefixCls + '-cover', ref: 'cover' }),
 	      this.renderButtons(left, 'left'),
 	      this.renderButtons(right, 'right')
 	    ) : _react2.default.createElement(
