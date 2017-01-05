@@ -40,30 +40,36 @@ class Swipeout extends React.Component {
     const { left, right } = this.props;
     const width = this.refs.content.offsetWidth;
 
+    if (this.refs.cover) {
+      this.refs.cover.style.width = `${width}px`;
+    }
+
     this.contentWidth = width;
     this.btnsLeftWidth = (width / 5) * left.length;
     this.btnsRightWidth = (width / 5) * right.length;
 
-    document.body.addEventListener('touchstart', ev => {
-      if (this.openedLeft || this.openedRight) {
-        const pNode = (node => {
-          while (node.parentNode && node.parentNode !== document.body) {
-            if (node.className.indexOf('rc-swipeout-actions') > -1) {
-              return node;
-            }
-            node = node.parentNode;
-          }
-        })(ev.target);
-        if (!pNode) {
-          ev.preventDefault();
-          this.close();
-        }
-      }
-    }, true);
+    document.body.addEventListener('touchstart', this.onCloseSwipe.bind(this), true);
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener('click');
+    document.body.removeEventListener('touchstart', this.onCloseSwipe.bind(this));
+  }
+
+  onCloseSwipe(ev) {
+    if (this.openedLeft || this.openedRight) {
+      const pNode = (node => {
+        while (node.parentNode && node.parentNode !== document.body) {
+          if (node.className.indexOf('rc-swipeout-actions') > -1) {
+            return node;
+          }
+          node = node.parentNode;
+        }
+      })(ev.target);
+      if (!pNode) {
+        ev.preventDefault();
+        this.close();
+      }
+    }
   }
 
   onPanStart(e) {
@@ -78,14 +84,7 @@ class Swipeout extends React.Component {
       return;
     }
     const { left, right } = this.props;
-    // get pan distance
-    let posX = e.deltaX - this.panStartX;
-    if (this.openedRight) {
-      posX = posX - this.btnsRightWidth;
-    } else if (this.openedLeft) {
-      posX = posX + this.btnsLeftWidth;
-    }
-
+    const posX = e.deltaX - this.panStartX;
     if (posX < 0 && right.length) {
       this._setStyle(Math.min(posX, 0));
     } else if (posX > 0 && left.length) {
@@ -97,21 +96,15 @@ class Swipeout extends React.Component {
     if (this.props.disabled) {
       return;
     }
+
     const { left, right } = this.props;
     const posX = e.deltaX - this.panStartX;
     const contentWidth = this.contentWidth;
     const btnsLeftWidth = this.btnsLeftWidth;
     const btnsRightWidth = this.btnsRightWidth;
     const openX = contentWidth * 0.33;
-    let openLeft = posX > openX || posX > btnsLeftWidth / 2;
-    let openRight = posX < -openX || posX < -btnsRightWidth / 2;
-
-    if (this.openedRight) {
-      openRight = posX - openX < -openX;
-    }
-    if (this.openedLeft) {
-      openLeft = posX + openX > openX;
-    }
+    const openLeft = posX > openX || posX > btnsLeftWidth / 2;
+    const openRight = posX < -openX || posX < -btnsRightWidth / 2;
 
     if (openRight && posX < 0 && right.length) {
       this.open(-btnsRightWidth, false, true);
@@ -149,6 +142,8 @@ class Swipeout extends React.Component {
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
     this.refs.content.style.left = `${contentLeft}px`;
+    this.refs.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
+    this.refs.cover.style.left = `${contentLeft}px`;
     if (left.length) {
       const leftWidth = Math.max(Math.min(value, Math.abs(limit)), 0);
       this.refs.left.style.width = `${leftWidth}px`;
@@ -172,8 +167,8 @@ class Swipeout extends React.Component {
   close() {
     if (this.openedLeft || this.openedRight) {
       this.props.onClose();
-      this._setStyle(0);
     }
+    this._setStyle(0);
     this.openedLeft = false;
     this.openedRight = false;
   }
@@ -222,7 +217,8 @@ class Swipeout extends React.Component {
             {children}
           </div>
         </Hammer>
-
+        {/* 保证 body touchStart 后不触发 pan */}
+        <div className={`${prefixCls}-cover`} ref="cover" />
         { this.renderButtons(left, 'left') }
         { this.renderButtons(right, 'right') }
       </div>

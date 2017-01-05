@@ -26,6 +26,142 @@ describe('simple', () => {
     ReactDOM.unmountComponentAtNode(div);
   });
 
+  it('works when swipe', done => {
+    const instance = ReactDOM.render(
+      <Swipeout
+        right={[
+          { text: 'more' },
+          { text: 'delete' },
+        ]} left={[
+          { text: 'read' },
+          { text: 'reply' },
+        ]}
+      >
+        swipeout demo
+      </Swipeout>
+      , div
+    );
+    const domEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-content'
+    );
+    const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-actions-left'
+    );
+    const rightActionEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-actions-right'
+    );
+
+    const hammer = new Hammer(domEl, { recognizers: [] });
+    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
+    hammer.add(swipe);
+
+    Simulator.gestures.swipe(domEl, {
+      deltaX: 300,
+      deltaY: 5,
+    }, () => {
+      expect(domEl.style.left).to.be('128px');
+      expect(leftActionEl.style.width).to.be('128px');
+      expect(rightActionEl.style.width).to.be('0px');
+
+      const event = document.createEvent('UIEvent');
+      event.initEvent('touchstart', true, true);
+      document.body.dispatchEvent(event);
+
+      expect(domEl.style.left).to.be('0px');
+      expect(leftActionEl.style.width).to.be('0px');
+      expect(rightActionEl.style.width).to.be('0px');
+      done();
+    });
+  });
+
+  it('onOpen & onClose to be called', done => {
+    let openCalled = false;
+    let closeCalled = false;
+    const onOpenSpy = function () {
+      openCalled = true;
+    };
+    const onCloseSpy = function () {
+      closeCalled = true;
+    };
+    const instance = ReactDOM.render(
+      <Swipeout
+        right={[
+          { text: 'more' },
+          { text: 'delete' },
+        ]} left={[
+          { text: 'read' },
+          { text: 'reply' },
+        ]}
+        onOpen={onOpenSpy}
+        onClose={onCloseSpy}
+      >
+        swipeout demo
+      </Swipeout>
+      , div
+    );
+    const domEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-content'
+    );
+
+    const hammer = new Hammer(domEl, { recognizers: [] });
+    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
+    hammer.add(swipe);
+
+    Simulator.gestures.swipe(domEl, {
+      deltaX: 300,
+      deltaY: 10,
+    }, () => {
+      expect(openCalled).to.be(true);
+
+      const event = document.createEvent('UIEvent');
+      event.initEvent('touchstart', true, true);
+      document.body.dispatchEvent(event);
+
+      expect(closeCalled).to.be(true);
+      done();
+    });
+  });
+
+  it('button click & autoClose', done => {
+    let readCalled = false;
+    const onRead = function () {
+      readCalled = true;
+    };
+    const instance = ReactDOM.render(
+      <Swipeout
+        left={[
+          { text: 'read', onPress: () => onRead() },
+          { text: 'reply' },
+        ]}
+        autoClose
+      >
+        swipeout demo
+      </Swipeout>
+      , div
+    );
+    const domEl = TestUtils.findRenderedDOMComponentWithClass(
+      instance, 'rc-swipeout-content'
+    );
+    const BtnElArr = TestUtils.scryRenderedDOMComponentsWithClass(
+      instance, 'rc-swipeout-btn'
+    );
+
+    const hammer = new Hammer(domEl, { recognizers: [] });
+    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
+    hammer.add(swipe);
+    const press = new Hammer.Press();
+    hammer.add(press);
+
+    Simulator.gestures.swipe(domEl, {
+      deltaX: 260,
+      deltaY: 10,
+    }, () => {
+      TestUtils.Simulate.click(BtnElArr[0]);
+      expect(readCalled).to.be(true);
+      expect(domEl.style.left).to.be('0px');
+      done();
+    });
+  });
 
   it('left=right=[] render no swipeout', done => {
     const instance = ReactDOM.render(
@@ -99,7 +235,6 @@ describe('simple', () => {
     });
   });
 
-
   it('only left', done => {
     const instance = ReactDOM.render(
       <Swipeout
@@ -127,7 +262,7 @@ describe('simple', () => {
       deltaX: -300,
       deltaY: 10,
     }, () => {
-      expect(domEl.style.left).to.be('');
+      expect(parseInt(domEl.style.left, 10)).to.be(0);
 
       const swipeRight = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_RIGHT });
       hammer.add(swipeRight);
@@ -170,7 +305,7 @@ describe('simple', () => {
       deltaX: 300,
       deltaY: 10,
     }, () => {
-      expect(domEl.style.left).to.be('');
+      expect(parseInt(domEl.style.left, 10)).to.be(0);
 
       const swipeLeft = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_LEFT });
       hammer.add(swipeLeft);
@@ -183,150 +318,6 @@ describe('simple', () => {
         expect(rightActionEl.style.width).to.be('128px');
         done();
       });
-    });
-  });
-
-  it('works when swipe', done => {
-    const instance = ReactDOM.render(
-      <Swipeout
-        right={[
-          { text: 'more' },
-          { text: 'delete' },
-        ]} left={[
-          { text: 'read' },
-          { text: 'reply' },
-        ]}
-      >
-        swipeout demo
-      </Swipeout>
-      , div
-    );
-    const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
-    );
-    const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-left'
-    );
-    const rightActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-right'
-    );
-
-    const hammer = new Hammer(domEl, { recognizers: [] });
-    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
-    hammer.add(swipe);
-
-    // TODO async to sync, add swipeLeft tests
-
-    Simulator.gestures.swipe(domEl, {
-      deltaX: 300,
-      deltaY: 5,
-    }, () => {
-      expect(domEl.style.left).to.be('128px');
-      expect(leftActionEl.style.width).to.be('128px');
-      expect(rightActionEl.style.width).to.be('0px');
-
-      const tap = new Hammer.Tap({ threshold: 2 });
-      hammer.add(tap);
-
-      Simulator.gestures.tap(domEl, {
-        pos: [200, 10],
-      }, () => {
-        expect(domEl.style.left).to.be('0px');
-        expect(leftActionEl.style.width).to.be('0px');
-        expect(rightActionEl.style.width).to.be('0px');
-        done();
-      });
-    });
-  });
-
-  it('onOpen & onClose to be called', done => {
-    let openCalled = false;
-    let closeCalled = false;
-    const onOpenSpy = function () {
-      openCalled = true;
-    };
-    const onCloseSpy = function () {
-      closeCalled = true;
-    };
-    const instance = ReactDOM.render(
-      <Swipeout
-        right={[
-          { text: 'more' },
-          { text: 'delete' },
-        ]} left={[
-          { text: 'read' },
-          { text: 'reply' },
-        ]}
-        onOpen={onOpenSpy}
-        onClose={onCloseSpy}
-      >
-        swipeout demo
-      </Swipeout>
-      , div
-    );
-    const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
-    );
-
-    const hammer = new Hammer(domEl, { recognizers: [] });
-    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
-    hammer.add(swipe);
-
-    const tap = new Hammer.Tap({ threshold: 2 });
-    hammer.add(tap);
-
-    Simulator.gestures.swipe(domEl, {
-      deltaX: 300,
-      deltaY: 10,
-    }, () => {
-      expect(openCalled).to.be(true);
-      Simulator.gestures.tap(domEl, {
-        pos: [200, 10],
-      }, () => {
-        expect(closeCalled).to.be(true);
-        done();
-      });
-    });
-  });
-
-  it('button click & autoClose', done => {
-    let readCalled = false;
-    const onRead = function () {
-      readCalled = true;
-    };
-    const instance = ReactDOM.render(
-      <Swipeout
-        left={[
-          { text: 'read', onPress: () => onRead() },
-          { text: 'reply' },
-        ]}
-        autoClose
-      >
-        swipeout demo
-      </Swipeout>
-      , div
-    );
-    const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
-    );
-    const BtnElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout-btn'
-    );
-
-    const hammer = new Hammer(domEl, { recognizers: [] });
-    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
-    hammer.add(swipe);
-    const press = new Hammer.Press();
-    hammer.add(press);
-
-    Simulator.gestures.swipe(domEl, {
-      deltaX: 260,
-      deltaY: 10,
-    }, () => {
-      TestUtils.Simulate.click(BtnElArr[0]);
-      expect(readCalled).to.be(true);
-      expect(domEl.style.left).to.be('0px');
-      done();
     });
   });
 });

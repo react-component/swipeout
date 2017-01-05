@@ -1,5 +1,10 @@
 # History
 
+## 1.2.3
+
+- add cover `div`, for body touchstart
+- fix: buttons cannot be hidden when pan short distance
+
 ## 1.2.2
 
 - prevent default of event;
