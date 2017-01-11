@@ -69,6 +69,8 @@ class Swipeout extends React.Component {
         ev.preventDefault();
         this.close();
       }
+       ev.preventDefault();
+       this.close();
     }
   }
 
