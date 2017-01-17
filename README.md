@@ -67,6 +67,12 @@ import 'rc-swipeout/assets/index.less';
 
 ```
 
+For the React Native version, use the following import statement.
+
+```js
+import Swipeout from 'rc-swipeout/lib'
+```
+
 ## API
 
 ### props
