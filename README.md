@@ -136,7 +136,7 @@ import Swipeout from 'rc-swipeout/lib'
 |-------------|------------------------|--------|------------|
 | name       | font-awesome name without `fa fa-`     | String | undefined |
 | color       | icon props      | String | `black` |
-| style       | button style     | Object | `` |
+| style       | icon style     | Object | `` |
 | size       | icon size     | number | 15 |
 
 ### Pay attention
