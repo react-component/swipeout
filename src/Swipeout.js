@@ -36,13 +36,13 @@ class Swipeout extends React.Component {
   renderCustomButton(button) {
     const buttonStyle = button.style || {};
     const bgColor = buttonStyle.backgroundColor || 'transparent';
-    const icon = button.icon || null;
+    const icon = button.icon || undefined;
     const iconStyle = icon && icon.style || {};
     // TODO: support Ionicons, MaterialIcons etc
     // const iconType = icon && icon.type || 'FontAwesome';
-    const iconName = icon && icon.name || null;
+    const iconName = icon && icon.name;
     const iconSize = icon && icon.size || 15;
-    const iconColor = icon && icon.color || 'black';
+    const iconColor = icon && icon.color || iconStyle.color || 'black';
 
     const Component = (
       <View
