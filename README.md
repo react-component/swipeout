@@ -38,7 +38,7 @@ tnpm run rn-start
 - local: http://localhost:8000/examples/
 - online: http://react-component.github.io/swipeout/
 
-## Usage
+## Normal usage
 
 ```js
 import Swipeout from 'rc-swipeout';
@@ -50,6 +50,39 @@ import 'rc-swipeout/assets/index.less';
       text: 'reply',
       onPress:() => console.log('reply'),
       style: { backgroundColor: 'orange', color: 'white' }
+    }
+  ]}
+  right={[
+    {
+      text: 'delete',
+      onPress:() => console.log('delete'),
+      style: { backgroundColor: 'red', color: 'white' }
+    }
+  ]}
+  onOpen={() => console.log('open')}
+  onClose={() => console.log('close')}
+>
+  <div style={{height: 44}}> swipeout demo </div>
+</Swipeout>
+
+```
+
+## Usage with text and Icon [React Native only for the moment]
+
+```js
+import Swipeout from 'rc-swipeout/lib';
+import 'rc-swipeout/assets/index.less';
+
+<Swipeout
+  left={[
+    {
+      text: 'reply',
+      onPress:() => console.log('reply'),
+      style: { backgroundColor: 'orange', color: 'white' },
+      icon: {
+        name: 'clock-o',
+        size: 30
+      }
     }
   ]}
   right={[
@@ -93,8 +126,23 @@ import Swipeout from 'rc-swipeout/lib'
 | name        | description                   | type   | default    |
 |-------------|------------------------|--------|------------|
 | text       | button text     | String | `Click` |
+| icon       | icon props      | Object | undefined |
 | style       | button style     | Object | `` |
 | onPress       | button press function      | Function | `function() {}` |
+
+### icon props [React Native only for the moment]
+
+| name        | description                   | type   | default    |
+|-------------|------------------------|--------|------------|
+| name       | font-awesome name without `fa fa-`     | String | undefined |
+| color       | icon props      | String | `black` |
+| style       | button style     | Object | `` |
+| size       | icon size     | number | 15 |
+
+### Pay attention
+This package depends on the beautiful [Vector Icons for React Native](https://github.com/oblador/react-native-vector-icons).
+
+After installing NavbarNative, in order to have **icons working**, please follow instructions about [HOW TO INSTALL AND LINK VECTOR ICONS](https://github.com/oblador/react-native-vector-icons) in your project.
 
 ## Test Case
 
