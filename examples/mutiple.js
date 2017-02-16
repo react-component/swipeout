@@ -3,12 +3,12 @@ webpackJsonp([1],{
 /***/ 0:
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(184);
+	module.exports = __webpack_require__(276);
 
 
 /***/ },
 
-/***/ 184:
+/***/ 276:
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -19,11 +19,11 @@ webpackJsonp([1],{
 	
 	var _rcSwipeout2 = _interopRequireDefault(_rcSwipeout);
 	
-	var _react = __webpack_require__(6);
+	var _react = __webpack_require__(98);
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _reactDom = __webpack_require__(39);
+	var _reactDom = __webpack_require__(131);
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
@@ -53,7 +53,7 @@ webpackJsonp([1],{
 	      _react2.default.createElement(
 	        'p',
 	        { style: { padding: '16px 30px' } },
-	        '多个实例：'
+	        '\u591A\u4E2A\u5B9E\u4F8B\uFF1A'
 	      ),
 	      this.state.items.map(function (item, i) {
 	        return _react2.default.createElement(
@@ -62,7 +62,7 @@ webpackJsonp([1],{
 	            autoClose: true,
 	            key: i,
 	            right: [{
-	              text: '删除' + item,
+	              text: '\u5220\u9664' + item,
 	              onPress: function onPress() {
 	                return _this.onDelete(item);
 	              },
