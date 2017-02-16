@@ -207,6 +207,10 @@ class Swipeout extends React.Component {
 
     return (left.length || right.length) ? (
       <div className={`${prefixCls}`} {...divProps}>
+        {/* 保证 body touchStart 后不触发 pan */}
+        <div className={`${prefixCls}-cover`} ref="cover" />
+        { this.renderButtons(left, 'left') }
+        { this.renderButtons(right, 'right') }
         <Hammer
           direction="DIRECTION_HORIZONTAL"
           onPanStart={this.onPanStart}
@@ -217,10 +221,6 @@ class Swipeout extends React.Component {
             {children}
           </div>
         </Hammer>
-        {/* 保证 body touchStart 后不触发 pan */}
-        <div className={`${prefixCls}-cover`} ref="cover" />
-        { this.renderButtons(left, 'left') }
-        { this.renderButtons(right, 'right') }
       </div>
     ) : (
       <div ref="content" {...divProps}>{children}</div>
