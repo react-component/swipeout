@@ -229,10 +229,12 @@
 	  };
 	
 	  Swipeout.prototype.onCloseSwipe = function onCloseSwipe(ev) {
+	    var _this2 = this;
+	
 	    if (this.openedLeft || this.openedRight) {
 	      var pNode = function (node) {
 	        while (node.parentNode && node.parentNode !== document.body) {
-	          if (node.className.indexOf('rc-swipeout-actions') > -1) {
+	          if (node.className.indexOf(_this2.props.prefixCls + '-actions') > -1) {
 	            return node;
 	          }
 	          node = node.parentNode;
@@ -360,7 +362,7 @@
 	  };
 	
 	  Swipeout.prototype.renderButtons = function renderButtons(buttons, ref) {
-	    var _this2 = this;
+	    var _this3 = this;
 	
 	    var prefixCls = this.props.prefixCls;
 	
@@ -374,7 +376,7 @@
 	            className: prefixCls + '-btn',
 	            style: btn.style,
 	            onClick: function onClick(e) {
-	              return _this2.onBtnClick(e, btn);
+	              return _this3.onBtnClick(e, btn);
 	            }
 	          },
 	          _react2.default.createElement(
