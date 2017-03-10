@@ -1,5 +1,9 @@
 # History
 
+# 1.2.5
+
+- fix: onCloseSwipe prefixCls bug;
+
 ## 1.2.3
 
 - add cover `div`, for body touchstart

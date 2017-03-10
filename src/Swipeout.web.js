@@ -59,7 +59,7 @@ class Swipeout extends React.Component {
     if (this.openedLeft || this.openedRight) {
       const pNode = (node => {
         while (node.parentNode && node.parentNode !== document.body) {
-          if (node.className.indexOf('rc-swipeout-actions') > -1) {
+          if (node.className.indexOf(`${this.props.prefixCls}-actions`) > -1) {
             return node;
           }
           node = node.parentNode;
