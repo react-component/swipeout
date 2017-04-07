@@ -50,7 +50,7 @@ import 'rc-swipeout/assets/index.less';
       text: 'reply',
       onPress:() => console.log('reply'),
       style: { backgroundColor: 'orange', color: 'white' },
-      cls: 'custom-class-1'
+      className: 'custom-class-1'
     }
   ]}
   right={[
@@ -58,7 +58,7 @@ import 'rc-swipeout/assets/index.less';
       text: 'delete',
       onPress:() => console.log('delete'),
       style: { backgroundColor: 'red', color: 'white' },
-      cls: 'custom-class-2'
+      className: 'custom-class-2'
     }
   ]}
   onOpen={() => console.log('open')}
@@ -97,7 +97,7 @@ import Swipeout from 'rc-swipeout/lib'
 | text       | button text     | String | `Click` |
 | style       | button style     | Object | `` |
 | onPress       | button press function      | Function | `function() {}` |
-| cls       | button custom class     | String | `` |
+| className       | button custom class     | String | `` |
 
 ## Test Case
 
