@@ -1,5 +1,9 @@
 # History
 
+# 1.2.6
+
+- new: support `className` for button;
+
 # 1.2.5
 
 - fix: onCloseSwipe prefixCls bug;
