@@ -373,7 +373,7 @@
 	        return _react2.default.createElement(
 	          'div',
 	          { key: i,
-	            className: prefixCls + '-btn',
+	            className: prefixCls + '-btn ' + (btn.hasOwnProperty('className') ? btn.className : ''),
 	            style: btn.style,
 	            onClick: function onClick(e) {
 	              return _this3.onBtnClick(e, btn);
