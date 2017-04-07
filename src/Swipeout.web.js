@@ -181,7 +181,7 @@ class Swipeout extends React.Component {
         {buttons.map((btn, i) => {
           return (
             <div key={i}
-              className={`${prefixCls}-btn ${btn.hasOwnProperty('cls') ? btn.cls : ''}`}
+              className={`${prefixCls}-btn ${btn.hasOwnProperty('className') ? btn.className : ''}`}
               style={btn.style}
               onClick={(e) => this.onBtnClick(e, btn)}
             >
