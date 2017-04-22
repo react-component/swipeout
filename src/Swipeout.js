@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import { View, Text } from 'react-native';
 import Swipe from 'react-native-swipe-out';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import splitObject from './util/splitObject';
 
 class Swipeout extends React.Component {
@@ -35,12 +36,30 @@ class Swipeout extends React.Component {
   renderCustomButton(button) {
     const buttonStyle = button.style || {};
     const bgColor = buttonStyle.backgroundColor || 'transparent';
+    const icon = button.icon || undefined;
+    const iconStyle = icon && icon.style || {};
+    // TODO: support Ionicons, MaterialIcons etc
+    // const iconType = icon && icon.type || 'FontAwesome';
+    const iconName = icon && icon.name;
+    const iconSize = icon && icon.size || 15;
+    const iconColor = icon && icon.color || iconStyle.color || 'black';
+
     const Component = (
       <View
         style={{
           flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: bgColor,
         }}
       >
+      {
+        iconName && (
+          <Icon
+            name={iconName}
+            color={iconColor}
+            style={iconStyle}
+            size={iconSize}
+          />
+        )
+      }
         <Text style={[button.style, { textAlign: 'center' }]}>
           {button.text}
         </Text>
