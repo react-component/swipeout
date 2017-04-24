@@ -375,6 +375,7 @@
 	          { key: i,
 	            className: prefixCls + '-btn ' + (btn.hasOwnProperty('className') ? btn.className : ''),
 	            style: btn.style,
+	            role: 'button',
 	            onClick: function onClick(e) {
 	              return _this3.onBtnClick(e, btn);
 	            }
