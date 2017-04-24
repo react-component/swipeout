@@ -1,5 +1,9 @@
 # History
 
+# 1.2.7
+
+- new: role="button"
+
 # 1.2.6
 
 - new: support `className` for button;
