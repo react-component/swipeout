@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { View, Text } from 'react-native';
-import Swipe from 'react-native-swipe-out';
+import Swipe from 'react-native-swipeout';
 import splitObject from './util/splitObject';
 
 class Swipeout extends React.Component {
@@ -72,7 +72,7 @@ class Swipeout extends React.Component {
       return this.renderCustomButton(btn);
     });
 
-    return (left.length || right.length) && !disabled ? (
+    return (left.length || right.length) ? (
       <Swipe
         autoClose={autoClose}
         left={customLeft}
@@ -80,6 +80,7 @@ class Swipeout extends React.Component {
         style={style}
         onOpen={onOpen}
         onClose={onClose}
+        disabled={disabled}
       >
         {children}
       </Swipe>
