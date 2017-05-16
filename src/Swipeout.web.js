@@ -1,4 +1,6 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+
 import ReactDOM from 'react-dom';
 import Hammer from 'rc-hammerjs';
 import omit from 'object.omit';
@@ -206,7 +208,9 @@ class Swipeout extends React.Component {
       'onOpen',
       'onClose',
     ]);
-
+    const refProps = {
+      ref: el => this.content = ReactDOM.findDOMNode(el),
+    };
     return (left.length || right.length) ? (
       <div className={`${prefixCls}`} {...divProps}>
         {/* 保证 body touchStart 后不触发 pan */}
@@ -218,13 +222,13 @@ class Swipeout extends React.Component {
           onPanStart={this.onPanStart}
           onPan={this.onPan}
           onPanEnd={this.onPanEnd}
-          ref={(el) => this.content = ReactDOM.findDOMNode(el)}
+          {...refProps}
         >
           <div className={`${prefixCls}-content`}>{children}</div>
         </Hammer>
       </div>
     ) : (
-      <div ref={(el) => this.content = ReactDOM.findDOMNode(el)} {...divProps}>{children}</div>
+      <div {...refProps} {...divProps}>{children}</div>
     );
   }
 }

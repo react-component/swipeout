@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { View, Text, AppRegistry } from 'react-native';
 import Swipeout from '../src';
 import React from 'react';
