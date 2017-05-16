@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import 'rc-swipeout/assets/index.less';
 import Swipeout from 'rc-swipeout';
 import React from 'react';

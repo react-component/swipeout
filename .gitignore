@@ -16,6 +16,8 @@ Thumbs.db
 *.swo
 *.pyc
 *.pyo
+*.log
+*.log.*
 node_modules
 dist
 build

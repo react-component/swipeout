@@ -77,10 +77,10 @@ describe('simple', () => {
   it('onOpen & onClose to be called', done => {
     let openCalled = false;
     let closeCalled = false;
-    const onOpenSpy = function () {
+    const onOpenSpy = () => {
       openCalled = true;
     };
-    const onCloseSpy = function () {
+    const onCloseSpy = () => {
       closeCalled = true;
     };
     const instance = ReactDOM.render(
@@ -124,7 +124,7 @@ describe('simple', () => {
 
   it('button click & autoClose', done => {
     let readCalled = false;
-    const onRead = function () {
+    const onRead = () => {
       readCalled = true;
     };
     const instance = ReactDOM.render(

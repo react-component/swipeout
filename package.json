@@ -42,7 +42,8 @@
   "dependencies": {
     "babel-runtime": "6.x",
     "object.omit": "~2.0.0",
-    "rc-hammerjs": "^0.6.4",
+    "prop-types": "^15.5.10",
+    "rc-hammerjs": "^0.6.6",
     "react-native-swipeout": "~2.1.1"
   },
   "devDependencies": {
@@ -50,9 +51,9 @@
     "hammer-simulator": "0.0.1",
     "pre-commit": "1.x",
     "rc-tools": "~5.10.3",
-    "react": "~15.2.1",
+    "react": "^15.0.0",
     "react-addons-test-utils": "~15.2.1",
-    "react-dom": "~15.2.1",
+    "react-dom": "^15.0.0",
     "react-native": "0.30.0"
   },
   "pre-commit": [
