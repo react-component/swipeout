@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -52,7 +52,6 @@
     "pre-commit": "1.x",
     "rc-tools": "~5.10.3",
     "react": "^15.0.0",
-    "react-addons-test-utils": "~15.2.1",
     "react-dom": "^15.0.0",
     "react-native": "0.30.0"
   },
