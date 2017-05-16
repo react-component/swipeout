@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import ReactDOM from 'react-dom';
 import Hammer from 'rc-hammerjs';
 import omit from 'object.omit';
 import splitObject from './util/splitObject';
@@ -38,7 +39,7 @@ class Swipeout extends React.Component {
 
   componentDidMount() {
     const { left, right } = this.props;
-    const width = this.refs.content.offsetWidth;
+    const width = this.content.offsetWidth;
 
     if (this.refs.cover) {
       this.refs.cover.style.width = `${width}px`;
@@ -141,7 +142,7 @@ class Swipeout extends React.Component {
     const { left, right } = this.props;
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
-    this.refs.content.style.left = `${contentLeft}px`;
+    this.content.style.left = `${contentLeft}px`;
     this.refs.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
     this.refs.cover.style.left = `${contentLeft}px`;
     if (left.length) {
@@ -217,14 +218,13 @@ class Swipeout extends React.Component {
           onPanStart={this.onPanStart}
           onPan={this.onPan}
           onPanEnd={this.onPanEnd}
+          ref={(el) => this.content = ReactDOM.findDOMNode(el)}
         >
-          <div className={`${prefixCls}-content`} ref="content">
-            {children}
-          </div>
+          <div className={`${prefixCls}-content`}>{children}</div>
         </Hammer>
       </div>
     ) : (
-      <div ref="content" {...divProps}>{children}</div>
+      <div ref={(el) => this.content = ReactDOM.findDOMNode(el)} {...divProps}>{children}</div>
     );
   }
 }
