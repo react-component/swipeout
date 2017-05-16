@@ -16,7 +16,6 @@
 }
 .rc-swipeout .rc-swipeout-content,
 .rc-swipeout .rc-swipeout-actions {
-  -webkit-transition: all 250ms;
   transition: all 250ms;
 }
 .rc-swipeout-actions {
