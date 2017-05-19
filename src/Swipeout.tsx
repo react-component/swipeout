@@ -1,23 +1,10 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-
 import ReactDOM from 'react-dom';
 import Hammer from 'rc-hammerjs';
 import omit from 'object.omit';
-import splitObject from './util/splitObject';
+import SwipeoutPropType from './PropTypes';
 
-class Swipeout extends React.Component {
-  static propTypes = {
-    prefixCls: PropTypes.string,
-    autoClose: PropTypes.bool,
-    disabled: PropTypes.bool,
-    left: PropTypes.arrayOf(PropTypes.object),
-    right: PropTypes.arrayOf(PropTypes.object),
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    children: PropTypes.any,
-  };
-
+class Swipeout extends React.Component <SwipeoutPropType, any> {
   static defaultProps = {
     prefixCls: 'rc-swipeout',
     autoClose: false,
@@ -27,6 +14,14 @@ class Swipeout extends React.Component {
     onOpen() {},
     onClose() {},
   };
+
+  openedLeft: boolean;
+  openedRight: boolean;
+  content: any;
+  contentWidth: number;
+  btnsLeftWidth: number;
+  btnsRightWidth: number;
+  panStartX: number;
 
   constructor(props) {
     super(props);
@@ -40,11 +35,11 @@ class Swipeout extends React.Component {
   }
 
   componentDidMount() {
-    const { left, right } = this.props;
+    const { left = [], right = [] } = this.props;
     const width = this.content.offsetWidth;
 
-    if (this.refs.cover) {
-      this.refs.cover.style.width = `${width}px`;
+    if ((this.refs as any).cover) {
+      (this.refs as any).cover.style.width = `${width}px`;
     }
 
     this.contentWidth = width;
@@ -86,7 +81,7 @@ class Swipeout extends React.Component {
     if (this.props.disabled) {
       return;
     }
-    const { left, right } = this.props;
+    const { left = [], right = []} = this.props;
     const posX = e.deltaX - this.panStartX;
     if (posX < 0 && right.length) {
       this._setStyle(Math.min(posX, 0));
@@ -100,7 +95,7 @@ class Swipeout extends React.Component {
       return;
     }
 
-    const { left, right } = this.props;
+    const { left = [], right = [] } = this.props;
     const posX = e.deltaX - this.panStartX;
     const contentWidth = this.contentWidth;
     const btnsLeftWidth = this.btnsLeftWidth;
@@ -141,24 +136,24 @@ class Swipeout extends React.Component {
 
   // set content & actions style
   _setStyle(value) {
-    const { left, right } = this.props;
+    const { left = [], right = [] } = this.props;
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
     this.content.style.left = `${contentLeft}px`;
-    this.refs.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
-    this.refs.cover.style.left = `${contentLeft}px`;
+    (this.refs as any).cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
+    (this.refs as any).cover.style.left = `${contentLeft}px`;
     if (left.length) {
       const leftWidth = Math.max(Math.min(value, Math.abs(limit)), 0);
-      this.refs.left.style.width = `${leftWidth}px`;
+      (this.refs as any).left.style.width = `${leftWidth}px`;
     }
     if (right.length) {
       const rightWidth = Math.max(Math.min(-value, Math.abs(limit)), 0);
-      this.refs.right.style.width = `${rightWidth}px`;
+      (this.refs as any).right.style.width = `${rightWidth}px`;
     }
   }
 
   open(value, openedLeft, openedRight) {
-    if (!this.openedLeft && !this.openedRight) {
+    if (!this.openedLeft && !this.openedRight && this.props.onOpen) {
       this.props.onOpen();
     }
 
@@ -168,7 +163,7 @@ class Swipeout extends React.Component {
   }
 
   close() {
-    if (this.openedLeft || this.openedRight) {
+    if ((this.openedLeft || this.openedRight) && this.props.onClose) {
       this.props.onClose();
     }
     this._setStyle(0);
@@ -198,10 +193,11 @@ class Swipeout extends React.Component {
   }
 
   render() {
-    const [{ prefixCls, left, right, children }, restProps] = splitObject(
-      this.props,
-      ['prefixCls', 'left', 'right', 'children']
-    );
+    // const [{ prefixCls, left, right, children }, restProps] = splitObject(
+    //   this.props,
+    //   ['prefixCls', 'left', 'right', 'children']
+    // );
+    const { prefixCls, left = [], right = [], children, ...restProps } = this.props;
     const divProps = omit(restProps, [
       'disabled',
       'autoClose',

@@ -1,0 +1,59 @@
+.rc-swipeout {
+  overflow: hidden;
+  position: relative;
+}
+.rc-swipeout-content {
+  position: relative;
+  z-index: 10;
+}
+.rc-swipeout-cover {
+  position: absolute;
+  z-index: 11;
+  background: transparent;
+  height: 100%;
+  top: 0;
+  display: none;
+}
+.rc-swipeout .rc-swipeout-content,
+.rc-swipeout .rc-swipeout-actions {
+  transition: all 250ms;
+}
+.rc-swipeout-actions {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.rc-swipeout-actions-left {
+  left: 0;
+  width: 0;
+}
+.rc-swipeout-actions-right {
+  right: 0;
+  width: 0;
+}
+.rc-swipeout-btn {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+  overflow: hidden;
+  z-index: 99;
+}
+.rc-swipeout-btn-text {
+  padding: 0 12px;
+}

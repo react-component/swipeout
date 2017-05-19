@@ -1,13 +1,13 @@
 /* eslint-disable no-console */
-import 'rc-swipeout/assets/index.less';
-import Swipeout from 'rc-swipeout';
+/* tslint:disable:no-console */
+import { View, Text } from 'react-native';
+import Swipeout from '../src';
 import React from 'react';
-import ReactDOM from 'react-dom';
 
-ReactDOM.render(
-  <div style={{ marginBottom: 12 }}>
+const SwipeoutExample = () => (
+  <View style={{ marginTop: 40 }}>
     <Swipeout
-      style={{ backgroundColor: 'white' }}
+      style={{ backgroundColor: '#c1c1c1' }}
       autoClose
       left={[
         {
@@ -24,15 +24,15 @@ ReactDOM.render(
       onOpen={() => console.log('open')}
       onClose={() => console.log('close')}
     >
-      <div style={{
+      <Text style={{
         height: 44,
-        backgroundColor: 'white',
-        lineHeight: '44px',
-        borderTop: '1px solid #dedede',
-        borderBottom: '1px solid #dedede',
+        backgroundColor: '#c1c1c1',
+        lineHeight: 30,
       }}
-      >swipe out simple demo</div>
+      >this is Demo</Text>
     </Swipeout>
-  </div>,
-  document.getElementById('__react-content')
+  </View>
 );
+
+export const Demo = SwipeoutExample;
+export const title = 'Left';

@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "1.3.4",
+  "version": "2.0.0",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -20,41 +20,51 @@
   },
   "files": [
     "lib",
+    "es",
     "assets/*.css"
   ],
   "licenses": "MIT",
-  "main": "./lib/index.web",
+  "main": "./lib/index",
+  "module": "./es/index",
   "config": {
     "port": 8000
   },
   "scripts": {
+    "watch-tsc": "rc-tools run watch-tsc",
+    "compile": "rc-tools run compile --babel-runtime",
     "build": "rc-tools run build",
     "gh-pages": "rc-tools run gh-pages",
     "start": "rc-tools run server",
     "pub": "rc-tools run pub --babel-runtime",
     "lint": "rc-tools run lint",
-    "karma": "rc-tools run karma",
-    "test": "rc-tools run test",
-    "chrome-test": "rc-tools run chrome-test",
-    "coverage": "rc-tools run coverage",
+    "karma": "rc-test run karma",
+    "test": "rc-test run test",
+    "chrome-test": "rc-test run chrome-test",
+    "coverage": "rc-test run coverage",
     "rn-start": "node node_modules/react-native/local-cli/cli.js start"
   },
   "dependencies": {
     "babel-runtime": "6.x",
     "object.omit": "~2.0.0",
-    "prop-types": "^15.5.10",
     "rc-hammerjs": "^0.6.6",
     "react-native-swipeout": "~2.1.1"
   },
   "devDependencies": {
+    "@types/mocha": "~2.2.32",
+    "@types/react": "~0.14.41",
+    "@types/react-dom": "~0.14.18",
+    "@types/react-native": "~0.29.36",
     "expect.js": "0.3.x",
     "hammer-simulator": "0.0.1",
     "pre-commit": "1.x",
-    "rc-tools": "~5.10.3",
+    "rc-test": "6.x",
+    "rc-tools": "6.x",
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
-    "react-native": "0.30.0"
+    "react-native": "~0.42.0",
+    "react-native-index-page": "~0.2.0"
   },
+  "typings": "./lib/index.d.ts",
   "pre-commit": [
     "lint"
   ]

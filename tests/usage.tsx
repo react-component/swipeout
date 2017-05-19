@@ -1,12 +1,14 @@
-const expect = require('expect.js');
+import expect from 'expect.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-dom/test-utils';
 require('hammer-simulator');
-const Simulator = window.Simulator;
+const Simulator = (window as any).Simulator;
 Simulator.setType('pointer');
 Simulator.events.pointer.fakeSupport();
-const Swipeout = require('../');
+import Swipeout from '../src/index';
+
+const Hammer: any = (window as any).Hammer;
 
 /* global Hammer */
 describe('simple', () => {
@@ -39,16 +41,16 @@ describe('simple', () => {
       >
         swipeout demo
       </Swipeout>
-      , div
+      , div,
     );
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
+      instance, 'rc-swipeout-content',
     );
     const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-left'
+      instance, 'rc-swipeout-actions-left',
     );
     const rightActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-right'
+      instance, 'rc-swipeout-actions-right',
     );
 
     const hammer = new Hammer(domEl, { recognizers: [] });
@@ -97,10 +99,10 @@ describe('simple', () => {
       >
         swipeout demo
       </Swipeout>
-      , div
+      , div,
     );
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
+      instance, 'rc-swipeout-content',
     );
 
     const hammer = new Hammer(domEl, { recognizers: [] });
@@ -137,13 +139,13 @@ describe('simple', () => {
       >
         swipeout demo
       </Swipeout>
-      , div
+      , div,
     );
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
+      instance, 'rc-swipeout-content',
     );
     const BtnElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout-btn'
+      instance, 'rc-swipeout-btn',
     );
 
     const hammer = new Hammer(domEl, { recognizers: [] });
@@ -166,10 +168,10 @@ describe('simple', () => {
   it('left=right=[] render no swipeout', done => {
     const instance = ReactDOM.render(
       <Swipeout left={[]} right={[]}>swipeout demo</Swipeout>
-      , div
+      , div,
     );
     const domElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout'
+      instance, 'rc-swipeout',
     );
     expect(domElArr.length).to.be(0);
     done();
@@ -188,14 +190,14 @@ describe('simple', () => {
       >
         swipeout demo
       </Swipeout>
-      , div
+      , div,
     );
     const domElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout'
+      instance, 'rc-swipeout',
     );
     expect(domElArr.length).to.be(1);
     const actionElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout-btn'
+      instance, 'rc-swipeout-btn',
     );
     expect(actionElArr.length).to.be(4);
     done();
@@ -212,13 +214,13 @@ describe('simple', () => {
       >
         swipeout demo
       </Swipeout>
-      , div
+      , div,
     );
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
+      instance, 'rc-swipeout-content',
     );
     const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-left'
+      instance, 'rc-swipeout-actions-left',
     );
 
     const hammer = new Hammer(domEl, { recognizers: [] });
@@ -245,13 +247,13 @@ describe('simple', () => {
       >
         swipeout demo
       </Swipeout>
-      , div
+      , div,
     );
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
+      instance, 'rc-swipeout-content',
     );
     const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-left'
+      instance, 'rc-swipeout-actions-left',
     );
 
     const hammer = new Hammer(domEl, { recognizers: [] });
@@ -288,13 +290,13 @@ describe('simple', () => {
       >
         swipeout demo
       </Swipeout>
-      , div
+      , div,
     );
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content'
+      instance, 'rc-swipeout-content',
     );
     const rightActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-right'
+      instance, 'rc-swipeout-actions-right',
     );
 
     const hammer = new Hammer(domEl, { recognizers: [] });

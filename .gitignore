@@ -23,7 +23,8 @@ dist
 build
 lib
 coverage
+_ts2js
+es
 ios
 android
-index.ios.js
-index.android.js
+yarn.lock
