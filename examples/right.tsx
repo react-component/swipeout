@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
-import 'rc-swipeout/assets/index.less';
-import Swipeout from 'rc-swipeout';
+/* tslint:disable:no-console */
+import '../assets/index.less';
+import Swipeout from '../src';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -34,5 +35,5 @@ ReactDOM.render(
       >swipe out simple demo</div>
     </Swipeout>
   </div>,
-  document.getElementById('__react-content')
+  document.getElementById('__react-content'),
 );

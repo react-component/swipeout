@@ -25,7 +25,7 @@ iOS-style swipeout buttons that appear from behind a component (web & react-nati
 ## Development
 
 ```
-web: 
+web:
 npm install
 npm start
 
@@ -38,11 +38,18 @@ tnpm run rn-start
 - local: http://localhost:8000/examples/
 - online: http://react-component.github.io/swipeout/
 
+## react-native
+
+```
+./node_modules/rc-tools run react-native-init
+react-native run-ios
+```
+
 ## Usage
 
 ```js
 import Swipeout from 'rc-swipeout';
-import 'rc-swipeout/assets/index.less';
+import 'rc-swipeout/assets/index.less'; (web only)
 
 <Swipeout
   left={[
@@ -69,11 +76,6 @@ import 'rc-swipeout/assets/index.less';
 
 ```
 
-For the React Native version, use the following import statement.
-
-```js
-import Swipeout from 'rc-swipeout/lib'
-```
 
 ## API
 

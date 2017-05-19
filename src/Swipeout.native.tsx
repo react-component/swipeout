@@ -1,21 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { View, Text } from 'react-native';
 import Swipe from 'react-native-swipeout';
-import splitObject from './util/splitObject';
+import SwipeoutPropType from './PropTypes';
 
-class Swipeout extends React.Component {
-  static propTypes = {
-    prefixCls: PropTypes.string,
-    autoClose: PropTypes.bool,
-    disabled: PropTypes.bool,
-    left: PropTypes.arrayOf(PropTypes.object),
-    right: PropTypes.arrayOf(PropTypes.object),
-    onOpen: PropTypes.func,
-    onClose: PropTypes.func,
-    children: PropTypes.any,
-  };
-
+class Swipeout extends React.Component<SwipeoutPropType, any> {
   static defaultProps = {
     autoClose: false,
     disabled: false,
@@ -59,12 +47,9 @@ class Swipeout extends React.Component {
   }
 
   render() {
-    const [{
-      disabled, autoClose, style, left, right, onOpen, onClose, children,
-    }, restProps] = splitObject(
-      this.props,
-      ['disabled', 'autoClose', 'style', 'left', 'right', 'onOpen', 'onClose', 'children']
-    );
+    const {
+      disabled, autoClose, style, left = [], right = [], onOpen, onClose, children, ...restProps,
+    } = this.props;
 
     const customLeft = left.map(btn => {
       return this.renderCustomButton(btn);
