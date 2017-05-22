@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>right.js - example - rc-swipeout@1.3.5</title>
+  <title>right.native.js - example - rc-swipeout@1.3.5</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -271,15 +271,14 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 
     <div class="highlight"><pre><code language="js"><span class="hljs-comment">/* eslint-disable no-console */</span>
 <span class="hljs-comment">/* tslint:disable:no-console */</span>
-<span class="hljs-keyword">import</span> <span class="hljs-string">'../assets/index.less'</span>;
+<span class="hljs-keyword">import</span> { View, Text } <span class="hljs-keyword">from</span> <span class="hljs-string">'react-native'</span>;
 <span class="hljs-keyword">import</span> Swipeout <span class="hljs-keyword">from</span> <span class="hljs-string">'../src'</span>;
 <span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
-<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 
-ReactDOM.render(
-  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">marginBottom:</span> <span class="hljs-attribute">12</span> }}&gt;</span>
+<span class="hljs-keyword">const</span> SwipeoutExample = () =&gt; (
+  <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">View</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">marginTop:</span> <span class="hljs-attribute">40</span> }}&gt;</span>
     <span class="hljs-tag">&lt;<span class="hljs-title">Swipeout</span>
-      <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">backgroundColor:</span> '<span class="hljs-attribute">white</span>' }}
+      <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">backgroundColor:</span> '#<span class="hljs-attribute">c1c1c1</span>' }}
       <span class="hljs-attribute">autoClose</span>
       <span class="hljs-attribute">right</span>=<span class="hljs-value">{[</span>
         { <span class="hljs-attribute">text:</span> '<span class="hljs-attribute">more</span>',
@@ -294,21 +293,19 @@ ReactDOM.render(
       onOpen={() =&gt; console.log('open')}
       onClose={() =&gt; console.log('close')}
     &gt;
-      <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{()</span> =&gt;</span> {
-        console.log('emit an event on children element!');
-      }} style={{
-        height: 44,
-        backgroundColor: 'white',
-        lineHeight: '44px',
-        borderTop: '1px solid #dedede',
-        borderBottom: '1px solid #dedede',
+      <span class="hljs-tag">&lt;<span class="hljs-title">Text</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span>
+        <span class="hljs-attribute">height:</span> <span class="hljs-attribute">44</span>,
+        <span class="hljs-attribute">backgroundColor:</span> '#<span class="hljs-attribute">c1c1c1</span>',
+        <span class="hljs-attribute">lineHeight:</span> <span class="hljs-attribute">30</span>,
       }}
-      &gt;swipe out simple demo<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+      &gt;</span>this is Demo<span class="hljs-tag">&lt;/<span class="hljs-title">Text</span>&gt;</span>
     <span class="hljs-tag">&lt;/<span class="hljs-title">Swipeout</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>,
-  document.getElementById('__react-content'),
-);
-</span></code></pre></div>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">View</span>&gt;</span>
+)</span>;
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> Demo = SwipeoutExample;
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> title = <span class="hljs-string">'Right'</span>;
+</code></pre></div>
   </div>
   <a href="https://github.com/react-component/swipeout">
     <img style="position: absolute; top: 0; right: 0; border: 0;"
@@ -318,7 +315,7 @@ ReactDOM.render(
   </a>
   <script>FastClick.attach(document.body);</script>
   <script src="common.js?nowrap"></script>
-  <script src="right.js?nowrap"></script>
+  <script src="right.native.js?nowrap"></script>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>mutiple.js - example - rc-swipeout@1.3.4</title>
+  <title>mutiple.js - example - rc-swipeout@1.3.5</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -263,62 +263,63 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <body>
   <div class="container">
     <div class="header">
-      <h1>rc-swipeout@1.3.4</h1>
+      <h1>rc-swipeout@1.3.5</h1>
 
       <p>swipe out ui component for react(web and react-native)</p>
     </div>
     <div class="example" id="__react-content"></div>
 
-    <div class="highlight"><pre><code language="undefined">/* eslint-disable no-console */
-import 'rc-swipeout/assets/index.css';
-import Swipeout from 'rc-swipeout';
-import React from 'react';
-import ReactDOM from 'react-dom';
+    <div class="highlight"><pre><code language="js"><span class="hljs-comment">/* eslint-disable no-console */</span>
+<span class="hljs-comment">/* tslint:disable:no-console */</span>
+<span class="hljs-keyword">import</span> <span class="hljs-string">'../assets/index.less'</span>;
+<span class="hljs-keyword">import</span> Swipeout <span class="hljs-keyword">from</span> <span class="hljs-string">'../src'</span>;
+<span class="hljs-keyword">import</span> React <span class="hljs-keyword">from</span> <span class="hljs-string">'react'</span>;
+<span class="hljs-keyword">import</span> ReactDOM <span class="hljs-keyword">from</span> <span class="hljs-string">'react-dom'</span>;
 
-const SwipeoutExample = React.createClass({
+<span class="hljs-keyword">const</span> SwipeoutExample = React.createClass({
   getInitialState() {
-    return {
-      items: ['00', '01', '02', '03', '04', '05'],
+    <span class="hljs-keyword">return</span> {
+      items: [<span class="hljs-string">'00'</span>, <span class="hljs-string">'01'</span>, <span class="hljs-string">'02'</span>, <span class="hljs-string">'03'</span>, <span class="hljs-string">'04'</span>, <span class="hljs-string">'05'</span>],
     };
   },
   onDelete(value) {
-    const tempArr = this.state.items;
-    this.setState({
+    <span class="hljs-keyword">const</span> tempArr = <span class="hljs-keyword">this</span>.state.items;
+    <span class="hljs-keyword">this</span>.setState({
       items: tempArr.filter(v =&gt; v !== value),
     });
   },
   render() {
-    return (
-      &lt;div&gt;
-        &lt;p style={{ padding: '16px 30px' }}&gt;多个实例：&lt;/p&gt;
-        {this.state.items.map((item, i) =&gt; &lt;Swipeout
-          autoClose
-          key={i}
-          right={[
+    <span class="hljs-keyword">return</span> (
+      <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">padding:</span> '<span class="hljs-attribute">16px</span> <span class="hljs-attribute">30px</span>' }}&gt;</span>多个实例：<span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+        {this.state.items.map((item, i) =&gt; <span class="hljs-tag">&lt;<span class="hljs-title">Swipeout</span>
+          <span class="hljs-attribute">autoClose</span>
+          <span class="hljs-attribute">key</span>=<span class="hljs-value">{i}</span>
+          <span class="hljs-attribute">right</span>=<span class="hljs-value">{[</span>
             {
-              text: `删除${item}`,
-              onPress: () =&gt; this.onDelete(item),
+              <span class="hljs-attribute">text:</span> `删除${<span class="hljs-attribute">item</span>}`,
+              <span class="hljs-attribute">onPress:</span> () =&gt;</span> this.onDelete(item),
               style: { backgroundColor: '#F4333C', color: 'white' },
             },
           ]}
         &gt;
-          &lt;div style={{ padding: '16px 30px', borderBottom: '1px solid #ccc' }} onClick={() =&gt; {
+          <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">padding:</span> '<span class="hljs-attribute">16px</span> <span class="hljs-attribute">30px</span>', <span class="hljs-attribute">borderBottom:</span> '<span class="hljs-attribute">1px</span> <span class="hljs-attribute">solid</span> #<span class="hljs-attribute">ccc</span>' }} <span class="hljs-attribute">onClick</span>=<span class="hljs-value">{()</span> =&gt;</span> {
             console.log(`pressed item ${item}`);
           }}
           &gt;
             item {item}
-          &lt;/div&gt;
-        &lt;/Swipeout&gt;
+          <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">Swipeout</span>&gt;</span>,
       )}
-      &lt;/div&gt;
-    );
+      <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+    )</span>;
   },
 });
 
-ReactDOM.render(&lt;SwipeoutExample /&gt;,
-  document.getElementById('__react-content')
+ReactDOM.render(<span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">SwipeoutExample</span> /&gt;</span>,
+  document.getElementById('__react-content'),
 );
-</code></pre></div>
+</span></code></pre></div>
   </div>
   <a href="https://github.com/react-component/swipeout">
     <img style="position: absolute; top: 0; right: 0; border: 0;"
