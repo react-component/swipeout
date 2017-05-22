@@ -18,6 +18,9 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   openedLeft: boolean;
   openedRight: boolean;
   content: any;
+  cover: any;
+  left: any;
+  right: any;
   contentWidth: number;
   btnsLeftWidth: number;
   btnsRightWidth: number;
@@ -38,8 +41,8 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     const { left = [], right = [] } = this.props;
     const width = this.content.offsetWidth;
 
-    if ((this.refs as any).cover) {
-      (this.refs as any).cover.style.width = `${width}px`;
+    if (this.cover) {
+      this.cover.style.width = `${width}px`;
     }
 
     this.contentWidth = width;
@@ -140,15 +143,17 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
     this.content.style.left = `${contentLeft}px`;
-    (this.refs as any).cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
-    (this.refs as any).cover.style.left = `${contentLeft}px`;
+    if (this.cover) {
+      this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
+      this.cover.style.left = `${contentLeft}px`;
+    }
     if (left.length) {
       const leftWidth = Math.max(Math.min(value, Math.abs(limit)), 0);
-      (this.refs as any).left.style.width = `${leftWidth}px`;
+      this.left.style.width = `${leftWidth}px`;
     }
     if (right.length) {
       const rightWidth = Math.max(Math.min(-value, Math.abs(limit)), 0);
-      (this.refs as any).right.style.width = `${rightWidth}px`;
+      this.right.style.width = `${rightWidth}px`;
     }
   }
 
@@ -175,9 +180,12 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     const prefixCls = this.props.prefixCls;
 
     return (buttons && buttons.length) ? (
-      <div className={`${prefixCls}-actions ${prefixCls}-actions-${ref}`} ref={ref}>
-        {buttons.map((btn, i) => {
-          return (
+      <div
+        className={`${prefixCls}-actions ${prefixCls}-actions-${ref}`}
+        ref={(el) => this[ref] = ReactDOM.findDOMNode(el)}
+      >
+        {
+          buttons.map((btn, i) => (
             <div key={i}
               className={`${prefixCls}-btn ${btn.hasOwnProperty('className') ? btn.className : ''}`}
               style={btn.style}
@@ -186,17 +194,13 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
             >
               <div className={`${prefixCls}-text`}>{btn.text || 'Click'}</div>
             </div>
-          );
-        })}
+          ))
+        }
       </div>
     ) : null;
   }
 
   render() {
-    // const [{ prefixCls, left, right, children }, restProps] = splitObject(
-    //   this.props,
-    //   ['prefixCls', 'left', 'right', 'children']
-    // );
     const { prefixCls, left = [], right = [], children, ...restProps } = this.props;
     const divProps = omit(restProps, [
       'disabled',
@@ -204,13 +208,14 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
       'onOpen',
       'onClose',
     ]);
+
     const refProps = {
       ref: el => this.content = ReactDOM.findDOMNode(el),
     };
     return (left.length || right.length) ? (
       <div className={`${prefixCls}`} {...divProps}>
         {/* 保证 body touchStart 后不触发 pan */}
-        <div className={`${prefixCls}-cover`} ref="cover" />
+        <div className={`${prefixCls}-cover`} ref={(el) => this.cover = ReactDOM.findDOMNode(el)} />
         { this.renderButtons(left, 'left') }
         { this.renderButtons(right, 'right') }
         <Hammer
