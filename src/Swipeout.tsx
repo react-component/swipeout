@@ -32,6 +32,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     this.onPanStart = this.onPanStart.bind(this);
     this.onPan = this.onPan.bind(this);
     this.onPanEnd = this.onPanEnd.bind(this);
+    this.onCloseSwipe = this.onCloseSwipe.bind(this);
 
     this.openedLeft = false;
     this.openedRight = false;
@@ -49,11 +50,11 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     this.btnsLeftWidth = (width / 5) * left.length;
     this.btnsRightWidth = (width / 5) * right.length;
 
-    document.body.addEventListener('touchstart', this.onCloseSwipe.bind(this), true);
+    document.body.addEventListener('touchstart', this.onCloseSwipe, true);
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener('touchstart', this.onCloseSwipe.bind(this));
+    document.body.removeEventListener('touchstart', this.onCloseSwipe);
   }
 
   onCloseSwipe(ev) {
