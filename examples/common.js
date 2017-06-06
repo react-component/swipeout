@@ -10942,6 +10942,7 @@ var Swipeout = function (_React$Component) {
         _this.onPanStart = _this.onPanStart.bind(_this);
         _this.onPan = _this.onPan.bind(_this);
         _this.onPanEnd = _this.onPanEnd.bind(_this);
+        _this.onCloseSwipe = _this.onCloseSwipe.bind(_this);
         _this.openedLeft = false;
         _this.openedRight = false;
         return _this;
@@ -10963,12 +10964,12 @@ var Swipeout = function (_React$Component) {
             this.contentWidth = width;
             this.btnsLeftWidth = width / 5 * left.length;
             this.btnsRightWidth = width / 5 * right.length;
-            document.body.addEventListener('touchstart', this.onCloseSwipe.bind(this), true);
+            document.body.addEventListener('touchstart', this.onCloseSwipe, true);
         }
     }, {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
-            document.body.removeEventListener('touchstart', this.onCloseSwipe.bind(this));
+            document.body.removeEventListener('touchstart', this.onCloseSwipe);
         }
     }, {
         key: 'onCloseSwipe',
