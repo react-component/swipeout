@@ -54,7 +54,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   componentWillUnmount() {
-    document.body.removeEventListener('touchstart', this.onCloseSwipe);
+    document.body.removeEventListener('touchstart', this.onCloseSwipe, true);
   }
 
   onCloseSwipe(ev) {
