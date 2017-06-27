@@ -1,5 +1,12 @@
 # History
 
+# ~1.3.7
+
+-  fixed `removeEventListener` bug;
+-  fixed binding and unbinding event bug;
+-  support es module;
+-  update deps;
+
 # 1.3.1
 
 - update react-native-swipeout version
