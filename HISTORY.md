@@ -1,5 +1,9 @@
 # History
 
+# 1.3.8
+
+- fixed: only one hand can be swiped if left or right is null.
+
 # ~1.3.7
 
 -  fixed `removeEventListener` bug;

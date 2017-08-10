@@ -7,8 +7,6 @@ class Swipeout extends React.Component<SwipeoutPropType, any> {
   static defaultProps = {
     autoClose: false,
     disabled: false,
-    left: [],
-    right: [],
     onOpen() {},
     onClose() {},
   };
@@ -48,17 +46,17 @@ class Swipeout extends React.Component<SwipeoutPropType, any> {
 
   render() {
     const {
-      disabled, autoClose, style, left = [], right = [], onOpen, onClose, children, ...restProps,
+      disabled, autoClose, style, left, right, onOpen, onClose, children, ...restProps,
     } = this.props;
 
-    const customLeft = left.map(btn => {
+    const customLeft = left && left.map(btn => {
       return this.renderCustomButton(btn);
     });
-    const customRight = right.map(btn => {
+    const customRight = right && right.map(btn => {
       return this.renderCustomButton(btn);
     });
 
-    return (left.length || right.length) ? (
+    return customLeft || customRight ? (
       <Swipe
         autoClose={autoClose}
         left={customLeft}
