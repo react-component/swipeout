@@ -52,7 +52,7 @@ var SwipeoutExample = __WEBPACK_IMPORTED_MODULE_2_react___default.a.createClass(
                             onPress: function onPress() {
                                 return _this.onDelete(item);
                             },
-                            style: { backgroundColor: '#F4333C', color: 'white' }
+                            style: { backgroundColor: '#F4333C', color: 'white', width: 80 }
                         }] },
                     __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
                         'div',

@@ -5,12 +5,14 @@
 .rc-swipeout-content {
   position: relative;
   z-index: 10;
+  background-color: #fff;
 }
 .rc-swipeout-cover {
   position: absolute;
   z-index: 11;
   background: transparent;
   height: 100%;
+  width: 100%;
   top: 0;
   display: none;
 }
@@ -22,7 +24,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  right: 0;
+  z-index: 9;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -31,11 +33,9 @@
 }
 .rc-swipeout-actions-left {
   left: 0;
-  width: 0;
 }
 .rc-swipeout-actions-right {
   right: 0;
-  width: 0;
 }
 .rc-swipeout-btn {
   -webkit-box-flex: 1;

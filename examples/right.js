@@ -27,12 +27,12 @@ __WEBPACK_IMPORTED_MODULE_3_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
                 onPress: function onPress() {
                     return console.log('more');
                 },
-                style: { backgroundColor: 'orange', color: 'white' }
+                style: { backgroundColor: 'orange', color: 'white', width: 80 }
             }, { text: 'delete',
                 onPress: function onPress() {
                     return console.log('delete');
                 },
-                style: { backgroundColor: 'red', color: 'white' }
+                style: { backgroundColor: 'red', color: 'white', width: 80 }
             }], onOpen: function onOpen() {
                 return console.log('open');
             }, onClose: function onClose() {
