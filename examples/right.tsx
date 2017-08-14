@@ -13,11 +13,11 @@ ReactDOM.render(
       right={[
         { text: 'more',
           onPress: () => console.log('more'),
-          style: { backgroundColor: 'orange', color: 'white' },
+          style: { backgroundColor: 'orange', color: 'white', width: 80 },
         },
         { text: 'delete',
           onPress: () => console.log('delete'),
-          style: { backgroundColor: 'red', color: 'white' },
+          style: { backgroundColor: 'red', color: 'white', width: 80 },
         },
       ]}
       onOpen={() => console.log('open')}

@@ -1,5 +1,9 @@
 # History
 
+# 1.4.0
+
+- improve: auto width for swipe buttons, #40
+
 # 1.3.8
 
 - fixed: only one hand can be swiped if left or right is null.

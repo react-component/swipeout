@@ -30,11 +30,11 @@ describe('simple', () => {
     const instance = ReactDOM.render(
       <Swipeout
         right={[
-          { text: 'more' },
-          { text: 'delete' },
+          { text: 'more', style: { width: 60 }},
+          { text: 'delete', style: { width: 60 } },
         ]} left={[
-          { text: 'read' },
-          { text: 'reply' },
+          { text: 'read', style: { width: 80 } },
+          { text: 'reply', style: { width: 60 } },
         ]}
       >
         swipeout demo
@@ -59,17 +59,14 @@ describe('simple', () => {
       deltaX: 300,
       deltaY: 5,
     }, () => {
-      expect(domEl.style.left).to.be('128px');
-      expect(leftActionEl.style.width).to.be('128px');
-      expect(rightActionEl.style.width).to.be('0px');
+      expect(domEl.style.left).to.be('140px');
+      expect(rightActionEl.offsetWidth).to.be(120);
 
       const event = document.createEvent('UIEvent');
       event.initEvent('touchstart', true, true);
       document.body.dispatchEvent(event);
 
       expect(domEl.style.left).to.be('0px');
-      expect(leftActionEl.style.width).to.be('0px');
-      expect(rightActionEl.style.width).to.be('0px');
       done();
     });
   });
@@ -239,8 +236,8 @@ describe('simple', () => {
     const instance = ReactDOM.render(
       <Swipeout
         left={[
-          { text: 'read' },
-          { text: 'reply' },
+          { text: 'read', style: { width: 60 } },
+          { text: 'reply', style: { width: 80 } },
         ]}
       >
         swipeout demo
@@ -272,8 +269,7 @@ describe('simple', () => {
         deltaX: 300,
         deltaY: 10,
       }, () => {
-        expect(domEl.style.left).to.be('128px');
-        expect(leftActionEl.style.width).to.be('128px');
+        expect(domEl.style.left).to.be('140px');
         done();
       });
     });

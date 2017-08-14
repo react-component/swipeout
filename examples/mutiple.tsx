@@ -28,7 +28,7 @@ const SwipeoutExample = React.createClass({
             {
               text: `删除${item}`,
               onPress: () => this.onDelete(item),
-              style: { backgroundColor: '#F4333C', color: 'white' },
+              style: { backgroundColor: '#F4333C', color: 'white', width: 80 },
             },
           ]}
         >

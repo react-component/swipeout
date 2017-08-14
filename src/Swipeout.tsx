@@ -39,17 +39,8 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   componentDidMount() {
-    const { left = [], right = [] } = this.props;
-    const width = this.content.offsetWidth;
-
-    if (this.cover) {
-      this.cover.style.width = `${width}px`;
-    }
-
-    this.contentWidth = width;
-    this.btnsLeftWidth = (width / 5) * left.length;
-    this.btnsRightWidth = (width / 5) * right.length;
-
+    this.btnsLeftWidth = this.left ? this.left.offsetWidth : 0;
+    this.btnsRightWidth = this.right ? this.right.offsetWidth : 0;
     document.body.addEventListener('touchstart', this.onCloseSwipe, true);
   }
 
@@ -101,12 +92,11 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
 
     const { left = [], right = [] } = this.props;
     const posX = e.deltaX - this.panStartX;
-    const contentWidth = this.contentWidth;
     const btnsLeftWidth = this.btnsLeftWidth;
     const btnsRightWidth = this.btnsRightWidth;
-    const openX = contentWidth * 0.33;
-    const openLeft = posX > openX || posX > btnsLeftWidth / 2;
-    const openRight = posX < -openX || posX < -btnsRightWidth / 2;
+
+    const openLeft =  posX > btnsLeftWidth / 2;
+    const openRight =  posX < -btnsRightWidth / 2;
 
     if (openRight && posX < 0 && right.length) {
       this.open(-btnsRightWidth, false, true);
@@ -147,14 +137,6 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     if (this.cover) {
       this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
       this.cover.style.left = `${contentLeft}px`;
-    }
-    if (left.length) {
-      const leftWidth = Math.max(Math.min(value, Math.abs(limit)), 0);
-      this.left.style.width = `${leftWidth}px`;
-    }
-    if (right.length) {
-      const rightWidth = Math.max(Math.min(-value, Math.abs(limit)), 0);
-      this.right.style.width = `${rightWidth}px`;
     }
   }
 
