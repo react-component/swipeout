@@ -11271,25 +11271,24 @@ var Swipeout = function (_React$Component) {
                 return;
             }
             var _props = this.props,
-                _props$left = _props.left,
-                left = _props$left === undefined ? [] : _props$left,
-                _props$right = _props.right,
-                right = _props$right === undefined ? [] : _props$right;
+                left = _props.left,
+                right = _props.right;
 
             if (posX < 0 && right.length) {
+                this.swiping = true;
                 this._setStyle(Math.min(posX, 0));
             } else if (posX > 0 && left.length) {
+                this.swiping = true;
                 this._setStyle(Math.max(posX, 0));
             }
         }
     }, {
         key: 'onPanEnd',
         value: function onPanEnd(e) {
-            var posX = e.deltaX - this.panStartX;
-            var posY = e.deltaY - this.panStartY;
-            if (Math.abs(posX) <= Math.abs(posY)) {
+            if (!this.swiping) {
                 return;
             }
+            this.swiping = false;
             var _props2 = this.props,
                 _props2$left = _props2.left,
                 left = _props2$left === undefined ? [] : _props2$left,
@@ -11298,6 +11297,7 @@ var Swipeout = function (_React$Component) {
 
             var btnsLeftWidth = this.btnsLeftWidth;
             var btnsRightWidth = this.btnsRightWidth;
+            var posX = e.deltaX - this.panStartX;
             var openLeft = posX > btnsLeftWidth / 2;
             var openRight = posX < -btnsRightWidth / 2;
             if (openRight && posX < 0 && right.length) {
