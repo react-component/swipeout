@@ -30,11 +30,6 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   constructor(props) {
     super(props);
 
-    this.onPanStart = this.onPanStart.bind(this);
-    this.onPan = this.onPan.bind(this);
-    this.onPanEnd = this.onPanEnd.bind(this);
-    this.onCloseSwipe = this.onCloseSwipe.bind(this);
-
     this.openedLeft = false;
     this.openedRight = false;
   }
@@ -49,7 +44,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     document.body.removeEventListener('touchstart', this.onCloseSwipe, true);
   }
 
-  onCloseSwipe(ev) {
+  onCloseSwipe = (ev) => {
     if (this.openedLeft || this.openedRight) {
       const pNode = (node => {
         while (node.parentNode && node.parentNode !== document.body) {
@@ -66,30 +61,30 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     }
   }
 
-  onPanStart(e) {
+  onPanStart = (e) => {
     this.panStartX = e.deltaX;
     this.panStartY = e.deltaY;
   }
 
-  onPan(e) {
-    const posX = e.deltaX - this.panStartX;
-    const posY = e.deltaY - this.panStartY;
+  onPan = (e) => {
+    const { direction, deltaX } = e;
+    // http://hammerjs.github.io/api/#directions
+    const isLeft = direction === 2;
+    const isRight = direction === 4;
 
-    if (Math.abs(posX) <= Math.abs(posY)) {
+    if (!isLeft && !isRight) {
       return;
     }
-
     const { left, right } = this.props;
-    if (posX < 0 && right!.length) {
+    const needShowRight = isLeft && right!.length;
+    const needShowLeft = isRight && left!.length;
+    if (needShowLeft || needShowRight) {
       this.swiping = true;
-      this._setStyle(Math.min(posX, 0));
-    } else if (posX > 0 && left!.length) {
-      this.swiping = true;
-      this._setStyle(Math.max(posX, 0));
+      this._setStyle(deltaX);
     }
   }
 
-  onPanEnd(e) {
+  onPanEnd = (e) => {
     if (!this.swiping) {
       return;
     }
@@ -133,7 +128,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   // set content & actions style
-  _setStyle(value) {
+  _setStyle = (value) => {
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
     this.content.style.left = `${contentLeft}px`;
@@ -213,7 +208,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
         >
           <div className={`${prefixCls}-content`}>{children}</div>
         </Hammer>
-      </div>
+     </div>
     ) : (
       <div {...refProps} {...divProps}>{children}</div>
     );
