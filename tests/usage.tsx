@@ -44,9 +44,7 @@ describe('simple', () => {
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
       instance, 'rc-swipeout-content',
     );
-    const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-left',
-    );
+
     const rightActionEl = TestUtils.findRenderedDOMComponentWithClass(
       instance, 'rc-swipeout-actions-right',
     );
@@ -247,9 +245,6 @@ describe('simple', () => {
 
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
       instance, 'rc-swipeout-content',
-    );
-    const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-left',
     );
 
     const hammer = new Hammer(domEl, { recognizers: [] });

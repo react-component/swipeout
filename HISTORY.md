@@ -1,5 +1,9 @@
 # History
 
+# 1.4.1
+
+- improve: disabled swipe if deltaX < deltaY
+
 # 1.4.0
 
 - improve: auto width for swipe buttons, #40

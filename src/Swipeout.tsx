@@ -25,6 +25,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   btnsLeftWidth: number;
   btnsRightWidth: number;
   panStartX: number;
+  panStartY: number;
 
   constructor(props) {
     super(props);
@@ -70,14 +71,17 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
       return;
     }
     this.panStartX = e.deltaX;
+    this.panStartY = e.deltaY;
   }
 
   onPan(e) {
-    if (this.props.disabled) {
+    const posX = e.deltaX - this.panStartX;
+    const posY = e.deltaY - this.panStartY;
+
+    if (this.props.disabled || Math.abs(posX) <= Math.abs(posY)) {
       return;
     }
     const { left = [], right = []} = this.props;
-    const posX = e.deltaX - this.panStartX;
     if (posX < 0 && right.length) {
       this._setStyle(Math.min(posX, 0));
     } else if (posX > 0 && left.length) {
@@ -86,12 +90,14 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   onPanEnd(e) {
-    if (this.props.disabled) {
+    const posX = e.deltaX - this.panStartX;
+    const posY = e.deltaY - this.panStartY;
+
+    if (this.props.disabled || Math.abs(posX) <= Math.abs(posY)) {
       return;
     }
 
     const { left = [], right = [] } = this.props;
-    const posX = e.deltaX - this.panStartX;
     const btnsLeftWidth = this.btnsLeftWidth;
     const btnsRightWidth = this.btnsRightWidth;
 
@@ -130,7 +136,6 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
 
   // set content & actions style
   _setStyle(value) {
-    const { left = [], right = [] } = this.props;
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
     this.content.style.left = `${contentLeft}px`;
@@ -175,7 +180,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
               role="button"
               onClick={(e) => this.onBtnClick(e, btn)}
             >
-              <div className={`${prefixCls}-text`}>{btn.text || 'Click'}</div>
+              <div className={`${prefixCls}-btn-text`}>{btn.text || 'Click'}</div>
             </div>
           ))
         }
