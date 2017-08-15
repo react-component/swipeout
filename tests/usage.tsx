@@ -196,7 +196,7 @@ describe('simple', () => {
     done();
   });
 
-  it('swipe when disabled', done => {
+  it('swipe when disabled', () => {
     const instance = ReactDOM.render(
       <Swipeout
         left={[
@@ -209,25 +209,11 @@ describe('simple', () => {
       </Swipeout>
       , div,
     );
-    const domEl = TestUtils.findRenderedDOMComponentWithClass(
+    const domElArr = TestUtils.scryRenderedDOMComponentsWithClass(
       instance, 'rc-swipeout-content',
     );
-    const leftActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-left',
-    );
 
-    const hammer = new Hammer(domEl, { recognizers: [] });
-    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
-    hammer.add(swipe);
-
-    Simulator.gestures.swipe(domEl, {
-      deltaX: 300,
-      deltaY: 10,
-    }, () => {
-      expect(domEl.style.left).to.be('');
-      expect(leftActionEl.style.width).to.be('');
-      done();
-    });
+    expect(domElArr.length).to.be(0);
   });
 
   it('only one side', done => {

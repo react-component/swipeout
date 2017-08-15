@@ -67,9 +67,6 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   onPanStart(e) {
-    if (this.props.disabled) {
-      return;
-    }
     this.panStartX = e.deltaX;
     this.panStartY = e.deltaY;
   }
@@ -78,9 +75,10 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     const posX = e.deltaX - this.panStartX;
     const posY = e.deltaY - this.panStartY;
 
-    if (this.props.disabled || Math.abs(posX) <= Math.abs(posY)) {
+    if (Math.abs(posX) <= Math.abs(posY)) {
       return;
     }
+
     const { left = [], right = []} = this.props;
     if (posX < 0 && right.length) {
       this._setStyle(Math.min(posX, 0));
@@ -93,7 +91,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     const posX = e.deltaX - this.panStartX;
     const posY = e.deltaY - this.panStartY;
 
-    if (this.props.disabled || Math.abs(posX) <= Math.abs(posY)) {
+    if (Math.abs(posX) <= Math.abs(posY)) {
       return;
     }
 
@@ -189,9 +187,8 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   render() {
-    const { prefixCls, left = [], right = [], children, ...restProps } = this.props;
+    const { prefixCls, left, right, disabled, children, ...restProps } = this.props;
     const divProps = omit(restProps, [
-      'disabled',
       'autoClose',
       'onOpen',
       'onClose',
@@ -200,7 +197,8 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     const refProps = {
       ref: el => this.content = ReactDOM.findDOMNode(el),
     };
-    return (left.length || right.length) ? (
+
+    return (left!.length || right!.length) && !disabled ? (
       <div className={`${prefixCls}`} {...divProps}>
         {/* 保证 body touchStart 后不触发 pan */}
         <div className={`${prefixCls}-cover`} ref={(el) => this.cover = ReactDOM.findDOMNode(el)} />
