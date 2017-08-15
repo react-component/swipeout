@@ -1,6 +1,6 @@
 # History
 
-# 1.4.1
+# ~1.4.3
 
 - improve: disabled swipe if deltaX < deltaY
 
