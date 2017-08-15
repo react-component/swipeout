@@ -11263,11 +11263,14 @@ var Swipeout = function (_React$Component) {
                 return;
             }
             this.panStartX = e.deltaX;
+            this.panStartY = e.deltaY;
         }
     }, {
         key: 'onPan',
         value: function onPan(e) {
-            if (this.props.disabled) {
+            var posX = e.deltaX - this.panStartX;
+            var posY = e.deltaY - this.panStartY;
+            if (this.props.disabled || Math.abs(posX) <= Math.abs(posY)) {
                 return;
             }
             var _props = this.props,
@@ -11276,7 +11279,6 @@ var Swipeout = function (_React$Component) {
                 _props$right = _props.right,
                 right = _props$right === undefined ? [] : _props$right;
 
-            var posX = e.deltaX - this.panStartX;
             if (posX < 0 && right.length) {
                 this._setStyle(Math.min(posX, 0));
             } else if (posX > 0 && left.length) {
@@ -11286,7 +11288,9 @@ var Swipeout = function (_React$Component) {
     }, {
         key: 'onPanEnd',
         value: function onPanEnd(e) {
-            if (this.props.disabled) {
+            var posX = e.deltaX - this.panStartX;
+            var posY = e.deltaY - this.panStartY;
+            if (this.props.disabled || Math.abs(posX) <= Math.abs(posY)) {
                 return;
             }
             var _props2 = this.props,
@@ -11295,7 +11299,6 @@ var Swipeout = function (_React$Component) {
                 _props2$right = _props2.right,
                 right = _props2$right === undefined ? [] : _props2$right;
 
-            var posX = e.deltaX - this.panStartX;
             var btnsLeftWidth = this.btnsLeftWidth;
             var btnsRightWidth = this.btnsRightWidth;
             var openLeft = posX > btnsLeftWidth / 2;
@@ -11337,12 +11340,6 @@ var Swipeout = function (_React$Component) {
     }, {
         key: '_setStyle',
         value: function _setStyle(value) {
-            var _props3 = this.props,
-                _props3$left = _props3.left,
-                left = _props3$left === undefined ? [] : _props3$left,
-                _props3$right = _props3.right,
-                right = _props3$right === undefined ? [] : _props3$right;
-
             var limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
             var contentLeft = this._getContentEasing(value, limit);
             this.content.style.left = contentLeft + 'px';
@@ -11390,7 +11387,7 @@ var Swipeout = function (_React$Component) {
                             } },
                         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                             'div',
-                            { className: prefixCls + '-text' },
+                            { className: prefixCls + '-btn-text' },
                             btn.text || 'Click'
                         )
                     );
