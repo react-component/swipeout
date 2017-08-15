@@ -11259,9 +11259,6 @@ var Swipeout = function (_React$Component) {
     }, {
         key: 'onPanStart',
         value: function onPanStart(e) {
-            if (this.props.disabled) {
-                return;
-            }
             this.panStartX = e.deltaX;
             this.panStartY = e.deltaY;
         }
@@ -11270,7 +11267,7 @@ var Swipeout = function (_React$Component) {
         value: function onPan(e) {
             var posX = e.deltaX - this.panStartX;
             var posY = e.deltaY - this.panStartY;
-            if (this.props.disabled || Math.abs(posX) <= Math.abs(posY)) {
+            if (Math.abs(posX) <= Math.abs(posY)) {
                 return;
             }
             var _props = this.props,
@@ -11290,7 +11287,7 @@ var Swipeout = function (_React$Component) {
         value: function onPanEnd(e) {
             var posX = e.deltaX - this.panStartX;
             var posY = e.deltaY - this.panStartY;
-            if (this.props.disabled || Math.abs(posX) <= Math.abs(posY)) {
+            if (Math.abs(posX) <= Math.abs(posY)) {
                 return;
             }
             var _props2 = this.props,
@@ -11401,19 +11398,18 @@ var Swipeout = function (_React$Component) {
 
             var _a = this.props,
                 prefixCls = _a.prefixCls,
-                _a$left = _a.left,
-                left = _a$left === undefined ? [] : _a$left,
-                _a$right = _a.right,
-                right = _a$right === undefined ? [] : _a$right,
+                left = _a.left,
+                right = _a.right,
+                disabled = _a.disabled,
                 children = _a.children,
-                restProps = __rest(_a, ["prefixCls", "left", "right", "children"]);
-            var divProps = __WEBPACK_IMPORTED_MODULE_8_object_omit___default()(restProps, ['disabled', 'autoClose', 'onOpen', 'onClose']);
+                restProps = __rest(_a, ["prefixCls", "left", "right", "disabled", "children"]);
+            var divProps = __WEBPACK_IMPORTED_MODULE_8_object_omit___default()(restProps, ['autoClose', 'onOpen', 'onClose']);
             var refProps = {
                 ref: function ref(el) {
                     return _this4.content = __WEBPACK_IMPORTED_MODULE_6_react_dom___default.a.findDOMNode(el);
                 }
             };
-            return left.length || right.length ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
+            return (left.length || right.length) && !disabled ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
                 __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ className: '' + prefixCls }, divProps),
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('div', { className: prefixCls + '-cover', ref: function ref(el) {
