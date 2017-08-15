@@ -241,7 +241,7 @@ describe('simple', () => {
       deltaX: -300,
       deltaY: 10,
     }, () => {
-      expect(parseInt(domEl.style.left, 10)).to.be(0);
+      expect(domEl.style.left).to.be('');
 
       const swipeRight = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_RIGHT });
       hammer.add(swipeRight);
