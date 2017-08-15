@@ -21,11 +21,11 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   cover: any;
   left: any;
   right: any;
-  contentWidth: number;
   btnsLeftWidth: number;
   btnsRightWidth: number;
   panStartX: number;
   panStartY: number;
+  swiping: boolean;
 
   constructor(props) {
     super(props);
@@ -79,26 +79,26 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
       return;
     }
 
-    const { left = [], right = []} = this.props;
-    if (posX < 0 && right.length) {
+    const { left, right } = this.props;
+    if (posX < 0 && right!.length) {
+      this.swiping = true;
       this._setStyle(Math.min(posX, 0));
-    } else if (posX > 0 && left.length) {
+    } else if (posX > 0 && left!.length) {
+      this.swiping = true;
       this._setStyle(Math.max(posX, 0));
     }
   }
 
   onPanEnd(e) {
-    const posX = e.deltaX - this.panStartX;
-    const posY = e.deltaY - this.panStartY;
-
-    if (Math.abs(posX) <= Math.abs(posY)) {
+    if (!this.swiping) {
       return;
     }
+    this.swiping = false;
 
     const { left = [], right = [] } = this.props;
     const btnsLeftWidth = this.btnsLeftWidth;
     const btnsRightWidth = this.btnsRightWidth;
-
+    const posX = e.deltaX - this.panStartX;
     const openLeft =  posX > btnsLeftWidth / 2;
     const openRight =  posX < -btnsRightWidth / 2;
 
