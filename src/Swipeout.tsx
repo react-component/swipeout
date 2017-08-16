@@ -23,9 +23,9 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   right: any;
   btnsLeftWidth: number;
   btnsRightWidth: number;
-  panStartX: number;
-  panStartY: number;
   swiping: boolean;
+  needShowLeft: boolean;
+  needShowRight: boolean;
 
   constructor(props) {
     super(props);
@@ -62,11 +62,6 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   onPanStart = (e) => {
-    this.panStartX = e.deltaX;
-    this.panStartY = e.deltaY;
-  }
-
-  onPan = (e) => {
     const { direction, deltaX } = e;
     // http://hammerjs.github.io/api/#directions
     const isLeft = direction === 2;
@@ -76,34 +71,50 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
       return;
     }
     const { left, right } = this.props;
-    const needShowRight = isLeft && right!.length;
-    const needShowLeft = isRight && left!.length;
-    if (needShowLeft || needShowRight) {
+    this.needShowRight = isLeft && right!.length > 0;
+    this.needShowLeft = isRight && left!.length > 0;
+    this.left.style.visibility = this.needShowRight ? 'hidden' : 'visible';
+    this.right.style.visibility = this.needShowLeft ? 'hidden' : 'visible';
+    if (this.needShowLeft || this.needShowRight) {
       this.swiping = true;
       this._setStyle(deltaX);
     }
+  }
+  onPan = (e) => {
+    const { deltaX } = e;
+    if (!this.swiping) {
+     return;
+    }
+    this._setStyle(deltaX);
   }
 
   onPanEnd = (e) => {
     if (!this.swiping) {
       return;
     }
-    this.swiping = false;
 
     const { left = [], right = [] } = this.props;
     const btnsLeftWidth = this.btnsLeftWidth;
     const btnsRightWidth = this.btnsRightWidth;
-    const posX = e.deltaX - this.panStartX;
-    const openLeft =  posX > btnsLeftWidth / 2;
-    const openRight =  posX < -btnsRightWidth / 2;
 
-    if (openRight && posX < 0 && right.length) {
+    const { direction, deltaX } = e;
+    // http://hammerjs.github.io/api/#directions
+    const isLeft = direction === 2;
+    const isRight = direction === 4;
+
+    const needOpenRight = this.needShowRight && Math.abs(deltaX) > btnsRightWidth / 2;
+    const needOpenLeft = this.needShowLeft && Math.abs(deltaX) > btnsRightWidth / 2;
+
+    if (needOpenRight) {
       this.open(-btnsRightWidth, false, true);
-    } else if (openLeft && posX > 0 && left.length) {
+    } else if (needOpenLeft) {
       this.open(btnsLeftWidth, true, false);
     } else {
       this.close();
     }
+    this.swiping = false;
+    this.needShowLeft = false;
+    this.needShowRight = false;
   }
 
   // left & right button click
@@ -119,16 +130,19 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
 
   _getContentEasing(value, limit) {
     // limit content style left when value > actions width
-    if (value < 0 && value < limit) {
-      return limit - Math.pow(limit - value, 0.85);
-    } else if (value > 0 && value > limit) {
-      return limit + Math.pow(value - limit, 0.85);
+    const delta = Math.abs(value) - Math.abs(limit);
+    const isOverflow = delta > 0;
+    const factor = limit > 0 ? 1 : -1;
+    if (isOverflow) {
+      value = limit + Math.pow(delta, 0.85) * factor;
+      return Math.abs(value) > Math.abs(limit) ? limit : value;
     }
     return value;
   }
 
   // set content & actions style
   _setStyle = (value) => {
+
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
     this.content.style.left = `${contentLeft}px`;

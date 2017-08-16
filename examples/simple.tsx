@@ -11,8 +11,8 @@ ReactDOM.render(
       style={{ backgroundColor: 'white' }}
       autoClose
       right={[
-        { text: 'more',
-          onPress: () => console.log('more'),
+        { text: 'more more',
+          onPress: () => console.log('more more'),
           style: { backgroundColor: 'orange', color: 'white' },
         },
         { text: 'delete',
@@ -27,9 +27,14 @@ ReactDOM.render(
           style: { backgroundColor: 'blue', color: 'white' },
         },
         {
-          text: 'reply',
-          onPress: () => console.log('reply'),
+          text: 'reply me',
+          onPress: () => console.log('reply me'),
           style: { backgroundColor: 'green', color: 'white' },
+        },
+        {
+          text: 'reply other people',
+          onPress: () => console.log('reply other people'),
+          style: { backgroundColor: 'gray', color: 'white' },
         },
       ]}
       onOpen={() => console.log('open')}
