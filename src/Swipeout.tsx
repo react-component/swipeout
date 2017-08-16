@@ -73,8 +73,12 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     const { left, right } = this.props;
     this.needShowRight = isLeft && right!.length > 0;
     this.needShowLeft = isRight && left!.length > 0;
-    this.left.style.visibility = this.needShowRight ? 'hidden' : 'visible';
-    this.right.style.visibility = this.needShowLeft ? 'hidden' : 'visible';
+    if (this.left) {
+      this.left.style.visibility = this.needShowRight ? 'hidden' : 'visible';
+    }
+    if (this.right) {
+      this.right.style.visibility = this.needShowLeft ? 'hidden' : 'visible';
+    }
     if (this.needShowLeft || this.needShowRight) {
       this.swiping = true;
       this._setStyle(deltaX);
