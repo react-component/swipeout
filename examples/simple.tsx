@@ -13,23 +13,23 @@ ReactDOM.render(
       right={[
         { text: 'more',
           onPress: () => console.log('more'),
-          style: { backgroundColor: 'orange', color: 'white', width: 80 },
+          style: { backgroundColor: 'orange', color: 'white' },
         },
         { text: 'delete',
           onPress: () => console.log('delete'),
-          style: { backgroundColor: 'red', color: 'white', width: 80 },
+          style: { backgroundColor: 'red', color: 'white' },
         },
       ]}
       left={[
         {
           text: 'read',
           onPress: () => console.log('read'),
-          style: { backgroundColor: 'blue', color: 'white', width: 80 },
+          style: { backgroundColor: 'blue', color: 'white' },
         },
         {
           text: 'reply',
           onPress: () => console.log('reply'),
-          style: { backgroundColor: 'green', color: 'white', width: 80 },
+          style: { backgroundColor: 'green', color: 'white' },
         },
       ]}
       onOpen={() => console.log('open')}

@@ -14,12 +14,12 @@ ReactDOM.render(
         {
           text: 'read',
           onPress: () => console.log('read'),
-          style: { backgroundColor: 'blue', color: 'white', width: 80 },
+          style: { backgroundColor: 'blue', color: 'white' },
         },
         {
           text: 'reply',
           onPress: () => console.log('reply'),
-          style: { backgroundColor: 'green', color: 'white', width: 80 },
+          style: { backgroundColor: 'green', color: 'white' },
         },
       ]}
       onOpen={() => console.log('open')}
