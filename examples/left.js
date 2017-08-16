@@ -28,13 +28,13 @@ __WEBPACK_IMPORTED_MODULE_3_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
                 onPress: function onPress() {
                     return console.log('read');
                 },
-                style: { backgroundColor: 'blue', color: 'white', width: 80 }
+                style: { backgroundColor: 'blue', color: 'white' }
             }, {
                 text: 'reply',
                 onPress: function onPress() {
                     return console.log('reply');
                 },
-                style: { backgroundColor: 'green', color: 'white', width: 80 }
+                style: { backgroundColor: 'green', color: 'white' }
             }], onOpen: function onOpen() {
                 return console.log('open');
             }, onClose: function onClose() {
