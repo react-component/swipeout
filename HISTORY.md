@@ -1,5 +1,9 @@
 # History
 
+# 1.4.5
+
+- replace `object.omit`, update style
+
 # ~1.4.4
 
 - improve: disabled swipe if deltaX < deltaY

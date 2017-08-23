@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Hammer from 'rc-hammerjs';
-import omit from 'object.omit';
+import omit from 'omit.js';
 import SwipeoutPropType from './PropTypes';
 
 class Swipeout extends React.Component <SwipeoutPropType, any> {
@@ -168,7 +168,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     return (buttons && buttons.length) ? (
       <div
         className={`${prefixCls}-actions ${prefixCls}-actions-${ref}`}
-        ref={(el) => this[ref] = ReactDOM.findDOMNode(el)}
+        ref={(el) => this[ref] = el}
       >
         {
           buttons.map((btn, i) => (
@@ -201,7 +201,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     return (left!.length || right!.length) && !disabled ? (
       <div className={`${prefixCls}`} {...divProps}>
         {/* 保证 body touchStart 后不触发 pan */}
-        <div className={`${prefixCls}-cover`} ref={(el) => this.cover = ReactDOM.findDOMNode(el)} />
+        <div className={`${prefixCls}-cover`} ref={(el) => this.cover = el} />
         { this.renderButtons(left, 'left') }
         { this.renderButtons(right, 'right') }
         <Hammer
