@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title>simple.js - example - rc-swipeout@1.4.5-alpha.0</title>
+  <title>simple.js - example - rc-swipeout@1.4.5</title>
   <meta name="viewport"
         content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
   <meta charset="utf-8"/>
@@ -263,7 +263,7 @@ Monokai Sublime style. Derived from Monokai by noformnocontent http://nn.mit-lic
 <body>
   <div class="container">
     <div class="header">
-      <h1>rc-swipeout@1.4.5-alpha.0</h1>
+      <h1>rc-swipeout@1.4.5</h1>
 
       <p>swipe out ui component for react(web and react-native)</p>
     </div>
@@ -282,8 +282,8 @@ ReactDOM.render(
       <span class="hljs-attribute">style</span>=<span class="hljs-value">{{</span> <span class="hljs-attribute">backgroundColor:</span> '<span class="hljs-attribute">white</span>' }}
       <span class="hljs-attribute">autoClose</span>
       <span class="hljs-attribute">right</span>=<span class="hljs-value">{[</span>
-        { <span class="hljs-attribute">text:</span> '<span class="hljs-attribute">more</span> <span class="hljs-attribute">more</span>',
-          <span class="hljs-attribute">onPress:</span> () =&gt;</span> console.log('more more'),
+        { <span class="hljs-attribute">text:</span> '<span class="hljs-attribute">more</span>',
+          <span class="hljs-attribute">onPress:</span> () =&gt;</span> console.log('more'),
           style: { backgroundColor: 'orange', color: 'white' },
         },
         { text: 'delete',
@@ -298,14 +298,9 @@ ReactDOM.render(
           style: { backgroundColor: 'blue', color: 'white' },
         },
         {
-          text: 'reply me',
-          onPress: () =&gt; console.log('reply me'),
+          text: 'reply',
+          onPress: () =&gt; console.log('reply'),
           style: { backgroundColor: 'green', color: 'white' },
-        },
-        {
-          text: 'reply other people',
-          onPress: () =&gt; console.log('reply other people'),
-          style: { backgroundColor: 'gray', color: 'white' },
         },
       ]}
       onOpen={() =&gt; console.log('open')}

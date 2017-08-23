@@ -23,9 +23,9 @@ __WEBPACK_IMPORTED_MODULE_3_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
     { style: { marginBottom: 12 } },
     __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
         __WEBPACK_IMPORTED_MODULE_1__src__["a" /* default */],
-        { style: { backgroundColor: 'white' }, autoClose: true, right: [{ text: 'more more',
+        { style: { backgroundColor: 'white' }, autoClose: true, right: [{ text: 'more',
                 onPress: function onPress() {
-                    return console.log('more more');
+                    return console.log('more');
                 },
                 style: { backgroundColor: 'orange', color: 'white' }
             }, { text: 'delete',
@@ -40,17 +40,11 @@ __WEBPACK_IMPORTED_MODULE_3_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
                 },
                 style: { backgroundColor: 'blue', color: 'white' }
             }, {
-                text: 'reply me',
+                text: 'reply',
                 onPress: function onPress() {
-                    return console.log('reply me');
+                    return console.log('reply');
                 },
                 style: { backgroundColor: 'green', color: 'white' }
-            }, {
-                text: 'reply other people',
-                onPress: function onPress() {
-                    return console.log('reply other people');
-                },
-                style: { backgroundColor: 'gray', color: 'white' }
             }], onOpen: function onOpen() {
                 return console.log('open');
             }, onClose: function onClose() {

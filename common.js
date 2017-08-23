@@ -11243,98 +11243,10 @@ var Swipeout = function (_React$Component) {
 
         var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Swipeout.__proto__ || Object.getPrototypeOf(Swipeout)).call(this, props));
 
-        _this.onCloseSwipe = function (ev) {
-            if (_this.openedLeft || _this.openedRight) {
-                var pNode = function (node) {
-                    while (node.parentNode && node.parentNode !== document.body) {
-                        if (node.className.indexOf(_this.props.prefixCls + '-actions') > -1) {
-                            return node;
-                        }
-                        node = node.parentNode;
-                    }
-                }(ev.target);
-                if (!pNode) {
-                    ev.preventDefault();
-                    _this.close();
-                }
-            }
-        };
-        _this.onPanStart = function (e) {
-            var direction = e.direction,
-                deltaX = e.deltaX;
-            // http://hammerjs.github.io/api/#directions
-
-            var isLeft = direction === 2;
-            var isRight = direction === 4;
-            if (!isLeft && !isRight) {
-                return;
-            }
-            var _this$props = _this.props,
-                left = _this$props.left,
-                right = _this$props.right;
-
-            _this.needShowRight = isLeft && right.length > 0;
-            _this.needShowLeft = isRight && left.length > 0;
-            if (_this.left) {
-                _this.left.style.visibility = _this.needShowRight ? 'hidden' : 'visible';
-            }
-            if (_this.right) {
-                _this.right.style.visibility = _this.needShowLeft ? 'hidden' : 'visible';
-            }
-            if (_this.needShowLeft || _this.needShowRight) {
-                _this.swiping = true;
-                _this._setStyle(deltaX);
-            }
-        };
-        _this.onPan = function (e) {
-            var deltaX = e.deltaX;
-
-            if (!_this.swiping) {
-                return;
-            }
-            _this._setStyle(deltaX);
-        };
-        _this.onPanEnd = function (e) {
-            if (!_this.swiping) {
-                return;
-            }
-            var _this$props2 = _this.props,
-                _this$props2$left = _this$props2.left,
-                left = _this$props2$left === undefined ? [] : _this$props2$left,
-                _this$props2$right = _this$props2.right,
-                right = _this$props2$right === undefined ? [] : _this$props2$right;
-
-            var btnsLeftWidth = _this.btnsLeftWidth;
-            var btnsRightWidth = _this.btnsRightWidth;
-            var direction = e.direction,
-                deltaX = e.deltaX;
-            // http://hammerjs.github.io/api/#directions
-
-            var isLeft = direction === 2;
-            var isRight = direction === 4;
-            var needOpenRight = _this.needShowRight && Math.abs(deltaX) > btnsRightWidth / 2;
-            var needOpenLeft = _this.needShowLeft && Math.abs(deltaX) > btnsRightWidth / 2;
-            if (needOpenRight) {
-                _this.open(-btnsRightWidth, false, true);
-            } else if (needOpenLeft) {
-                _this.open(btnsLeftWidth, true, false);
-            } else {
-                _this.close();
-            }
-            _this.swiping = false;
-            _this.needShowLeft = false;
-            _this.needShowRight = false;
-        };
-        // set content & actions style
-        _this._setStyle = function (value) {
-            var limit = value > 0 ? _this.btnsLeftWidth : -_this.btnsRightWidth;
-            var contentLeft = _this._getContentEasing(value, limit);
-            _this.content.style.left = contentLeft + 'px';
-            if (_this.cover) {
-                _this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
-                _this.cover.style.left = contentLeft + 'px';
-            }
-        };
+        _this.onPanStart = _this.onPanStart.bind(_this);
+        _this.onPan = _this.onPan.bind(_this);
+        _this.onPanEnd = _this.onPanEnd.bind(_this);
+        _this.onCloseSwipe = _this.onCloseSwipe.bind(_this);
         _this.openedLeft = false;
         _this.openedRight = false;
         return _this;
@@ -11351,6 +11263,78 @@ var Swipeout = function (_React$Component) {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             document.body.removeEventListener('touchstart', this.onCloseSwipe, true);
+        }
+    }, {
+        key: 'onCloseSwipe',
+        value: function onCloseSwipe(ev) {
+            var _this2 = this;
+
+            if (this.openedLeft || this.openedRight) {
+                var pNode = function (node) {
+                    while (node.parentNode && node.parentNode !== document.body) {
+                        if (node.className.indexOf(_this2.props.prefixCls + '-actions') > -1) {
+                            return node;
+                        }
+                        node = node.parentNode;
+                    }
+                }(ev.target);
+                if (!pNode) {
+                    ev.preventDefault();
+                    this.close();
+                }
+            }
+        }
+    }, {
+        key: 'onPanStart',
+        value: function onPanStart(e) {
+            this.panStartX = e.deltaX;
+            this.panStartY = e.deltaY;
+        }
+    }, {
+        key: 'onPan',
+        value: function onPan(e) {
+            var posX = e.deltaX - this.panStartX;
+            var posY = e.deltaY - this.panStartY;
+            if (Math.abs(posX) <= Math.abs(posY)) {
+                return;
+            }
+            var _props = this.props,
+                left = _props.left,
+                right = _props.right;
+
+            if (posX < 0 && right.length) {
+                this.swiping = true;
+                this._setStyle(Math.min(posX, 0));
+            } else if (posX > 0 && left.length) {
+                this.swiping = true;
+                this._setStyle(Math.max(posX, 0));
+            }
+        }
+    }, {
+        key: 'onPanEnd',
+        value: function onPanEnd(e) {
+            if (!this.swiping) {
+                return;
+            }
+            this.swiping = false;
+            var _props2 = this.props,
+                _props2$left = _props2.left,
+                left = _props2$left === undefined ? [] : _props2$left,
+                _props2$right = _props2.right,
+                right = _props2$right === undefined ? [] : _props2$right;
+
+            var btnsLeftWidth = this.btnsLeftWidth;
+            var btnsRightWidth = this.btnsRightWidth;
+            var posX = e.deltaX - this.panStartX;
+            var openLeft = posX > btnsLeftWidth / 2;
+            var openRight = posX < -btnsRightWidth / 2;
+            if (openRight && posX < 0 && right.length) {
+                this.open(-btnsRightWidth, false, true);
+            } else if (openLeft && posX > 0 && left.length) {
+                this.open(btnsLeftWidth, true, false);
+            } else {
+                this.close();
+            }
         }
         // left & right button click
 
@@ -11369,14 +11353,25 @@ var Swipeout = function (_React$Component) {
         key: '_getContentEasing',
         value: function _getContentEasing(value, limit) {
             // limit content style left when value > actions width
-            var delta = Math.abs(value) - Math.abs(limit);
-            var isOverflow = delta > 0;
-            var factor = limit > 0 ? 1 : -1;
-            if (isOverflow) {
-                value = limit + Math.pow(delta, 0.85) * factor;
-                return Math.abs(value) > Math.abs(limit) ? limit : value;
+            if (value < 0 && value < limit) {
+                return limit - Math.pow(limit - value, 0.85);
+            } else if (value > 0 && value > limit) {
+                return limit + Math.pow(value - limit, 0.85);
             }
             return value;
+        }
+        // set content & actions style
+
+    }, {
+        key: '_setStyle',
+        value: function _setStyle(value) {
+            var limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
+            var contentLeft = this._getContentEasing(value, limit);
+            this.content.style.left = contentLeft + 'px';
+            if (this.cover) {
+                this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
+                this.cover.style.left = contentLeft + 'px';
+            }
         }
     }, {
         key: 'open',
@@ -11401,19 +11396,19 @@ var Swipeout = function (_React$Component) {
     }, {
         key: 'renderButtons',
         value: function renderButtons(buttons, _ref) {
-            var _this2 = this;
+            var _this3 = this;
 
             var prefixCls = this.props.prefixCls;
             return buttons && buttons.length ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
                 { className: prefixCls + '-actions ' + prefixCls + '-actions-' + _ref, ref: function ref(el) {
-                        return _this2[_ref] = __WEBPACK_IMPORTED_MODULE_6_react_dom___default.a.findDOMNode(el);
+                        return _this3[_ref] = el;
                     } },
                 buttons.map(function (btn, i) {
                     return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                         'div',
                         { key: i, className: prefixCls + '-btn ' + (btn.hasOwnProperty('className') ? btn.className : ''), style: btn.style, role: 'button', onClick: function onClick(e) {
-                                return _this2.onBtnClick(e, btn);
+                                return _this3.onBtnClick(e, btn);
                             } },
                         __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                             'div',
@@ -11427,7 +11422,7 @@ var Swipeout = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-            var _this3 = this;
+            var _this4 = this;
 
             var _a = this.props,
                 prefixCls = _a.prefixCls,
@@ -11439,14 +11434,14 @@ var Swipeout = function (_React$Component) {
             var divProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8_omit_js__["a" /* default */])(restProps, ['autoClose', 'onOpen', 'onClose']);
             var refProps = {
                 ref: function ref(el) {
-                    return _this3.content = __WEBPACK_IMPORTED_MODULE_6_react_dom___default.a.findDOMNode(el);
+                    return _this4.content = __WEBPACK_IMPORTED_MODULE_6_react_dom___default.a.findDOMNode(el);
                 }
             };
             return (left.length || right.length) && !disabled ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                 'div',
                 __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ className: '' + prefixCls }, divProps),
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('div', { className: prefixCls + '-cover', ref: function ref(el) {
-                        return _this3.cover = __WEBPACK_IMPORTED_MODULE_6_react_dom___default.a.findDOMNode(el);
+                        return _this4.cover = el;
                     } }),
                 this.renderButtons(left, 'left'),
                 this.renderButtons(right, 'right'),
