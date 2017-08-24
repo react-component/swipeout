@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Hammer from 'rc-hammerjs';
 import omit from 'omit.js';
+import classnames from 'classnames';
 import SwipeoutPropType from './PropTypes';
 
 export default class Swipeout extends React.Component <SwipeoutPropType, any> {
@@ -29,7 +30,9 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
 
   constructor(props) {
     super(props);
-
+    this.state = {
+      swiping: false,
+    };
     this.openedLeft = false;
     this.openedRight = false;
   }
@@ -81,6 +84,9 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
     }
     if (this.needShowLeft || this.needShowRight) {
       this.swiping = true;
+      this.setState({
+        swiping: this.swiping,
+      });
       this._setStyle(deltaX);
     }
   }
@@ -113,6 +119,9 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
       this.close();
     }
     this.swiping = false;
+    this.setState({
+      swiping: this.swiping,
+    });
     this.needShowLeft = false;
     this.needShowRight = false;
   }
@@ -206,9 +215,11 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
     const refProps = {
       ref: el => this.content = ReactDOM.findDOMNode(el),
     };
-
+    const cls = classnames(prefixCls, {
+      [`${prefixCls}-swiping`]: this.state.swiping,
+    });
     return (left!.length || right!.length) && !disabled ? (
-      <div className={`${prefixCls}`} {...divProps}>
+      <div className={cls} {...divProps}>
         {/* 保证 body touchStart 后不触发 pan */}
         <div className={`${prefixCls}-cover`} ref={(el) => this.cover = el} />
         { this.renderButtons(left, 'left') }

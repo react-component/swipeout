@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "1.4.6-alpha.5",
+  "version": "1.4.6-alpha.6",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -53,6 +53,7 @@
   },
   "dependencies": {
     "babel-runtime": "6.x",
+    "classnames": "^2.2.5",
     "omit.js": "^1.0.0",
     "rc-hammerjs": "^0.6.6",
     "react-native-swipeout": "~2.1.1"
