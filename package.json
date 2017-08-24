@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "1.4.6-alpha.2",
+  "version": "1.4.6-alpha.3",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -30,7 +30,7 @@
     "port": 8000,
     "entry": {
       "rc-swipeout": [
-        "./src/index.tsx",
+        "./src/index.js",
         "./assets/index.less"
       ]
     }
