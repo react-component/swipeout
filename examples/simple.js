@@ -8,7 +8,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less__ = __webpack_require__(43);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rc_swipeout__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rc_swipeout___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rc_swipeout__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom__ = __webpack_require__(25);
@@ -21,7 +20,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var SwipeDemo = function SwipeDemo() {
     return __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_rc_swipeout___default.a,
+        __WEBPACK_IMPORTED_MODULE_1_rc_swipeout__["a" /* default */],
         { style: { backgroundColor: 'white' }, autoClose: true, right: [{ text: 'more more',
                 onPress: function onPress() {
                     return console.log('more more');
