@@ -55,7 +55,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
         }
       })(ev.target);
       if (!pNode) {
-        ev.preventDefault();
+        // ev.preventDefault();
         this.close();
       }
     }
@@ -156,7 +156,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     }
   }
 
-  open(value, openedLeft, openedRight) {
+  open = (value, openedLeft, openedRight) => {
     if (!this.openedLeft && !this.openedRight && this.props.onOpen) {
       this.props.onOpen();
     }
@@ -166,7 +166,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     this._setStyle(value);
   }
 
-  close() {
+  close = () => {
     if ((this.openedLeft || this.openedRight) && this.props.onClose) {
       this.props.onClose();
     }
