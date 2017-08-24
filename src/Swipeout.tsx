@@ -214,7 +214,7 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
         { this.renderButtons(left, 'left') }
         { this.renderButtons(right, 'right') }
         <Hammer
-          direction="DIRECTION_HORIZONTAL"
+          direction="DIRECTION_ALL"
           onPanStart={this.onPanStart}
           onPan={this.onPan}
           onPanEnd={this.onPanEnd}
