@@ -1,3 +1,6 @@
+html {
+  overflow: hidden;
+}
 .rc-swipeout {
   overflow: hidden;
   position: relative;

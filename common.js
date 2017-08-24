@@ -3810,12 +3810,29 @@ module.exports = SyntheticUIEvent;
 
 /***/ }),
 /* 39 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Swipeout__ = __webpack_require__(136);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return __WEBPACK_IMPORTED_MODULE_0__Swipeout__["a"]; });
 
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _Swipeout = __webpack_require__(136);
+
+Object.defineProperty(exports, 'default', {
+  enumerable: true,
+  get: function get() {
+    return _interopRequireDefault(_Swipeout)['default'];
+  }
+});
+
+function _interopRequireDefault(obj) {
+  return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+module.exports = exports['default'];
 
 /***/ }),
 /* 40 */
@@ -11198,31 +11215,56 @@ module.exports = getIteratorFn;
 /* 134 */,
 /* 135 */,
 /* 136 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(85);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__ = __webpack_require__(83);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__ = __webpack_require__(84);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(87);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__ = __webpack_require__(86);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react__ = __webpack_require__(30);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_dom__ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_rc_hammerjs__ = __webpack_require__(199);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8_omit_js__ = __webpack_require__(194);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _extends2 = __webpack_require__(85);
 
+var _extends3 = _interopRequireDefault(_extends2);
 
-var __rest = this && this.__rest || function (s, e) {
+var _classCallCheck2 = __webpack_require__(83);
+
+var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
+
+var _createClass2 = __webpack_require__(84);
+
+var _createClass3 = _interopRequireDefault(_createClass2);
+
+var _possibleConstructorReturn2 = __webpack_require__(87);
+
+var _possibleConstructorReturn3 = _interopRequireDefault(_possibleConstructorReturn2);
+
+var _inherits2 = __webpack_require__(86);
+
+var _inherits3 = _interopRequireDefault(_inherits2);
+
+var _react = __webpack_require__(30);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(25);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+var _rcHammerjs = __webpack_require__(199);
+
+var _rcHammerjs2 = _interopRequireDefault(_rcHammerjs);
+
+var _omit = __webpack_require__(194);
+
+var _omit2 = _interopRequireDefault(_omit);
+
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { 'default': obj };
+}
+
+var __rest = undefined && undefined.__rest || function (s, e) {
     var t = {};
     for (var p in s) {
         if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0) t[p] = s[p];
@@ -11231,28 +11273,118 @@ var __rest = this && this.__rest || function (s, e) {
     }return t;
 };
 
-
-
-
-
 var Swipeout = function (_React$Component) {
-    __WEBPACK_IMPORTED_MODULE_4_babel_runtime_helpers_inherits___default()(Swipeout, _React$Component);
+    (0, _inherits3['default'])(Swipeout, _React$Component);
 
     function Swipeout(props) {
-        __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_classCallCheck___default()(this, Swipeout);
+        (0, _classCallCheck3['default'])(this, Swipeout);
 
-        var _this = __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_possibleConstructorReturn___default()(this, (Swipeout.__proto__ || Object.getPrototypeOf(Swipeout)).call(this, props));
+        var _this = (0, _possibleConstructorReturn3['default'])(this, (Swipeout.__proto__ || Object.getPrototypeOf(Swipeout)).call(this, props));
 
-        _this.onPanStart = _this.onPanStart.bind(_this);
-        _this.onPan = _this.onPan.bind(_this);
-        _this.onPanEnd = _this.onPanEnd.bind(_this);
-        _this.onCloseSwipe = _this.onCloseSwipe.bind(_this);
+        _this.onCloseSwipe = function (ev) {
+            if (_this.openedLeft || _this.openedRight) {
+                var pNode = function (node) {
+                    while (node.parentNode && node.parentNode !== document.body) {
+                        if (node.className.indexOf(_this.props.prefixCls + '-actions') > -1) {
+                            return node;
+                        }
+                        node = node.parentNode;
+                    }
+                }(ev.target);
+                if (!pNode) {
+                    ev.preventDefault();
+                    _this.close();
+                }
+            }
+        };
+        _this.onPanStart = function (e) {
+            var direction = e.direction,
+                deltaX = e.deltaX;
+            // http://hammerjs.github.io/api/#directions
+
+            var isLeft = direction === 2;
+            var isRight = direction === 4;
+            if (!isLeft && !isRight) {
+                return;
+            }
+            var _this$props = _this.props,
+                left = _this$props.left,
+                right = _this$props.right;
+
+            _this.needShowRight = isLeft && right.length > 0;
+            _this.needShowLeft = isRight && left.length > 0;
+            if (_this.left) {
+                _this.left.style.visibility = _this.needShowRight ? 'hidden' : 'visible';
+            }
+            if (_this.right) {
+                _this.right.style.visibility = _this.needShowLeft ? 'hidden' : 'visible';
+            }
+            if (_this.needShowLeft || _this.needShowRight) {
+                _this.swiping = true;
+                _this._setStyle(deltaX);
+            }
+        };
+        _this.onPan = function (e) {
+            var deltaX = e.deltaX;
+
+            if (!_this.swiping) {
+                return;
+            }
+            _this._setStyle(deltaX);
+        };
+        _this.onPanEnd = function (e) {
+            if (!_this.swiping) {
+                return;
+            }
+            var btnsLeftWidth = _this.btnsLeftWidth;
+            var btnsRightWidth = _this.btnsRightWidth;
+            var deltaX = e.deltaX;
+
+            var needOpenRight = _this.needShowRight && Math.abs(deltaX) > btnsRightWidth / 2;
+            var needOpenLeft = _this.needShowLeft && Math.abs(deltaX) > btnsRightWidth / 2;
+            if (needOpenRight) {
+                _this.open(-btnsRightWidth, false, true);
+            } else if (needOpenLeft) {
+                _this.open(btnsLeftWidth, true, false);
+            } else {
+                _this.close();
+            }
+            _this.swiping = false;
+            _this.needShowLeft = false;
+            _this.needShowRight = false;
+        };
+        // set content & actions style
+        _this._setStyle = function (value) {
+            var limit = value > 0 ? _this.btnsLeftWidth : -_this.btnsRightWidth;
+            var contentLeft = _this._getContentEasing(value, limit);
+            _this.content.style.left = contentLeft + 'px';
+            if (_this.cover) {
+                _this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
+                _this.cover.style.left = contentLeft + 'px';
+            }
+        };
+        _this.open = function (value, openedLeft, openedRight) {
+            if (!_this.openedLeft && !_this.openedRight && _this.props.onOpen) {
+                _this.props.onOpen();
+            }
+            _this.openedLeft = openedLeft;
+            _this.openedRight = openedRight;
+            _this._setStyle(value);
+        };
+        _this.close = function () {
+            if ((_this.openedLeft || _this.openedRight) && _this.props.onClose) {
+                _this.props.onClose();
+            }
+            _this._setStyle(0);
+            _this.openedLeft = false;
+            _this.openedRight = false;
+        };
         _this.openedLeft = false;
         _this.openedRight = false;
         return _this;
     }
 
-    __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_createClass___default()(Swipeout, [{
+    (0, _createClass3['default'])(Swipeout, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
             this.btnsLeftWidth = this.left ? this.left.offsetWidth : 0;
@@ -11263,78 +11395,6 @@ var Swipeout = function (_React$Component) {
         key: 'componentWillUnmount',
         value: function componentWillUnmount() {
             document.body.removeEventListener('touchstart', this.onCloseSwipe, true);
-        }
-    }, {
-        key: 'onCloseSwipe',
-        value: function onCloseSwipe(ev) {
-            var _this2 = this;
-
-            if (this.openedLeft || this.openedRight) {
-                var pNode = function (node) {
-                    while (node.parentNode && node.parentNode !== document.body) {
-                        if (node.className.indexOf(_this2.props.prefixCls + '-actions') > -1) {
-                            return node;
-                        }
-                        node = node.parentNode;
-                    }
-                }(ev.target);
-                if (!pNode) {
-                    ev.preventDefault();
-                    this.close();
-                }
-            }
-        }
-    }, {
-        key: 'onPanStart',
-        value: function onPanStart(e) {
-            this.panStartX = e.deltaX;
-            this.panStartY = e.deltaY;
-        }
-    }, {
-        key: 'onPan',
-        value: function onPan(e) {
-            var posX = e.deltaX - this.panStartX;
-            var posY = e.deltaY - this.panStartY;
-            if (Math.abs(posX) <= Math.abs(posY)) {
-                return;
-            }
-            var _props = this.props,
-                left = _props.left,
-                right = _props.right;
-
-            if (posX < 0 && right.length) {
-                this.swiping = true;
-                this._setStyle(Math.min(posX, 0));
-            } else if (posX > 0 && left.length) {
-                this.swiping = true;
-                this._setStyle(Math.max(posX, 0));
-            }
-        }
-    }, {
-        key: 'onPanEnd',
-        value: function onPanEnd(e) {
-            if (!this.swiping) {
-                return;
-            }
-            this.swiping = false;
-            var _props2 = this.props,
-                _props2$left = _props2.left,
-                left = _props2$left === undefined ? [] : _props2$left,
-                _props2$right = _props2.right,
-                right = _props2$right === undefined ? [] : _props2$right;
-
-            var btnsLeftWidth = this.btnsLeftWidth;
-            var btnsRightWidth = this.btnsRightWidth;
-            var posX = e.deltaX - this.panStartX;
-            var openLeft = posX > btnsLeftWidth / 2;
-            var openRight = posX < -btnsRightWidth / 2;
-            if (openRight && posX < 0 && right.length) {
-                this.open(-btnsRightWidth, false, true);
-            } else if (openLeft && posX > 0 && left.length) {
-                this.open(btnsLeftWidth, true, false);
-            } else {
-                this.close();
-            }
         }
         // left & right button click
 
@@ -11353,76 +11413,33 @@ var Swipeout = function (_React$Component) {
         key: '_getContentEasing',
         value: function _getContentEasing(value, limit) {
             // limit content style left when value > actions width
-            if (value < 0 && value < limit) {
-                return limit - Math.pow(limit - value, 0.85);
-            } else if (value > 0 && value > limit) {
-                return limit + Math.pow(value - limit, 0.85);
+            var delta = Math.abs(value) - Math.abs(limit);
+            var isOverflow = delta > 0;
+            var factor = limit > 0 ? 1 : -1;
+            if (isOverflow) {
+                value = limit + Math.pow(delta, 0.85) * factor;
+                return Math.abs(value) > Math.abs(limit) ? limit : value;
             }
             return value;
-        }
-        // set content & actions style
-
-    }, {
-        key: '_setStyle',
-        value: function _setStyle(value) {
-            var limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
-            var contentLeft = this._getContentEasing(value, limit);
-            this.content.style.left = contentLeft + 'px';
-            if (this.cover) {
-                this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
-                this.cover.style.left = contentLeft + 'px';
-            }
-        }
-    }, {
-        key: 'open',
-        value: function open(value, openedLeft, openedRight) {
-            if (!this.openedLeft && !this.openedRight && this.props.onOpen) {
-                this.props.onOpen();
-            }
-            this.openedLeft = openedLeft;
-            this.openedRight = openedRight;
-            this._setStyle(value);
-        }
-    }, {
-        key: 'close',
-        value: function close() {
-            if ((this.openedLeft || this.openedRight) && this.props.onClose) {
-                this.props.onClose();
-            }
-            this._setStyle(0);
-            this.openedLeft = false;
-            this.openedRight = false;
         }
     }, {
         key: 'renderButtons',
         value: function renderButtons(buttons, _ref) {
-            var _this3 = this;
+            var _this2 = this;
 
             var prefixCls = this.props.prefixCls;
-            return buttons && buttons.length ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-                'div',
-                { className: prefixCls + '-actions ' + prefixCls + '-actions-' + _ref, ref: function ref(el) {
-                        return _this3[_ref] = el;
-                    } },
-                buttons.map(function (btn, i) {
-                    return __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-                        'div',
-                        { key: i, className: prefixCls + '-btn ' + (btn.hasOwnProperty('className') ? btn.className : ''), style: btn.style, role: 'button', onClick: function onClick(e) {
-                                return _this3.onBtnClick(e, btn);
-                            } },
-                        __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-                            'div',
-                            { className: prefixCls + '-btn-text' },
-                            btn.text || 'Click'
-                        )
-                    );
-                })
-            ) : null;
+            return buttons && buttons.length ? _react2['default'].createElement('div', { className: prefixCls + '-actions ' + prefixCls + '-actions-' + _ref, ref: function ref(el) {
+                    return _this2[_ref] = el;
+                } }, buttons.map(function (btn, i) {
+                return _react2['default'].createElement('div', { key: i, className: prefixCls + '-btn ' + (btn.hasOwnProperty('className') ? btn.className : ''), style: btn.style, role: 'button', onClick: function onClick(e) {
+                        return _this2.onBtnClick(e, btn);
+                    } }, _react2['default'].createElement('div', { className: prefixCls + '-btn-text' }, btn.text || 'Click'));
+            })) : null;
         }
     }, {
         key: 'render',
         value: function render() {
-            var _this4 = this;
+            var _this3 = this;
 
             var _a = this.props,
                 prefixCls = _a.prefixCls,
@@ -11431,39 +11448,21 @@ var Swipeout = function (_React$Component) {
                 disabled = _a.disabled,
                 children = _a.children,
                 restProps = __rest(_a, ["prefixCls", "left", "right", "disabled", "children"]);
-            var divProps = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_8_omit_js__["a" /* default */])(restProps, ['autoClose', 'onOpen', 'onClose']);
+            var divProps = (0, _omit2['default'])(restProps, ['autoClose', 'onOpen', 'onClose']);
             var refProps = {
                 ref: function ref(el) {
-                    return _this4.content = __WEBPACK_IMPORTED_MODULE_6_react_dom___default.a.findDOMNode(el);
+                    return _this3.content = _reactDom2['default'].findDOMNode(el);
                 }
             };
-            return (left.length || right.length) && !disabled ? __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-                'div',
-                __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ className: '' + prefixCls }, divProps),
-                __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement('div', { className: prefixCls + '-cover', ref: function ref(el) {
-                        return _this4.cover = el;
-                    } }),
-                this.renderButtons(left, 'left'),
-                this.renderButtons(right, 'right'),
-                __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_7_rc_hammerjs__["a" /* default */],
-                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ direction: 'DIRECTION_HORIZONTAL', onPanStart: this.onPanStart, onPan: this.onPan, onPanEnd: this.onPanEnd }, refProps),
-                    __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-                        'div',
-                        { className: prefixCls + '-content' },
-                        children
-                    )
-                )
-            ) : __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
-                'div',
-                __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, refProps, divProps),
-                children
-            );
+            return (left.length || right.length) && !disabled ? _react2['default'].createElement('div', (0, _extends3['default'])({ className: '' + prefixCls }, divProps), _react2['default'].createElement('div', { className: prefixCls + '-cover', ref: function ref(el) {
+                    return _this3.cover = el;
+                } }), this.renderButtons(left, 'left'), this.renderButtons(right, 'right'), _react2['default'].createElement(_rcHammerjs2['default'], (0, _extends3['default'])({ direction: 'DIRECTION_HORIZONTAL', onPanStart: this.onPanStart, onPan: this.onPan, onPanEnd: this.onPanEnd }, refProps), _react2['default'].createElement('div', { className: prefixCls + '-content' }, children))) : _react2['default'].createElement('div', (0, _extends3['default'])({}, refProps, divProps), children);
         }
     }]);
-
     return Swipeout;
-}(__WEBPACK_IMPORTED_MODULE_5_react___default.a.Component);
+}(_react2['default'].Component);
+
+exports['default'] = Swipeout;
 
 Swipeout.defaultProps = {
     prefixCls: 'rc-swipeout',
@@ -11474,7 +11473,7 @@ Swipeout.defaultProps = {
     onOpen: function onOpen() {},
     onClose: function onClose() {}
 };
-/* harmony default export */ __webpack_exports__["a"] = (Swipeout);
+module.exports = exports['default'];
 
 /***/ }),
 /* 137 */
@@ -16606,6 +16605,7 @@ if (true) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__ = __webpack_require__(85);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends__);
 
@@ -16618,7 +16618,7 @@ function omit(obj, fields) {
   return shallowCopy;
 }
 
-/* harmony default export */ __webpack_exports__["a"] = (omit);
+/* harmony default export */ __webpack_exports__["default"] = (omit);
 
 /***/ }),
 /* 195 */
@@ -16981,10 +16981,11 @@ HammerComponent.propTypes = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__Hammer__ = __webpack_require__(198);
 
 
-/* harmony default export */ __webpack_exports__["a"] = (__WEBPACK_IMPORTED_MODULE_0__Hammer__["a" /* default */]);
+/* harmony default export */ __webpack_exports__["default"] = (__WEBPACK_IMPORTED_MODULE_0__Hammer__["a" /* default */]);
 
 /***/ }),
 /* 200 */
