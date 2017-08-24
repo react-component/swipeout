@@ -4,7 +4,7 @@ import Hammer from 'rc-hammerjs';
 import omit from 'omit.js';
 import SwipeoutPropType from './PropTypes';
 
-class Swipeout extends React.Component <SwipeoutPropType, any> {
+export default class Swipeout extends React.Component <SwipeoutPropType, any> {
   static defaultProps = {
     prefixCls: 'rc-swipeout',
     autoClose: false,
@@ -97,14 +97,10 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
       return;
     }
 
-    const { left = [], right = [] } = this.props;
     const btnsLeftWidth = this.btnsLeftWidth;
     const btnsRightWidth = this.btnsRightWidth;
 
-    const { direction, deltaX } = e;
-    // http://hammerjs.github.io/api/#directions
-    const isLeft = direction === 2;
-    const isRight = direction === 4;
+    const { deltaX } = e;
 
     const needOpenRight = this.needShowRight && Math.abs(deltaX) > btnsRightWidth / 2;
     const needOpenLeft = this.needShowLeft && Math.abs(deltaX) > btnsRightWidth / 2;
@@ -232,5 +228,3 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
     );
   }
 }
-
-export default Swipeout;

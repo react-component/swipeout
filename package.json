@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "1.4.5",
+  "version": "1.4.6-alpha.2",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -27,9 +27,16 @@
   "main": "./lib/index",
   "module": "./es/index",
   "config": {
-    "port": 8000
+    "port": 8000,
+    "entry": {
+      "rc-swipeout": [
+        "./src/index.tsx",
+        "./assets/index.less"
+      ]
+    }
   },
   "scripts": {
+    "dist": "rc-tools run dist",
     "watch-tsc": "rc-tools run watch-tsc",
     "compile": "rc-tools run compile --babel-runtime",
     "build": "rc-tools run build",
@@ -51,9 +58,9 @@
   },
   "devDependencies": {
     "@types/mocha": "~2.2.32",
-    "@types/react": "~0.14.41",
-    "@types/react-dom": "~0.14.18",
-    "@types/react-native": "~0.29.36",
+    "@types/react": "~16.0.2",
+    "@types/react-dom": "15.5.1",
+    "@types/react-native": "^0.47.2",
     "expect.js": "0.3.x",
     "hammer-simulator": "0.0.1",
     "pre-commit": "1.x",
