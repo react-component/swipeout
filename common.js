@@ -11438,7 +11438,7 @@ var Swipeout = function (_React$Component) {
                 this.renderButtons(right, 'right'),
                 __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_7_rc_hammerjs__["a" /* default */],
-                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ direction: 'DIRECTION_HORIZONTAL', onPanStart: this.onPanStart, onPan: this.onPan, onPanEnd: this.onPanEnd }, refProps),
+                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ direction: 'DIRECTION_ALL', onPanStart: this.onPanStart, onPan: this.onPan, onPanEnd: this.onPanEnd }, refProps),
                     __WEBPACK_IMPORTED_MODULE_5_react___default.a.createElement(
                         'div',
                         { className: prefixCls + '-content' },
