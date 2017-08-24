@@ -55,7 +55,7 @@ class Swipeout extends React.Component <SwipeoutPropType, any> {
         }
       })(ev.target);
       if (!pNode) {
-        // ev.preventDefault();
+        ev.preventDefault();
         this.close();
       }
     }
