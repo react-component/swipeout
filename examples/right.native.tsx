@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* tslint:disable:no-console */
 import { View, Text } from 'react-native';
-import Swipeout from '../src';
+import Swipeout from 'rc-swipeout';
 import React from 'react';
 
 const SwipeoutExample = () => (
