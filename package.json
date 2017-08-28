@@ -64,7 +64,6 @@
     "@types/react-dom": "15.5.1",
     "@types/react-native": "^0.47.2",
     "expect.js": "0.3.x",
-    "hammer-simulator": "0.0.1",
     "pre-commit": "1.x",
     "rc-test": "~6.0.3",
     "rc-tools": "6.x",
