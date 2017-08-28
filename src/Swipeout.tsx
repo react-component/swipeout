@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hammer from 'rc-hammerjs';
+import Gesture from 'rc-gesture';
 import omit from 'omit.js';
 import classnames from 'classnames';
 import SwipeoutPropType from './PropTypes';
@@ -65,7 +65,8 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   onPanStart = (e) => {
-    const { direction, deltaX } = e;
+    const { direction, moveStatus } = e;
+    const { x: deltaX } = moveStatus;
     // http://hammerjs.github.io/api/#directions
     const isLeft = direction === 2;
     const isRight = direction === 4;
@@ -90,8 +91,9 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
       this._setStyle(deltaX);
     }
   }
-  onPan = (e) => {
-    const { deltaX } = e;
+  onPanMove = (e) => {
+    const { moveStatus } = e;
+    const { x: deltaX } = moveStatus;
     if (!this.swiping) {
      return;
     }
@@ -106,7 +108,8 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
     const btnsLeftWidth = this.btnsLeftWidth;
     const btnsRightWidth = this.btnsRightWidth;
 
-    const { deltaX } = e;
+    const { moveStatus } = e;
+    const { x: deltaX } = moveStatus;
 
     const needOpenRight = this.needShowRight && Math.abs(deltaX) > btnsRightWidth / 2;
     const needOpenLeft = this.needShowLeft && Math.abs(deltaX) > btnsRightWidth / 2;
@@ -224,15 +227,14 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
         <div className={`${prefixCls}-cover`} ref={(el) => this.cover = el} />
         { this.renderButtons(left, 'left') }
         { this.renderButtons(right, 'right') }
-        <Hammer
-          direction="DIRECTION_HORIZONTAL"
+        <Gesture
           onPanStart={this.onPanStart}
-          onPan={this.onPan}
+          onPanMove={this.onPanMove}
           onPanEnd={this.onPanEnd}
           {...refProps}
         >
           <div className={`${prefixCls}-content`}>{children}</div>
-        </Hammer>
+        </Gesture>
      </div>
     ) : (
       <div {...refProps} {...divProps}>{children}</div>

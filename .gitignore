@@ -29,3 +29,4 @@ ios
 android
 yarn.lock
 assets/index.css
+package-lock.json
