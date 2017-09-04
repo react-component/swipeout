@@ -1,5 +1,9 @@
 # History
 
+# 2.0.0
+
+- replace `hammer.js` width [rc-gesture](https://github.com/react-component/gesture)
+
 # 1.4.5
 
 - replace `object.omit`, update style
