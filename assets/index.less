@@ -1,47 +1,50 @@
 @swipeout-prefix-cls: rc-swipeout;
 
 .@{swipeout-prefix-cls} {
-  overflow: hidden;
-  position: relative;
-  &-content {
-    position: relative;
-    background-color: #fff;
-  }
-  &-cover {
-    position: absolute;
-    z-index: 2;
-    background: transparent;
-    height: 100%;
-    width: 100%;
-    top: 0;
-    display: none;
-  }
-  & .@{swipeout-prefix-cls}-content,
-  & .@{swipeout-prefix-cls}-actions {
-    transition: all 250ms;
-  }
-  &-actions {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    display: flex;
     overflow: hidden;
-    white-space: nowrap;
-    &-left {
-      left: 0;
-    }
-    &-right {
-      right: 0;
-    }
-  }
-  &-btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
     position: relative;
-    overflow: hidden;
-    &-text{
-      padding: 0 12px;
+    &-content {
+        position: relative;
+        background-color: #fff;
     }
-  }
+    &-cover {
+        position: absolute;
+        z-index: 2;
+        background: transparent;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        display: none;
+    }
+    & .@{swipeout-prefix-cls}-content,
+    & .@{swipeout-prefix-cls}-actions {
+        transition: all 250ms;
+    }
+    &-swiping .@{swipeout-prefix-cls}-content {
+        transition: none;
+    }
+    &-actions {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        display: flex;
+        overflow: hidden;
+        white-space: nowrap;
+        &-left {
+            left: 0;
+        }
+        &-right {
+            right: 0;
+        }
+    }
+    &-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        overflow: hidden;
+        &-text {
+            padding: 0 12px;
+        }
+    }
 }
