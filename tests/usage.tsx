@@ -2,11 +2,8 @@ import expect from 'expect.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-dom/test-utils';
-require('hammer-simulator');
 const Simulator = (window as any).Simulator;
 import Swipeout from '../src/index';
-
-const Hammer: any = (window as any).Hammer;
 
 /* global Hammer */
 describe('simple', () => {
@@ -49,24 +46,33 @@ describe('simple', () => {
       instance, 'rc-swipeout-actions-right',
     );
 
-    const hammer = new Hammer(domEl, { recognizers: [] });
-    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
-    hammer.add(swipe);
-
-    Simulator.gestures.swipe(domEl, {
-      deltaX: 300,
-      deltaY: 5,
-    }, () => {
-      expect(domEl.style.left).to.be('140px');
-      expect(rightActionEl.offsetWidth).to.be(120);
-
-      const event = document.createEvent('UIEvent');
-      event.initEvent('touchstart', true, true);
-      document.body.dispatchEvent(event);
-
-      expect(domEl.style.left).to.be('0px');
-      done();
+    instance.onPanStart({
+      direction: 4,
+      moveStatus: {
+        x: 10,
+      },
     });
+    instance.onPanMove({
+      direction: 4,
+      moveStatus: {
+        x: 100,
+      },
+    });
+    instance.onPanEnd({
+      direction: 4,
+      moveStatus: {
+        x: 300,
+      },
+    });
+    expect(domEl.style.transform).to.be('translate3d(140px, 0px, 0px)');
+    expect(rightActionEl.offsetWidth).to.be(120);
+
+    const event = document.createEvent('UIEvent');
+    event.initEvent('touchstart', true, true);
+    document.body.dispatchEvent(event);
+
+    expect(domEl.style.transform).to.be('translate3d(0px, 0px, 0px)');
+    done();
   });
 
   it('onOpen & onClose to be called', done => {
@@ -98,23 +104,32 @@ describe('simple', () => {
       instance, 'rc-swipeout-content',
     );
 
-    const hammer = new Hammer(domEl, { recognizers: [] });
-    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
-    hammer.add(swipe);
-
-    Simulator.gestures.swipe(domEl, {
-      deltaX: 300,
-      deltaY: 10,
-    }, () => {
-      expect(openCalled).to.be(true);
-
-      const event = document.createEvent('UIEvent');
-      event.initEvent('touchstart', true, true);
-      document.body.dispatchEvent(event);
-
-      expect(closeCalled).to.be(true);
-      done();
+    instance.onPanStart({
+      direction: 4,
+      moveStatus: {
+        x: 10,
+      },
     });
+    instance.onPanMove({
+      direction: 4,
+      moveStatus: {
+        x: 100,
+      },
+    });
+    instance.onPanEnd({
+      direction: 4,
+      moveStatus: {
+        x: 300,
+      },
+    });
+    expect(openCalled).to.be(true);
+
+    const event = document.createEvent('UIEvent');
+    event.initEvent('touchstart', true, true);
+    document.body.dispatchEvent(event);
+
+    expect(closeCalled).to.be(true);
+    done();
   });
 
   it('button click & autoClose', done => {
@@ -141,21 +156,28 @@ describe('simple', () => {
       instance, 'rc-swipeout-btn',
     );
 
-    const hammer = new Hammer(domEl, { recognizers: [] });
-    const swipe = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_HORIZONTAL });
-    hammer.add(swipe);
-    const press = new Hammer.Press();
-    hammer.add(press);
-
-    Simulator.gestures.swipe(domEl, {
-      deltaX: 260,
-      deltaY: 10,
-    }, () => {
-      TestUtils.Simulate.click(BtnElArr[0]);
-      expect(readCalled).to.be(true);
-      expect(domEl.style.left).to.be('0px');
-      done();
+    instance.onPanStart({
+      direction: 4,
+      moveStatus: {
+        x: 10,
+      },
     });
+    instance.onPanMove({
+      direction: 4,
+      moveStatus: {
+        x: 100,
+      },
+    });
+    instance.onPanEnd({
+      direction: 4,
+      moveStatus: {
+        x: 300,
+      },
+    });
+    TestUtils.Simulate.click(BtnElArr[0]);
+    expect(readCalled).to.be(true);
+    expect(domEl.style.transform).to.be('translate3d(0px, 0px, 0px)');
+    done();
   });
 
   it('left=right=[] render no swipeout', done => {
@@ -232,28 +254,27 @@ describe('simple', () => {
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
       instance, 'rc-swipeout-content',
     );
-
-    const hammer = new Hammer(domEl, { recognizers: [] });
-    const swipeLeft = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_LEFT });
-    hammer.add(swipeLeft);
-
-    Simulator.gestures.swipe(domEl, {
-      deltaX: -300,
-      deltaY: 10,
-    }, () => {
-      expect(domEl.style.left).to.be('');
-
-      const swipeRight = new Hammer.Swipe({ threshold: 1, direction: Hammer.DIRECTION_RIGHT });
-      hammer.add(swipeRight);
-
-      Simulator.gestures.swipe(domEl, {
-        deltaX: 300,
-        deltaY: 10,
-      }, () => {
-        expect(domEl.style.left).to.be('140px');
-        done();
-      });
+    expect(domEl.style.transform).to.be(undefined);
+    instance.onPanStart({
+      direction: 4,
+      moveStatus: {
+        x: 10,
+      },
     });
+    instance.onPanMove({
+      direction: 2,
+      moveStatus: {
+        x: 100,
+      },
+    });
+    instance.onPanEnd({
+      direction: 2,
+      moveStatus: {
+        x: 300,
+      },
+    });
+    expect(domEl.style.transform).to.be('translate3d(140px, 0px, 0px)');
+    done();
   });
 
   // don't know why not render, comment temporarily

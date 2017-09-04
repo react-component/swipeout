@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Hammer from 'rc-hammerjs';
+import Gesture from 'rc-gesture';
 import omit from 'omit.js';
 import classnames from 'classnames';
 import SwipeoutPropType from './PropTypes';
@@ -65,7 +65,8 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   onPanStart = (e) => {
-    const { direction, deltaX } = e;
+    const { direction, moveStatus } = e;
+    const { x: deltaX } = moveStatus;
     // http://hammerjs.github.io/api/#directions
     const isLeft = direction === 2;
     const isRight = direction === 4;
@@ -90,8 +91,9 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
       this._setStyle(deltaX);
     }
   }
-  onPan = (e) => {
-    const { deltaX } = e;
+  onPanMove = (e) => {
+    const { moveStatus } = e;
+    const { x: deltaX } = moveStatus;
     if (!this.swiping) {
      return;
     }
@@ -103,18 +105,16 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
       return;
     }
 
-    const btnsLeftWidth = this.btnsLeftWidth;
-    const btnsRightWidth = this.btnsRightWidth;
+    const { moveStatus } = e;
+    const { x: deltaX } = moveStatus;
 
-    const { deltaX } = e;
-
-    const needOpenRight = this.needShowRight && Math.abs(deltaX) > btnsRightWidth / 2;
-    const needOpenLeft = this.needShowLeft && Math.abs(deltaX) > btnsRightWidth / 2;
+    const needOpenRight = this.needShowRight && Math.abs(deltaX) > this.btnsRightWidth / 2;
+    const needOpenLeft = this.needShowLeft && Math.abs(deltaX) > this.btnsLeftWidth / 2;
 
     if (needOpenRight) {
-      this.open(-btnsRightWidth, false, true);
+      this.doOpenRight();
     } else if (needOpenLeft) {
-      this.open(btnsLeftWidth, true, false);
+      this.doOpenLeft();
     } else {
       this.close();
     }
@@ -126,6 +126,13 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
     this.needShowRight = false;
   }
 
+  doOpenLeft = () => {
+    this.open(this.btnsLeftWidth, true, false);
+  }
+
+  doOpenRight = () => {
+    this.open(-this.btnsRightWidth, true, false);
+  }
   // left & right button click
   onBtnClick(ev, btn) {
     const onPress = btn.onPress;
@@ -151,13 +158,13 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
 
   // set content & actions style
   _setStyle = (value) => {
-
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
-    this.content.style.left = `${contentLeft}px`;
+    const transform = `translate3d(${contentLeft}px, 0px, 0px)`;
+    this.content.style.transform = transform;
     if (this.cover) {
       this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
-      this.cover.style.left = `${contentLeft}px`;
+      this.cover.style.transform = transform;
     }
   }
 
@@ -224,15 +231,17 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
         <div className={`${prefixCls}-cover`} ref={(el) => this.cover = el} />
         { this.renderButtons(left, 'left') }
         { this.renderButtons(right, 'right') }
-        <Hammer
-          direction="DIRECTION_HORIZONTAL"
+        <Gesture
           onPanStart={this.onPanStart}
-          onPan={this.onPan}
+          onPanMove={this.onPanMove}
           onPanEnd={this.onPanEnd}
+          onSwipeLeft={this.doOpenRight}
+          onSwipeRight={this.doOpenLeft}
+          direction="horizontal"
           {...refProps}
         >
           <div className={`${prefixCls}-content`}>{children}</div>
-        </Hammer>
+        </Gesture>
      </div>
     ) : (
       <div {...refProps} {...divProps}>{children}</div>
