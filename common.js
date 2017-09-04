@@ -10861,13 +10861,11 @@ var Swipeout = function (_React$Component) {
             var limit = value > 0 ? _this.btnsLeftWidth : -_this.btnsRightWidth;
             var contentLeft = _this._getContentEasing(value, limit);
             var transform = 'translate3d(' + contentLeft + 'px, 0px, 0px)';
-            window.requestAnimationFrame(function () {
-                _this.content.style.transform = transform;
-                if (_this.cover) {
-                    _this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
-                    _this.cover.style.transform = transform;
-                }
-            });
+            _this.content.style.transform = transform;
+            if (_this.cover) {
+                _this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
+                _this.cover.style.transform = transform;
+            }
         };
         _this.open = function (value, openedLeft, openedRight) {
             if (!_this.openedLeft && !_this.openedRight && _this.props.onOpen) {
@@ -14299,7 +14297,14 @@ var Gesture = function (_Component) {
                 };
             });
         };
+        _this.triggerUserCb = function (status, e) {
+            var cbName = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__util__["a" /* getEventName */])('onTouch', status);
+            if (cbName in _this.props) {
+                _this.props[cbName](e);
+            }
+        };
         _this._handleTouchStart = function (e) {
+            _this.triggerUserCb('start', e);
             _this.event = e;
             if (e.touches.length > 1) {
                 e.preventDefault();
@@ -14352,6 +14357,7 @@ var Gesture = function (_Component) {
             }
         };
         _this._handleTouchMove = function (e) {
+            _this.triggerUserCb('move', e);
             _this.event = e;
             if (!_this.gesture) {
                 // sometimes weird happen: touchstart -> touchmove..touchmove.. --> touchend --> touchmove --> touchend
@@ -14481,6 +14487,7 @@ var Gesture = function (_Component) {
             });
         };
         _this._handleTouchEnd = function (e) {
+            _this.triggerUserCb('end', e);
             _this.event = e;
             if (!_this.gesture) {
                 return;
@@ -14491,6 +14498,7 @@ var Gesture = function (_Component) {
             _this.checkIfMultiTouchEnd('end');
         };
         _this._handleTouchCancel = function (e) {
+            _this.triggerUserCb('cancel', e);
             _this.event = e;
             // Todo: wait to test cancel case
             if (!_this.gesture) {
@@ -14585,9 +14593,7 @@ var Gesture = function (_Component) {
                 onTouchCancel: this._handleTouchCancel,
                 onTouchEnd: this._handleTouchEnd
             };
-            return __WEBPACK_IMPORTED_MODULE_5_react___default.a.cloneElement(child, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, events, { style: {
-                    touchAction: touchAction
-                } }));
+            return __WEBPACK_IMPORTED_MODULE_5_react___default.a.cloneElement(child, __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, events, { style: __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ touchAction: touchAction }, child.props.style || {}) }));
         }
     }]);
 
