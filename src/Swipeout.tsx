@@ -65,7 +65,7 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   onPanStart = (e) => {
-    const { direction, deltaX } = e;
+    const direction = e.offsetDirection;
     // http://hammerjs.github.io/api/#directions
     const isLeft = direction === 2;
     const isRight = direction === 4;
@@ -87,7 +87,6 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
       this.setState({
         swiping: this.swiping,
       });
-      this._setStyle(deltaX);
     }
   }
   onPan = (e) => {
