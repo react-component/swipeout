@@ -19,9 +19,6 @@
 .rc-swipeout .rc-swipeout-actions {
   transition: all 250ms;
 }
-.rc-swipeout-swiping .rc-swipeout-content {
-  transition: none;
-}
 .rc-swipeout-actions {
   position: absolute;
   top: 0;
