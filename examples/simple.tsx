@@ -46,7 +46,8 @@ const SwipeDemo = () => (
       borderTop: '1px solid #dedede',
       borderBottom: '1px solid #dedede',
     }}
-    >swipe out simple demo</div>
+    >swipe out simple demo
+    </div>
   </Swipeout>
 );
 

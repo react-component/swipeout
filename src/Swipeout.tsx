@@ -1,9 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Gesture from 'rc-gesture';
-import omit from 'omit.js';
 import classnames from 'classnames';
 import SwipeoutPropType from './PropTypes';
+
+// https://developer.mozilla.org/en-US/docs/Web/API/Element/matches
+// http://caniuse.com/#search=match
+function closest(el, selector) {
+  const matchesSelector = el.matches || el.webkitMatchesSelector || el.mozMatchesSelector || el.msMatchesSelector;
+
+  while (el) {
+    if (matchesSelector.call(el, selector)) {
+      return el;
+    } else {
+      el = el.parentElement;
+    }
+  }
+  return null;
+}
 
 export default class Swipeout extends React.Component <SwipeoutPropType, any> {
   static defaultProps = {
@@ -48,19 +62,13 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   onCloseSwipe = (ev) => {
-    if (this.openedLeft || this.openedRight) {
-      const pNode = (node => {
-        while (node.parentNode && node.parentNode !== document.body) {
-          if (node.className.indexOf(`${this.props.prefixCls}-actions`) > -1) {
-            return node;
-          }
-          node = node.parentNode;
-        }
-      })(ev.target);
-      if (!pNode) {
-        ev.preventDefault();
-        this.close();
-      }
+    if (!(this.openedLeft || this.openedRight)) {
+      return;
+    }
+    const pNode = closest(ev.target, `.${this.props.prefixCls}-actions`);
+    if (!pNode) {
+      ev.preventDefault();
+      this.close();
     }
   }
 
@@ -213,18 +221,17 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
 
   render() {
     const { prefixCls, left, right, disabled, children, ...restProps } = this.props;
-    const divProps = omit(restProps, [
-      'autoClose',
-      'onOpen',
-      'onClose',
-    ]);
+
+    const { autoClose, onOpen, onClose, ...divProps } = restProps;
+
+    const cls = classnames(prefixCls, {
+      [`${prefixCls}-swiping`]: this.state.swiping,
+    });
 
     const refProps = {
       ref: el => this.content = ReactDOM.findDOMNode(el),
     };
-    const cls = classnames(prefixCls, {
-      [`${prefixCls}-swiping`]: this.state.swiping,
-    });
+
     return (left!.length || right!.length) && !disabled ? (
       <div className={cls} {...divProps}>
         {/* 保证 body touchStart 后不触发 pan */}
