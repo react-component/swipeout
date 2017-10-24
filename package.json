@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -55,7 +55,7 @@
     "babel-runtime": "6.x",
     "classnames": "2.x",
     "rc-gesture": "^0.0.15",
-    "react-native-swipeout": "~2.1.1"
+    "react-native-swipeout": "^2.2.2"
   },
   "devDependencies": {
     "@types/mocha": "~2.2.32",
