@@ -10715,11 +10715,10 @@ var Swipeout = function (_React$Component) {
         _this._setStyle = function (value) {
             var limit = value > 0 ? _this.btnsLeftWidth : -_this.btnsRightWidth;
             var contentLeft = _this._getContentEasing(value, limit);
-            var transform = 'translate3d(' + contentLeft + 'px, 0px, 0px)';
-            _this.content.style.transform = transform;
+            _this.content.style.left = contentLeft + 'px';
             if (_this.cover) {
                 _this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
-                _this.cover.style.transform = transform;
+                _this.cover.style.left = contentLeft + 'px';
             }
         };
         _this.open = function (value, openedLeft, openedRight) {
@@ -14142,7 +14141,6 @@ var Gesture = function (_Component) {
             }
         };
         _this._handleTouchStart = function (e) {
-          e.preventDefault()
             _this.triggerUserCb('start', e);
             _this.event = e;
             if (e.touches.length > 1) {
@@ -14196,10 +14194,6 @@ var Gesture = function (_Component) {
             }
         };
         _this._handleTouchMove = function (e) {
-
-          console.log('=========================move', e)
-          e.preventDefault()
-          // e.stopPropagation();
             _this.triggerUserCb('move', e);
             _this.event = e;
             if (!_this.gesture) {
@@ -14210,7 +14204,7 @@ var Gesture = function (_Component) {
             // not a long press
             _this.cleanPressTimer();
             _this.updateGestureStatus(e);
-            _this.checkIfSingleTouchMove(e);
+            _this.checkIfSingleTouchMove();
             _this.checkIfMultiTouchMove();
         };
         _this.checkIfMultiTouchMove = function () {
@@ -14252,7 +14246,7 @@ var Gesture = function (_Component) {
         _this.allowGesture = function () {
             return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__util__["e" /* shouldTriggerDirection */])(_this.gesture.direction, _this.directionSetting);
         };
-        _this.checkIfSingleTouchMove = function (e) {
+        _this.checkIfSingleTouchMove = function () {
             var _this$gesture2 = _this.gesture,
                 pan = _this$gesture2.pan,
                 touches = _this$gesture2.touches,
@@ -14268,31 +14262,22 @@ var Gesture = function (_Component) {
             }
             if (moveStatus) {
                 var x = moveStatus.x,
-                  y = moveStatus.y;
+                    y = moveStatus.y;
 
-              console.log(x, y)
-
-              var direction = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__util__["f" /* getDirection */])(x, y);
+                var direction = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__util__["f" /* getDirection */])(x, y);
                 _this.setGestureState({
                     direction: direction
                 });
                 var eventName = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__util__["g" /* getDirectionEventName */])(direction);
-                console.log(direction, eventName)
                 if (!_this.allowGesture()) {
-                  console.log('+++++++++++++++++++++++++++++')
                     return;
                 }
-              console.log('===============================', pan)
                 if (!pan) {
-                  console.log('-----------------------')
-
                     _this.triggerCombineEvent('onPan', 'start');
                     _this.setGestureState({
                         pan: true
                     });
                 } else {
-                  // e.stopPropagation();
-                  e.preventDefault();
                     _this.triggerCombineEvent('onPan', eventName);
                     _this.triggerSubEvent('onPan', 'move');
                 }
