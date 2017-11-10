@@ -168,11 +168,10 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
   _setStyle = (value) => {
     const limit = value > 0 ? this.btnsLeftWidth : -this.btnsRightWidth;
     const contentLeft = this._getContentEasing(value, limit);
-    const transform = `translate3d(${contentLeft}px, 0px, 0px)`;
-    this.content.style.transform = transform;
+    this.content.style.left = `${contentLeft}px`;
     if (this.cover) {
       this.cover.style.display = Math.abs(value) > 0 ? 'block' : 'none';
-      this.cover.style.transform = transform;
+      this.cover.style.left = `${contentLeft}px`;
     }
   }
 

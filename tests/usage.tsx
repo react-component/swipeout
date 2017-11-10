@@ -64,14 +64,14 @@ describe('simple', () => {
         x: 300,
       },
     });
-    expect(domEl.style.transform).to.be('translate3d(140px, 0px, 0px)');
+    expect(domEl.style.left).to.be('140px');
     expect(rightActionEl.offsetWidth).to.be(120);
 
     const event = document.createEvent('UIEvent');
     event.initEvent('touchstart', true, true);
     document.body.dispatchEvent(event);
 
-    expect(domEl.style.transform).to.be('translate3d(0px, 0px, 0px)');
+    expect(domEl.style.left).to.be('0px');
     done();
   });
 
@@ -176,7 +176,7 @@ describe('simple', () => {
     });
     TestUtils.Simulate.click(BtnElArr[0]);
     expect(readCalled).to.be(true);
-    expect(domEl.style.transform).to.be('translate3d(0px, 0px, 0px)');
+    expect(domEl.style.left).to.be('0px');
     done();
   });
 
@@ -273,7 +273,7 @@ describe('simple', () => {
         x: 300,
       },
     });
-    expect(domEl.style.transform).to.be('translate3d(140px, 0px, 0px)');
+    expect(domEl.style.left).to.be('140px');
     done();
   });
 
