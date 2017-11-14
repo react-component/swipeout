@@ -1,13 +1,13 @@
 webpackJsonp([0],{
 
-/***/ 136:
+/***/ 135:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rc_swipeout__ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src___ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(29);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom__ = __webpack_require__(33);
@@ -20,8 +20,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 var SwipeDemo = function SwipeDemo() {
     return __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-        __WEBPACK_IMPORTED_MODULE_1_rc_swipeout__["a" /* default */],
-        { style: { backgroundColor: 'white' }, autoClose: true, right: [{ text: 'more more',
+        __WEBPACK_IMPORTED_MODULE_1__src___["a" /* default */],
+        { style: { backgroundColor: 'white' }, autoClose: true, right: [{
+                text: __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
+                    'span',
+                    { style: { color: 'yellow' } },
+                    'more more'
+                ),
                 onPress: function onPress() {
                     return console.log('more more');
                 },
@@ -80,13 +85,20 @@ __WEBPACK_IMPORTED_MODULE_3_react_dom___default.a.render(__WEBPACK_IMPORTED_MODU
 
 /***/ }),
 
-/***/ 285:
+/***/ 179:
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+
+/***/ 284:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(136);
+module.exports = __webpack_require__(135);
 
 
 /***/ })
 
-},[285]);
+},[284]);
 //# sourceMappingURL=simple.js.map

@@ -1,83 +1,110 @@
 webpackJsonp([2],{
 
-/***/ 134:
+/***/ 133:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less__ = __webpack_require__(43);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rc_swipeout_assets_index_less__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rc_swipeout__ = __webpack_require__(38);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_react_dom__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__ = __webpack_require__(51);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__ = __webpack_require__(52);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_possibleConstructorReturn__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_possibleConstructorReturn___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_possibleConstructorReturn__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_inherits__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_inherits___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_inherits__);
+throw new Error("Cannot find module \"../../assets/index.less\"");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src___ = __webpack_require__(38);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react__ = __webpack_require__(29);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_dom__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_7_react_dom__);
+
+
+
+
 /* eslint-disable no-console */
 /* tslint:disable:no-console */
 
 
 
 
-var SwipeoutExample = __WEBPACK_IMPORTED_MODULE_2_react___default.a.createClass({
-    displayName: 'SwipeoutExample',
-    getInitialState: function getInitialState() {
-        return {
+
+var SwipeoutExample = function (_React$Component) {
+    __WEBPACK_IMPORTED_MODULE_3_babel_runtime_helpers_inherits___default()(SwipeoutExample, _React$Component);
+
+    function SwipeoutExample() {
+        __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_classCallCheck___default()(this, SwipeoutExample);
+
+        var _this = __WEBPACK_IMPORTED_MODULE_2_babel_runtime_helpers_possibleConstructorReturn___default()(this, (SwipeoutExample.__proto__ || Object.getPrototypeOf(SwipeoutExample)).apply(this, arguments));
+
+        _this.state = {
             items: ['00', '01', '02', '03', '04', '05']
         };
-    },
-    onDelete: function onDelete(value) {
-        var tempArr = this.state.items;
-        this.setState({
-            items: tempArr.filter(function (v) {
-                return v !== value;
-            })
-        });
-    },
-    render: function render() {
-        var _this = this;
-
-        return __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-            'div',
-            null,
-            __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                'p',
-                { style: { padding: '16px 30px' } },
-                '\u591A\u4E2A\u5B9E\u4F8B\uFF1A'
-            ),
-            this.state.items.map(function (item, i) {
-                return __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                    __WEBPACK_IMPORTED_MODULE_1_rc_swipeout__["a" /* default */],
-                    { autoClose: true, key: i, right: [{
-                            text: '\u5220\u9664' + item,
-                            onPress: function onPress() {
-                                return _this.onDelete(item);
-                            },
-                            style: { backgroundColor: '#F4333C', color: 'white', width: 80 }
-                        }] },
-                    __WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(
-                        'div',
-                        { style: { padding: '16px 30px', borderBottom: '1px solid #ccc' }, onClick: function onClick() {
-                                console.log('pressed item ' + item);
-                            } },
-                        'item ',
-                        item
-                    )
-                );
-            })
-        );
+        return _this;
     }
-});
-__WEBPACK_IMPORTED_MODULE_3_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_2_react___default.a.createElement(SwipeoutExample, null), document.getElementById('__react-content'));
+
+    __WEBPACK_IMPORTED_MODULE_1_babel_runtime_helpers_createClass___default()(SwipeoutExample, [{
+        key: 'onDelete',
+        value: function onDelete(value) {
+            var tempArr = this.state.items;
+            this.setState({
+                items: tempArr.filter(function (v) {
+                    return v !== value;
+                })
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                'div',
+                null,
+                __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                    'p',
+                    { style: { padding: '16px 30px' } },
+                    '\u591A\u4E2A\u5B9E\u4F8B\uFF1A'
+                ),
+                this.state.items.map(function (item, i) {
+                    return __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                        __WEBPACK_IMPORTED_MODULE_5__src___["a" /* default */],
+                        { autoClose: true, key: i, right: [{
+                                text: '\u5220\u9664' + item,
+                                onPress: function onPress() {
+                                    return _this2.onDelete(item);
+                                },
+                                style: { backgroundColor: '#F4333C', color: 'white', width: 80 }
+                            }] },
+                        __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
+                            'div',
+                            { style: { padding: '16px 30px', borderBottom: '1px solid #ccc' }, onClick: function onClick() {
+                                    console.log('pressed item ' + item);
+                                } },
+                            'item ',
+                            item
+                        )
+                    );
+                })
+            );
+        }
+    }]);
+
+    return SwipeoutExample;
+}(__WEBPACK_IMPORTED_MODULE_6_react___default.a.Component);
+
+__WEBPACK_IMPORTED_MODULE_7_react_dom___default.a.render(__WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(SwipeoutExample, null), document.getElementById('__react-content'));
 
 /***/ }),
 
-/***/ 283:
+/***/ 282:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(134);
+module.exports = __webpack_require__(133);
 
 
 /***/ })
 
-},[283]);
+},[282]);
 //# sourceMappingURL=mutiple.js.map
