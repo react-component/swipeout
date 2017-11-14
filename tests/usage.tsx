@@ -2,7 +2,7 @@ import expect from 'expect.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import TestUtils from 'react-dom/test-utils';
-const Simulator = (window as any).Simulator;
+// const Simulator = (window as any).Simulator;
 import Swipeout from '../src/index';
 
 /* global Hammer */
@@ -39,39 +39,39 @@ describe('simple', () => {
       , div,
     );
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content',
+      instance as any, 'rc-swipeout-content',
     );
 
     const rightActionEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-actions-right',
+      instance as any, 'rc-swipeout-actions-right',
     );
 
-    instance.onPanStart({
+    (instance as any).onPanStart({
       direction: 4,
       moveStatus: {
         x: 10,
       },
     });
-    instance.onPanMove({
+    (instance as any).onPanMove({
       direction: 4,
       moveStatus: {
         x: 100,
       },
     });
-    instance.onPanEnd({
+    (instance as any).onPanEnd({
       direction: 4,
       moveStatus: {
         x: 300,
       },
     });
-    expect(domEl.style.left).to.be('140px');
-    expect(rightActionEl.offsetWidth).to.be(120);
+    expect((domEl as any).style.left).to.be('140px');
+    expect((rightActionEl as any).offsetWidth).to.be(120);
 
     const event = document.createEvent('UIEvent');
     event.initEvent('touchstart', true, true);
     document.body.dispatchEvent(event);
 
-    expect(domEl.style.left).to.be('0px');
+    expect((domEl as any).style.left).to.be('0px');
     done();
   });
 
@@ -100,23 +100,20 @@ describe('simple', () => {
       </Swipeout>
       , div,
     );
-    const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content',
-    );
 
-    instance.onPanStart({
+    (instance as any).onPanStart({
       direction: 4,
       moveStatus: {
         x: 10,
       },
     });
-    instance.onPanMove({
+    (instance as any).onPanMove({
       direction: 4,
       moveStatus: {
         x: 100,
       },
     });
-    instance.onPanEnd({
+    (instance as any).onPanEnd({
       direction: 4,
       moveStatus: {
         x: 300,
@@ -150,25 +147,25 @@ describe('simple', () => {
       , div,
     );
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content',
+      instance as any, 'rc-swipeout-content',
     );
     const BtnElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout-btn',
+      instance as any, 'rc-swipeout-btn',
     );
 
-    instance.onPanStart({
+    (instance as any).onPanStart({
       direction: 4,
       moveStatus: {
         x: 10,
       },
     });
-    instance.onPanMove({
+    (instance as any).onPanMove({
       direction: 4,
       moveStatus: {
         x: 100,
       },
     });
-    instance.onPanEnd({
+    (instance as any).onPanEnd({
       direction: 4,
       moveStatus: {
         x: 300,
@@ -176,7 +173,7 @@ describe('simple', () => {
     });
     TestUtils.Simulate.click(BtnElArr[0]);
     expect(readCalled).to.be(true);
-    expect(domEl.style.left).to.be('0px');
+    expect((domEl as any).style.left).to.be('0px');
     done();
   });
 
@@ -186,7 +183,7 @@ describe('simple', () => {
       , div,
     );
     const domElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout',
+      instance as any, 'rc-swipeout',
     );
     expect(domElArr.length).to.be(0);
     done();
@@ -208,11 +205,11 @@ describe('simple', () => {
       , div,
     );
     const domElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout',
+      instance as any, 'rc-swipeout',
     );
     expect(domElArr.length).to.be(1);
     const actionElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout-btn',
+      instance as any, 'rc-swipeout-btn',
     );
     expect(actionElArr.length).to.be(4);
     done();
@@ -232,7 +229,7 @@ describe('simple', () => {
       , div,
     );
     const domElArr = TestUtils.scryRenderedDOMComponentsWithClass(
-      instance, 'rc-swipeout-content',
+      instance as any, 'rc-swipeout-content',
     );
 
     expect(domElArr.length).to.be(0);
@@ -252,28 +249,28 @@ describe('simple', () => {
     );
 
     const domEl = TestUtils.findRenderedDOMComponentWithClass(
-      instance, 'rc-swipeout-content',
+      instance as any, 'rc-swipeout-content',
     );
-    expect(domEl.style.transform).to.be(undefined);
-    instance.onPanStart({
+    expect((domEl as any).style.transform).to.be(undefined);
+    (instance as any).onPanStart({
       direction: 4,
       moveStatus: {
         x: 10,
       },
     });
-    instance.onPanMove({
+    (instance as any).onPanMove({
       direction: 2,
       moveStatus: {
         x: 100,
       },
     });
-    instance.onPanEnd({
+    (instance as any).onPanEnd({
       direction: 2,
       moveStatus: {
         x: 300,
       },
     });
-    expect(domEl.style.left).to.be('140px');
+    expect((domEl as any).style.left).to.be('140px');
     done();
   });
 

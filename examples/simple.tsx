@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* tslint:disable:no-console */
 import 'rc-swipeout/assets/index.less';
-import Swipeout from 'rc-swipeout';
+import Swipeout from '../src/';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
@@ -10,7 +10,8 @@ const SwipeDemo = () => (
     style={{ backgroundColor: 'white' }}
     autoClose
     right={[
-      { text: 'more more',
+      {
+        text: <span style={{ color: 'yellow'}}>more more</span>,
         onPress: () => console.log('more more'),
         style: { backgroundColor: 'orange', color: 'white' },
       },

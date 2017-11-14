@@ -1,6 +1,8 @@
+import * as React from 'react';
+
 interface IPropTypes {
-  left?: Array<{text: string; onPress?: () => void; style?: any; className?: string}>;
-  right?: Array<{text: string; onPress?: () => void; style?: any; className?: string}>;
+  left?: Array<{ text: React.ReactNode; onPress?: () => void; type?: any; style?: any; className?: string}>;
+  right?: Array<{ text: React.ReactNode; onPress?: () => void; type?: any; style?: any; className?: string}>;
   autoClose?: boolean;
   onOpen?: () => void;
   onClose?: () => void;

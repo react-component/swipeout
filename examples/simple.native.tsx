@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* tslint:disable:no-console */
 import { View, Text } from 'react-native';
-import Swipeout from 'rc-swipeout';
+import Swipeout from '../src/index.native';
 import React from 'react';
 
 const SwipeoutExample = () => (
@@ -10,7 +10,8 @@ const SwipeoutExample = () => (
       style={{ backgroundColor: '#c1c1c1' }}
       autoClose
       right={[
-        { text: 'more',
+        {
+          text: <Text style={{color: 'blue'}}>more</Text>,
           onPress: () => console.log('more'),
           style: { backgroundColor: 'orange', color: 'white' },
         },

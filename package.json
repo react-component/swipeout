@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -69,7 +69,8 @@
     "react": "^15.0.0",
     "react-dom": "^15.0.0",
     "react-native": "~0.42.0",
-    "react-native-index-page": "~0.2.0"
+    "react-native-index-page": "~0.2.0",
+    "react-navigation": "1.0.0-beta.12"
   },
   "typings": "./lib/index.d.ts",
   "pre-commit": [

@@ -3,6 +3,17 @@ import { View, Text } from 'react-native';
 import Swipe from 'react-native-swipeout';
 import SwipeoutPropType from './PropTypes';
 
+export type SwipeButttonType = {
+  backgroundColor?: string;
+  color?: string;
+  component?: JSX.Element;
+  text?: string;
+  type?: 'default' | 'delete' | 'primary' | 'secondary';
+  underlayColor?: string;
+  disabled?: boolean;
+  onPress?(): void;
+};
+
 class Swipeout extends React.Component<SwipeoutPropType, any> {
   static defaultProps = {
     autoClose: false,
@@ -28,9 +39,11 @@ class Swipeout extends React.Component<SwipeoutPropType, any> {
           flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: bgColor,
         }}
       >
-        <Text style={[button.style, { textAlign: 'center' }]}>
-          {button.text}
-        </Text>
+        {React.isValidElement(button.text) ? button.text : (
+          <Text style={[button.style, { textAlign: 'center' }]}>
+            {button.text}
+          </Text>
+        )}
       </View>
     );
     return {
@@ -59,8 +72,8 @@ class Swipeout extends React.Component<SwipeoutPropType, any> {
     return customLeft || customRight ? (
       <Swipe
         autoClose={autoClose}
-        left={customLeft}
-        right={customRight}
+        left={customLeft as SwipeButttonType[]}
+        right={customRight as SwipeButttonType[]}
         style={style}
         onOpen={onOpen}
         onClose={onClose}
