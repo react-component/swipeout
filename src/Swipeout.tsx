@@ -241,6 +241,7 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
           onPanStart={this.onPanStart}
           onPanMove={this.onPanMove}
           onPanEnd={this.onPanEnd}
+          onPanCancel={this.onPanEnd}
           onSwipeLeft={this.doOpenRight}
           onSwipeRight={this.doOpenLeft}
           direction="horizontal"
