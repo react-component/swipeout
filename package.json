@@ -54,7 +54,7 @@
   "dependencies": {
     "babel-runtime": "6.x",
     "classnames": "2.x",
-    "rc-gesture": "^0.0.18",
+    "rc-gesture": "~0.0.18",
     "react-native-swipeout": "^2.2.2"
   },
   "devDependencies": {
