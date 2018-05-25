@@ -10835,7 +10835,7 @@ var Swipeout = function (_React$Component) {
                 this.renderButtons(right, 'right'),
                 __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_8_rc_gesture__["a" /* default */],
-                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ onPanStart: this.onPanStart, onPanMove: this.onPanMove, onPanEnd: this.onPanEnd, onSwipeLeft: this.doOpenRight, onSwipeRight: this.doOpenLeft, direction: 'horizontal' }, refProps),
+                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ onPanStart: this.onPanStart, onPanMove: this.onPanMove, onPanEnd: this.onPanEnd, onPanCancel: this.onPanEnd, onSwipeLeft: this.doOpenRight, onSwipeRight: this.doOpenLeft, direction: 'horizontal' }, refProps),
                     __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                         'div',
                         { className: prefixCls + '-content' },
@@ -14098,6 +14098,10 @@ var Gesture = function (_Component) {
             if (!_this.gesture) {
                 _this.gesture = {};
             }
+            // cache the previous touches
+            if (_this.gesture.touches) {
+                _this.gesture.preTouches = _this.gesture.touches;
+            }
             _this.gesture = __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({}, _this.gesture, params);
         };
         _this.getGestureState = function () {
@@ -14235,7 +14239,8 @@ var Gesture = function (_Component) {
             var _this$gesture2 = _this.gesture,
                 pan = _this$gesture2.pan,
                 touches = _this$gesture2.touches,
-                moveStatus = _this$gesture2.moveStatus;
+                moveStatus = _this$gesture2.moveStatus,
+                preTouches = _this$gesture2.preTouches;
 
             if (touches.length > 1) {
                 _this.setGestureState({
@@ -14245,11 +14250,10 @@ var Gesture = function (_Component) {
                 pan && _this.triggerCombineEvent('onPan', 'cancel');
                 return;
             }
+            // to prevent touchmove event trigger view scroll.
+            _this.event.preventDefault();
             if (moveStatus) {
-                var x = moveStatus.x,
-                    y = moveStatus.y;
-
-                var direction = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__util__["f" /* getDirection */])(x, y);
+                var direction = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_6__util__["f" /* getMovingDirection */])(preTouches[0], touches[0]);
                 _this.setGestureState({
                     direction: direction
                 });
@@ -14442,7 +14446,8 @@ Gesture.defaultProps = {
 /* harmony export (immutable) */ __webpack_exports__["a"] = getEventName;
 /* harmony export (immutable) */ __webpack_exports__["i"] = shouldTriggerSwipe;
 /* harmony export (immutable) */ __webpack_exports__["e"] = shouldTriggerDirection;
-/* harmony export (immutable) */ __webpack_exports__["f"] = getDirection;
+/* unused harmony export getDirection */
+/* harmony export (immutable) */ __webpack_exports__["f"] = getMovingDirection;
 /* harmony export (immutable) */ __webpack_exports__["g"] = getDirectionEventName;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__config__ = __webpack_require__(104);
 /* tslint:disable:no-bitwise */
@@ -14518,6 +14523,7 @@ function shouldTriggerDirection(direction, directionSetting) {
 /**
  * @private
  * get the direction between two points
+ * Note: will change next version
  * @param {Number} x
  * @param {Number} y
  * @return {Number} direction
@@ -14530,6 +14536,30 @@ function getDirection(x, y) {
         return x < 0 ? __WEBPACK_IMPORTED_MODULE_0__config__["g" /* DIRECTION_LEFT */] : __WEBPACK_IMPORTED_MODULE_0__config__["h" /* DIRECTION_RIGHT */];
     }
     return y < 0 ? __WEBPACK_IMPORTED_MODULE_0__config__["i" /* DIRECTION_UP */] : __WEBPACK_IMPORTED_MODULE_0__config__["j" /* DIRECTION_DOWN */];
+}
+/**
+ * @private
+ * get the direction between tow points when touch moving
+ * Note: will change next version
+ * @param {Object} point1 coordinate point, include x & y attributes
+ * @param {Object} point2 coordinate point, include x & y attributes
+ * @return {Number} direction
+ */
+function getMovingDirection(point1, point2) {
+    var x1 = point1.x,
+        y1 = point1.y;
+    var x2 = point2.x,
+        y2 = point2.y;
+
+    var deltaX = x2 - x1;
+    var deltaY = y2 - y1;
+    if (deltaX === 0 && deltaY === 0) {
+        return __WEBPACK_IMPORTED_MODULE_0__config__["f" /* DIRECTION_NONE */];
+    }
+    if (Math.abs(deltaX) >= Math.abs(deltaY)) {
+        return deltaX < 0 ? __WEBPACK_IMPORTED_MODULE_0__config__["g" /* DIRECTION_LEFT */] : __WEBPACK_IMPORTED_MODULE_0__config__["h" /* DIRECTION_RIGHT */];
+    }
+    return deltaY < 0 ? __WEBPACK_IMPORTED_MODULE_0__config__["i" /* DIRECTION_UP */] : __WEBPACK_IMPORTED_MODULE_0__config__["j" /* DIRECTION_DOWN */];
 }
 function getDirectionEventName(direction) {
     var name = void 0;
