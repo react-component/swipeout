@@ -100,10 +100,15 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
     }
   }
   onPanMove = (e) => {
-    const { moveStatus } = e;
+    const { moveStatus, srcEvent } = e;
     const { x: deltaX } = moveStatus;
     if (!this.swiping) {
      return;
+    }
+
+    // fixed scroll when it's pan and moving.
+    if (srcEvent && srcEvent.preventDefault) {
+      srcEvent.preventDefault();
     }
     this._setStyle(deltaX);
   }

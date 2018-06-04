@@ -54,12 +54,21 @@ const SwipeDemo = () => (
 
 ReactDOM.render(
   <div style={{ marginBottom: 12 }}>
-    <SwipeDemo />
+    <SwipeDemo/>
     <div style={{height: 100}}></div>
     <SwipeDemo />
-    <SwipeDemo />
     <div style={{height: 100}}></div>
-    <SwipeDemo />
+    <div>Test scroll</div>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
   </div>,
   document.getElementById('__react-content'),
 );
