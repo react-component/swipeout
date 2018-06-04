@@ -1,5 +1,11 @@
 # History
 
+# 2.0.6
+
+- fix: https://github.com/ant-design/ant-design-mobile/issues/1954 As rc-gesture revert preventDefault in v0.0.19 for tabs+listview issue (https://github.com/ant-design/ant-design-mobile/issues/2589).
+- Then, rc-gesture@v0.0.20 fixed this issue by exposing the `event` as a property of Gesture object, and the Gesture object will be passed as the first parameter when invoked panMove event callback.
+- So, `rc-swipeout` invokes `event.preventDefault()` to prevent scroll event when pan moving.
+
 # 2.0.0
 
 - replace `hammer.js` width [rc-gesture](https://github.com/react-component/gesture)
