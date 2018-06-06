@@ -1,4 +1,8 @@
-# History
+
+# 2.0.7
+
+ - refine swipe and demo
+ - fix: https://github.com/ant-design/ant-design-mobile/issues/1954 (#56)
 
 # 2.0.6
 
