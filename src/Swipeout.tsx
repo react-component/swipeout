@@ -223,6 +223,12 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
     ) : null;
   }
 
+  onTouchMove = (e) => {
+    if (this.swiping) {
+      e.preventDefault();
+    }
+  }
+
   render() {
     const { prefixCls, left, right, disabled, children, ...restProps } = this.props;
 
@@ -237,12 +243,13 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
     };
 
     return (left!.length || right!.length) && !disabled ? (
-      <div className={cls} {...divProps}>
+      <div className={cls} {...divProps} >
         {/* 保证 body touchStart 后不触发 pan */}
         <div className={`${prefixCls}-cover`} ref={(el) => this.cover = el} />
         { this.renderButtons(left, 'left') }
         { this.renderButtons(right, 'right') }
         <Gesture
+          onTouchMove={this.onTouchMove}
           onPanStart={this.onPanStart}
           onPanMove={this.onPanMove}
           onPanEnd={this.onPanEnd}

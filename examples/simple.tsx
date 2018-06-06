@@ -54,21 +54,22 @@ const SwipeDemo = () => (
 
 ReactDOM.render(
   <div style={{ marginBottom: 12 }}>
+    <div>Basic</div>
     <SwipeDemo/>
-    <div style={{height: 100}}></div>
-    <SwipeDemo />
-    <div style={{height: 100}}></div>
+    <div style={{height: 20}}></div>
     <div>Test scroll</div>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
-    <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    <div style={{margin: 20, overflow: 'scroll', height: 500}}>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+      <SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/><SwipeDemo/>
+    </div>
   </div>,
   document.getElementById('__react-content'),
 );
