@@ -10741,6 +10741,11 @@ var Swipeout = function (_React$Component) {
             _this.openedLeft = false;
             _this.openedRight = false;
         };
+        _this.onTouchMove = function (e) {
+            if (_this.swiping) {
+                e.preventDefault();
+            }
+        };
         _this.state = {
             swiping: false
         };
@@ -10846,7 +10851,7 @@ var Swipeout = function (_React$Component) {
                 this.renderButtons(right, 'right'),
                 __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                     __WEBPACK_IMPORTED_MODULE_8_rc_gesture__["a" /* default */],
-                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ onPanStart: this.onPanStart, onPanMove: this.onPanMove, onPanEnd: this.onPanEnd, onPanCancel: this.onPanEnd, onSwipeLeft: this.doOpenRight, onSwipeRight: this.doOpenLeft, direction: 'horizontal' }, refProps),
+                    __WEBPACK_IMPORTED_MODULE_0_babel_runtime_helpers_extends___default()({ onTouchMove: this.onTouchMove, onPanStart: this.onPanStart, onPanMove: this.onPanMove, onPanEnd: this.onPanEnd, onPanCancel: this.onPanEnd, onSwipeLeft: this.doOpenRight, onSwipeRight: this.doOpenLeft, direction: 'horizontal' }, refProps),
                     __WEBPACK_IMPORTED_MODULE_6_react___default.a.createElement(
                         'div',
                         { className: prefixCls + '-content' },
