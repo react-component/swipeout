@@ -4,6 +4,7 @@ notifications:
   email:
   - rjmuqiang@gmail.com
   - hust2012jiangkai@gmail.com
+  - quentinyang1985@gmail.com
 
 node_js:
 - 6.9.4

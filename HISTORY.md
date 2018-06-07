@@ -1,5 +1,10 @@
 # History
 
+# 2.0.7
+- add browserslist config file, then tell babel need to add prefix for `display: flex`.
+- refine swipe and demo
+- fix: https://github.com/ant-design/ant-design-mobile/issues/1954 (#56)
+
 # 2.0.6
 
 - fix: https://github.com/ant-design/ant-design-mobile/issues/1954 As rc-gesture revert preventDefault in v0.0.19 for tabs+listview issue (https://github.com/ant-design/ant-design-mobile/issues/2589).

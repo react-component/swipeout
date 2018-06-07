@@ -26,12 +26,13 @@ describe('simple', () => {
   it('works when swipe', done => {
     const instance = ReactDOM.render(
       <Swipeout
+        left={[
+          { text: 'read', style: { width: 80 } },
+          { text: 'reply', style: { width: 60 } },
+        ]}
         right={[
           { text: 'more', style: { width: 60 }},
           { text: 'delete', style: { width: 60 } },
-        ]} left={[
-          { text: 'read', style: { width: 80 } },
-          { text: 'reply', style: { width: 60 } },
         ]}
       >
         swipeout demo

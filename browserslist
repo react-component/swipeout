@@ -1,0 +1,7 @@
+# Browsers that we support
+last 2 versions
+Firefox ESR
+> 2%
+ie >= 8
+iOS >= 8
+Android >= 4
