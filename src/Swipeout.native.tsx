@@ -58,9 +58,7 @@ class Swipeout extends React.Component<SwipeoutPropType, any> {
   }
 
   render() {
-    const {
-      disabled, autoClose, style, left, right, onOpen, onClose, children, ...restProps,
-    } = this.props;
+    const { disabled, autoClose, style, left, right, onOpen, onClose, children, ...restProps } = this.props;
 
     const customLeft = left && left.map(btn => {
       return this.renderCustomButton(btn);

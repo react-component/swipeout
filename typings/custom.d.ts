@@ -12,8 +12,3 @@ declare module "rc-swipeout" {
   var Ret: any;
   export default Ret;
 }
-
-declare module "react-native-swipeout" {
-  var Ret: any;
-  export default Ret;
-}
