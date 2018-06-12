@@ -1,1 +1,3 @@
-export { default } from './Swipeout';
+import Swipeout from './Swipeout';
+
+export default Swipeout;
