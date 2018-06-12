@@ -1,6 +1,6 @@
 {
   "name": "rc-swipeout",
-  "version": "2.0.8",
+  "version": "2.0.9",
   "description": "swipe out ui component for react(web and react-native)",
   "keywords": [
     "react",
@@ -49,7 +49,10 @@
     "test": "rc-test run test",
     "chrome-test": "rc-test run chrome-test",
     "coverage": "rc-test run coverage",
-    "rn-start": "node node_modules/react-native/local-cli/cli.js start"
+    "rn-start": "node node_modules/react-native/local-cli/cli.js start",
+    "prepublish": "rc-tools run guard",
+    "prepare": "rc-tools run guard",
+    "prepublishOnly": "rc-tools run guard"
   },
   "dependencies": {
     "babel-runtime": "6.x",
