@@ -3,17 +3,18 @@ webpackJsonp([3],{
 /***/ 122:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(62);
+module.exports = __webpack_require__(63);
 
 
 /***/ }),
 
-/***/ 62:
+/***/ 63:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-throw new Error("Cannot find module \"../../assets/index.less\"");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_index_less__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__assets_index_less___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__assets_index_less__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src___ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react__);
