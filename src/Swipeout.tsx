@@ -52,8 +52,10 @@ export default class Swipeout extends React.Component <SwipeoutPropType, any> {
   }
 
   componentDidMount() {
-    this.btnsLeftWidth = this.left ? this.left.offsetWidth : 0;
-    this.btnsRightWidth = this.right ? this.right.offsetWidth : 0;
+    setTimeout(() => {
+        this.btnsLeftWidth = this.left ? this.left.offsetWidth : 0;
+        this.btnsRightWidth = this.right ? this.right.offsetWidth : 0;
+    }, 300);
     document.body.addEventListener('touchstart', this.onCloseSwipe, true);
   }
 
