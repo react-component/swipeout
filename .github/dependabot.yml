@@ -1,0 +1,22 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: daily
+    time: "21:00"
+  open-pull-requests-limit: 10
+  ignore:
+  - dependency-name: "@types/mocha"
+    versions:
+    - 8.2.0
+    - 8.2.1
+  - dependency-name: react-native
+    versions:
+    - 0.63.4
+  - dependency-name: react-navigation
+    versions:
+    - 4.4.3
+  - dependency-name: react
+    versions:
+    - 17.0.1
